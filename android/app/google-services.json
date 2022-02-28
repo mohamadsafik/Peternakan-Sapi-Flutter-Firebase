@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "153006184224",
+    "project_id": "peternakan-sapi-flutter",
+    "storage_bucket": "peternakan-sapi-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153006184224:android:0b4306c7d352cb3376a945",
+        "android_client_info": {
+          "package_name": "com.safik.peternakan_sapi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "153006184224-scf90bjh77voj458jhcisotr2s28e250.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOSIHVdXWKVJFk3zi2rH17Z1jaQ9LHZlc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "153006184224-scf90bjh77voj458jhcisotr2s28e250.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
