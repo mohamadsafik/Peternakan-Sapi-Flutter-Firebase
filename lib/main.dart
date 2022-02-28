@@ -10,7 +10,7 @@ import 'package:peternakan_sapi/screens/landing.dart';
 import 'package:peternakan_sapi/screens/loading_page.dart';
 import 'package:peternakan_sapi/screens/login.dart';
 
-import 'controllers/authC.dart';
+import 'controllers/authController.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

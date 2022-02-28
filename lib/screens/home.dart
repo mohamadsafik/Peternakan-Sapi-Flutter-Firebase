@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../controllers/authC.dart';
+import '../controllers/authController.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);

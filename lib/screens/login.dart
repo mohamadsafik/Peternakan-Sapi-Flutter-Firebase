@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:peternakan_sapi/controllers/authC.dart';
+import 'package:peternakan_sapi/controllers/authController.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
