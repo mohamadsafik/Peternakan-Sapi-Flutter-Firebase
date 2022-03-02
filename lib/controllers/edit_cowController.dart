@@ -3,19 +3,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AddCowController extends GetxController {
-  late TextEditingController name = TextEditingController();
-  late TextEditingController eartag = TextEditingController();
-  late TextEditingController code = TextEditingController();
-  late TextEditingController gender = TextEditingController();
-  late TextEditingController breed = TextEditingController();
-  late TextEditingController birthdate = TextEditingController();
-  late TextEditingController joinedwhen = TextEditingController();
-  late TextEditingController note = TextEditingController();
+class EditCowController extends GetxController {
+  late TextEditingController name;
+  late TextEditingController eartag;
+  late TextEditingController code;
+  late TextEditingController gender;
+  late TextEditingController breed;
+  late TextEditingController birthdate;
+  late TextEditingController joinedwhen;
+  late TextEditingController note;
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-
-  void addCow(
+  void editCow(
     String name,
     String eartag,
     String code,
@@ -25,9 +24,9 @@ class AddCowController extends GetxController {
     String joinedwhen,
     String note,
   ) async {
-    CollectionReference cows = firestore.collection("cows");
+    DocumentReference docData = firestore.collection("cows").doc();
     try {
-      await cows.add({
+      await docData.update({
         "uid": FirebaseAuth.instance.currentUser!.uid,
         "name": name,
         "eartag": eartag,
@@ -41,10 +40,7 @@ class AddCowController extends GetxController {
       Get.defaultDialog(
         title: "berhasil",
         middleText: "berhasil menambahkan sapi",
-        onConfirm: () {
-          Get.back();
-          Get.back();
-        },
+        // onConfirm: () => Get.back(),
         textConfirm: "okay",
       );
     } catch (e) {
@@ -54,6 +50,19 @@ class AddCowController extends GetxController {
         middleText: "tidak berhasil menambahkan sapi",
       );
     }
+  }
+
+  @override
+  void onInit() {
+    name = TextEditingController();
+    eartag = TextEditingController();
+    code = TextEditingController();
+    gender = TextEditingController();
+    breed = TextEditingController();
+    birthdate = TextEditingController();
+    joinedwhen = TextEditingController();
+    note = TextEditingController();
+    super.onInit();
   }
 
   @override

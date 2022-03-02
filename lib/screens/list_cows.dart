@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/screens/detail_sapi.dart';
+import 'package:peternakan_sapi/screens/edit_cow.dart';
+import 'package:peternakan_sapi/screens/home.dart';
 import 'add_cows.dart';
 import 'package:get/get.dart';
 
@@ -49,19 +51,10 @@ class ListCows extends GetView {
                         trailing: SizedBox(
                           width: 100,
                           child: Row(
-                            children: const [
-                              // Press this button to edit a single product
-                              // IconButton(
-                              //     icon: const Icon(Icons.edit),
-                              //     onPressed: () {}),
-                              // // //     =>
-                              // // //         _createOrUpdate(documentSnapshot)),
-                              // // // // This icon button is used to delete a single product
-                              // IconButton(
-                              //     icon: const Icon(Icons.delete),
-                              //     onPressed: () {}),
-                              // =>
-                              //     _deleteProduct(documentSnapshot.id)),
+                            children: [
+                              ElevatedButton(
+                                  onPressed: () => Get.to(EditCowPage()),
+                                  child: const Text("s"))
                             ],
                           ),
                         ),

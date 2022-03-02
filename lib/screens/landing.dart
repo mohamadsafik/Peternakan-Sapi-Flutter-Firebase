@@ -105,20 +105,27 @@ class LandingPage extends StatelessWidget {
     final LandingPageController landingPageController =
         Get.put(LandingPageController(), permanent: false);
     return SafeArea(
-        child: Scaffold(
-      bottomNavigationBar:
-          buildBottomNavigationMenu(context, landingPageController),
-      body: Obx(() => IndexedStack(
-            index: landingPageController.tabIndex.value,
-            children: [
-              const Homepage(),
-              ListCows(),
-              const ScannerPage(),
-              ListCows(),
-              ListCows(),
-              // const RecipeDetailsScreen(),
-            ],
-          )),
-    ));
+      child: Scaffold(
+        bottomNavigationBar:
+            buildBottomNavigationMenu(context, landingPageController),
+        body: Obx(() => IndexedStack(
+              index: landingPageController.tabIndex.value,
+              children: [
+                const Homepage(),
+                ListCows(),
+                const ScannerPage(),
+                ListCows(),
+                ListCows(),
+                // const RecipeDetailsScreen(),
+              ],
+            )),
+        // floatingActionButton: FloatingActionButton(
+        //   heroTag: null,
+        //   onPressed: () => Get.to(const AddCowsPage()),
+        //   child: const Icon(Icons.add),
+        // ),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      ),
+    );
   }
 }
