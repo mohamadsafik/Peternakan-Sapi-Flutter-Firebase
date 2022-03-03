@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/firebase_constants.dart';
 import 'package:peternakan_sapi/controllers/add_cowController.dart';
+import 'package:peternakan_sapi/controllers/edit_cowController.dart';
 
 import 'package:peternakan_sapi/screens/home.dart';
 import 'package:peternakan_sapi/screens/landing.dart';
@@ -21,6 +22,9 @@ void main() async {
   });
   addcow.then((value) {
     Get.put(AddCowController());
+  });
+  editcow.then((value) {
+    Get.put(EditCowController());
   });
 
   runApp(const MyApp());

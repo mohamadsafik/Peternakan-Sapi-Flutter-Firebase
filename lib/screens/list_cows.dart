@@ -53,8 +53,10 @@ class ListCows extends GetView {
                           child: Row(
                             children: [
                               ElevatedButton(
-                                  onPressed: () => Get.to(EditCowPage()),
-                                  child: const Text("s"))
+                                  onPressed: () => Get.to(EditCowsPage(
+                                        data: documentSnapshot,
+                                      )),
+                                  child: const Text("edit"))
                             ],
                           ),
                         ),
