@@ -6,9 +6,11 @@ import '../controllers/edit_cowController.dart';
 
 //menggunakan getxview
 class EditCowsPage extends GetView<EditCowController> {
-  EditCowsPage({Key? key, this.data}) : super(key: key);
+  EditCowsPage({Key? key, this.data, this.docID}) : super(key: key);
 
   var data = Get.arguments;
+  var docID = Get.arguments;
+
   // final Map cows;
 
   @override
@@ -91,15 +93,15 @@ class EditCowsPage extends GetView<EditCowController> {
               ),
               ElevatedButton(
                 onPressed: () => controller.editCow(
-                  controller.name.text,
-                  controller.eartag.text,
-                  controller.code.text,
-                  controller.gender.text,
-                  controller.breed.text,
-                  controller.birthdate.text,
-                  controller.joinedwhen.text,
-                  controller.note.text,
-                ),
+                    controller.name.text,
+                    controller.eartag.text,
+                    controller.code.text,
+                    controller.gender.text,
+                    controller.breed.text,
+                    controller.birthdate.text,
+                    controller.joinedwhen.text,
+                    controller.note.text,
+                    docID),
                 child: const Text("Tambah Sapi"),
               )
             ],

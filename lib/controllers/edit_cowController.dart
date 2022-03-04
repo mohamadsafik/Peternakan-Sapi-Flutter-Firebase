@@ -29,9 +29,10 @@ class EditCowController extends GetxController {
     String birthdate,
     String joinedwhen,
     String note,
+    String docID,
   ) async {
-    DocumentReference cows =
-        firestore.collection("cows").doc('7TWtMYpqxcCXhA3lQre3');
+    DocumentReference cows = firestore.collection("cows").doc(docID);
+
     try {
       await cows.update({
         // "uid": FirebaseAuth.instance.currentUser!.uid,

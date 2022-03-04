@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:peternakan_sapi/screens/add_cows.dart';
 import 'package:peternakan_sapi/screens/detail_sapi.dart';
 import 'package:peternakan_sapi/screens/home.dart';
+
 import 'package:peternakan_sapi/screens/list_cows.dart';
 import 'package:peternakan_sapi/screens/scan.dart';
 import '../controllers/landing_pageController.dart';

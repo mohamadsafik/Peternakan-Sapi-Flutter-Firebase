@@ -150,12 +150,9 @@ class DetailSapiPage extends GetView {
                       child: Column(
                         children: [
                           Container(
-                            height: 30,
-                            width: 300,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: Colors.green,
-                            ),
+                                borderRadius: BorderRadius.circular(8),
+                                color: Colors.green),
                             child: const Center(
                                 child: Text('Informasi Sapi',
                                     style: TextStyle(

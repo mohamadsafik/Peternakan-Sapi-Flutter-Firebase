@@ -4,19 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/screens/detail_sapi.dart';
 import 'package:peternakan_sapi/screens/edit_cow.dart';
-import 'package:peternakan_sapi/screens/home.dart';
 import 'add_cows.dart';
-import 'package:get/get.dart';
 
 class ListCows extends GetView {
   ListCows({Key? key}) : super(key: key);
 
   var currentUser = FirebaseAuth.instance.currentUser!.uid;
-
-  // final CollectionReference _cows = FirebaseFirestore.instance
-  //     .collection('cows')
-  //     .where('uid', isNotEqualTo: FirebaseAuth.instance.currentUser!.uid)
-  //     .snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +45,24 @@ class ListCows extends GetView {
                           width: 100,
                           child: Row(
                             children: [
-                              ElevatedButton(
+                              IconButton(
                                   onPressed: () => Get.to(EditCowsPage(
+                                        docID: documentSnapshot.id,
                                         data: documentSnapshot,
                                       )),
-                                  child: const Text("edit"))
+                                  icon: const Icon(
+                                    Icons.edit,
+                                    color: Colors.green,
+                                  )),
+                              IconButton(
+                                  onPressed: () => Get.to(EditCowsPage(
+                                        docID: documentSnapshot.id,
+                                        data: documentSnapshot,
+                                      )),
+                                  icon: const Icon(
+                                    Icons.delete,
+                                    color: Colors.green,
+                                  )),
                             ],
                           ),
                         ),
