@@ -1,7 +1,25 @@
-update project di github
-
+//update project di github//
 git add .
 git commit -m "update 03 maret"
 git push origin main (git push origin main --force)
+
+//sedang dikerjakan//
+-add sapi (kurang validate dan kurang lengkap jenis textfield(ui)
+-edit (seperti add)
+-delete sapi (done)
+-detail sapi (memperbaiki ui)
+-home (baru dikit)
+-auth (logout bisa, login dan register 1 page, pisah!!!)
+
+//rencana kedepan//
+-menyelesaikan ui monitoring di home
+-kegiatan task sapi dari vaccinate, ib, dan lain-lain
+-scan ke detail sapi
+-membuat task pemasukan dan pengeluaran serta laporan keuangan
+
+//rencana kalau waktu masih banyak//
+-menambahkan fitur diagnosis penyakit pada sapi
+
+
 
 
