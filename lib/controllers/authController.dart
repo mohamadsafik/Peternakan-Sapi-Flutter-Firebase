@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:peternakan_sapi/constants/firebase_constants.dart';
-import 'package:peternakan_sapi/screens/home.dart';
 import 'package:peternakan_sapi/screens/landing.dart';
 import 'package:peternakan_sapi/screens/login.dart';
 import 'package:get/get.dart';

@@ -11,13 +11,11 @@ class EditCowsPage extends GetView<EditCowController> {
   var data = Get.arguments;
   var docID = Get.arguments;
 
-  // final Map cows;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('add sapi')),
+        title: const Center(child: Text('Edit Sapi')),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -42,7 +40,7 @@ class EditCowsPage extends GetView<EditCowController> {
               ),
               const SizedBox(height: 10),
               TextField(
-                controller: controller.code..text = data['code'],
+                controller: controller.rasCow..text = data['rasCow'],
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Kode Ear Tag",
@@ -95,7 +93,7 @@ class EditCowsPage extends GetView<EditCowController> {
                 onPressed: () => controller.editCow(
                     controller.name.text,
                     controller.eartag.text,
-                    controller.code.text,
+                    controller.rasCow.text,
                     controller.gender.text,
                     controller.breed.text,
                     controller.birthdate.text,

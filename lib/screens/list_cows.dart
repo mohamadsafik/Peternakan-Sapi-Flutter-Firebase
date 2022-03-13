@@ -2,11 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:peternakan_sapi/controllers/list_cowController.dart';
 import 'package:peternakan_sapi/screens/detail_sapi.dart';
 import 'package:peternakan_sapi/screens/edit_cow.dart';
 import 'add_cows.dart';
 
-class ListCows extends GetView {
+class ListCows extends GetView<ListCowController> {
   ListCows({Key? key}) : super(key: key);
 
   var currentUser = FirebaseAuth.instance.currentUser!.uid;
@@ -55,10 +56,8 @@ class ListCows extends GetView {
                                     color: Colors.green,
                                   )),
                               IconButton(
-                                  onPressed: () => Get.to(EditCowsPage(
-                                        docID: documentSnapshot.id,
-                                        data: documentSnapshot,
-                                      )),
+                                  onPressed: () => controller
+                                      .deleteSapi(documentSnapshot.id),
                                   icon: const Icon(
                                     Icons.delete,
                                     color: Colors.green,
@@ -86,7 +85,7 @@ class ListCows extends GetView {
         ),
         floatingActionButton: FloatingActionButton(
           heroTag: null,
-          onPressed: () => Get.to(const AddCowsPage()),
+          onPressed: () => Get.to(AddCowsPage()),
           // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
           child: const Icon(Icons.add),
         ));

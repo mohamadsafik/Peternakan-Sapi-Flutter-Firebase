@@ -1,12 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EditCowController extends GetxController {
   late TextEditingController name = TextEditingController();
   late TextEditingController eartag = TextEditingController();
-  late TextEditingController code = TextEditingController();
+  late TextEditingController rasCow = TextEditingController();
   late TextEditingController gender = TextEditingController();
   late TextEditingController breed = TextEditingController();
   late TextEditingController birthdate = TextEditingController();
@@ -23,7 +22,7 @@ class EditCowController extends GetxController {
   void editCow(
     String name,
     String eartag,
-    String code,
+    String rasCow,
     String gender,
     String breed,
     String birthdate,
@@ -38,7 +37,7 @@ class EditCowController extends GetxController {
         // "uid": FirebaseAuth.instance.currentUser!.uid,
         "name": name,
         "eartag": eartag,
-        "code": code,
+        "rasCow": rasCow,
         "gender": gender,
         "breed": breed,
         "birthdate": birthdate,
@@ -67,7 +66,7 @@ class EditCowController extends GetxController {
   void onClose() {
     name.dispose();
     eartag.dispose();
-    code.dispose();
+    rasCow.dispose();
     gender.dispose();
     breed.dispose();
     birthdate.dispose();
