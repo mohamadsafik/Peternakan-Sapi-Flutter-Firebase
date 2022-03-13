@@ -4,19 +4,6 @@ import 'package:get/get.dart';
 class ListCowController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  // Future<QuerySnapshot<Object?>> getData() async {
-  //   CollectionReference products = firestore.collection("products");
-  //   return products.get();
-  // }
-
-  // Stream<QuerySnapshot<Object?>> streamData() {
-  //   CollectionReference products = firestore.collection("products");
-  //   return products
-  //       .where("price", isGreaterThan: 10000)
-  //       // .orderBy("time", descending: true)
-  //       .snapshots();
-  // }
-
   void deleteSapi(String docID) async {
     try {
       DocumentReference cows = firestore.collection("cows").doc(docID);

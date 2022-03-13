@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/firebase_constants.dart';
-import 'package:peternakan_sapi/controllers/add_cowController.dart';
-import 'package:peternakan_sapi/controllers/edit_cowController.dart';
-import 'package:peternakan_sapi/controllers/list_cowController.dart';
-import 'package:peternakan_sapi/screens/loading_page.dart';
-import 'controllers/authController.dart';
+import 'package:peternakan_sapi/screens/auth/view/login.dart';
+import 'package:peternakan_sapi/screens/editcow/controller/edit_cowController.dart';
+import 'package:peternakan_sapi/screens/listcows/controller/list_cowController.dart';
+
+import 'screens/auth/controller/authController.dart';
+import 'screens/addcow/controller/add_cowController.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,13 +14,13 @@ void main() async {
   await firebaseInitialization.then((value) {
     Get.put(AuthController());
   });
-  addcow.then((value) {
+  await addcow.then((value) {
     Get.put(AddCowController());
   });
-  editcow.then((value) {
+  await editcow.then((value) {
     Get.put(EditCowController());
   });
-  deleteSapi.then((value) {
+  await deleteSapi.then((value) {
     Get.put(ListCowController());
   });
 
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         // backgroundColor: const Color.fromRGBO(36, 54, 101, 1.0),
       ),
-      home: const LoadingPage(),
+      home: LoginPage(),
       // home: const Center(
       //   child: CircularProgressIndicator(),
       // ),

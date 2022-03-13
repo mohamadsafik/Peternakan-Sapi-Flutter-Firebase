@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:peternakan_sapi/controllers/list_cowController.dart';
-import 'package:peternakan_sapi/screens/detail_sapi.dart';
-import 'package:peternakan_sapi/screens/edit_cow.dart';
-import 'add_cows.dart';
+import 'package:peternakan_sapi/screens/detailcow/view/detail_sapi.dart';
+import '../../addcow/view/add_cows.dart';
+import '../../editcow/view/edit_cow.dart';
+import '../controller/list_cowController.dart';
 
 class ListCows extends GetView<ListCowController> {
   ListCows({Key? key}) : super(key: key);

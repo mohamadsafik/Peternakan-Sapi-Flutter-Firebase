@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
-import '../controllers/edit_cowController.dart';
+import '../controller/edit_cowController.dart';
 
 //menggunakan getxview
 class EditCowsPage extends GetView<EditCowController> {

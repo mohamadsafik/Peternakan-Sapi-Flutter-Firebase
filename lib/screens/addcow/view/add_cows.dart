@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../controllers/add_cowController.dart';
+import '../controller/add_cowController.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 

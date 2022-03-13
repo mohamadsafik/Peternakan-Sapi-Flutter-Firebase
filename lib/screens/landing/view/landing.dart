@@ -1,18 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:peternakan_sapi/screens/add_cows.dart';
-import 'package:peternakan_sapi/screens/detail_sapi.dart';
-import 'package:peternakan_sapi/screens/home.dart';
-
-import 'package:peternakan_sapi/screens/list_cows.dart';
-import 'package:peternakan_sapi/screens/scan.dart';
-import '../controllers/landing_pageController.dart';
-
-import 'dart:async';
-
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:peternakan_sapi/screens/home/view/home.dart';
+import 'package:peternakan_sapi/screens/listcows/view/list_cows.dart';
+import '../controller/landing_pageController.dart';
 
 class LandingPage extends StatelessWidget {
   final TextStyle unselectedLabelStyle = TextStyle(
@@ -114,7 +104,7 @@ class LandingPage extends StatelessWidget {
               children: [
                 const Homepage(),
                 ListCows(),
-                const ScannerPage(),
+                const Homepage(),
                 ListCows(),
                 ListCows(),
                 // const RecipeDetailsScreen(),
