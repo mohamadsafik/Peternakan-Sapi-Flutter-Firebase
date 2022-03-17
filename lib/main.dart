@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/firebase_constants.dart';
+import 'package:peternakan_sapi/screens/add_task_controller.dart';
 import 'package:peternakan_sapi/screens/auth/view/login.dart';
 import 'package:peternakan_sapi/screens/editcow/controller/edit_cowController.dart';
 import 'package:peternakan_sapi/screens/listcows/controller/list_cowController.dart';
@@ -22,6 +23,9 @@ void main() async {
   });
   await deleteSapi.then((value) {
     Get.put(ListCowController());
+  });
+  await addtask.then((value) {
+    Get.put(UpdateTaskController());
   });
 
   runApp(const MyApp());

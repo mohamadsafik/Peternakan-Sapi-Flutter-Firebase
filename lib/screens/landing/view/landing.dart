@@ -25,7 +25,7 @@ class LandingPage extends StatelessWidget {
             showSelectedLabels: true,
             onTap: landingPageController.changeTabIndex,
             currentIndex: landingPageController.tabIndex.value,
-            backgroundColor: Colors.green,
+            backgroundColor: const Color.fromARGB(255, 86, 211, 138),
             unselectedItemColor: Colors.white.withOpacity(0.5),
             selectedItemColor: Colors.white,
             unselectedLabelStyle: unselectedLabelStyle,
@@ -40,7 +40,7 @@ class LandingPage extends StatelessWidget {
                   ),
                 ),
                 label: 'Home',
-                backgroundColor: Colors.green,
+                backgroundColor: const Color.fromARGB(255, 86, 211, 138),
               ),
               BottomNavigationBarItem(
                 icon: Container(
@@ -51,7 +51,7 @@ class LandingPage extends StatelessWidget {
                   ),
                 ),
                 label: 'Explore',
-                backgroundColor: Colors.green,
+                backgroundColor: const Color.fromARGB(255, 86, 211, 138),
               ),
               BottomNavigationBarItem(
                 icon: Container(
@@ -62,7 +62,7 @@ class LandingPage extends StatelessWidget {
                   ),
                 ),
                 label: 'Scan',
-                backgroundColor: Colors.green,
+                backgroundColor: const Color.fromARGB(255, 86, 211, 138),
               ),
               BottomNavigationBarItem(
                 icon: Container(
@@ -73,7 +73,7 @@ class LandingPage extends StatelessWidget {
                   ),
                 ),
                 label: 'Places',
-                backgroundColor: Colors.green,
+                backgroundColor: const Color.fromARGB(255, 86, 211, 138),
               ),
               BottomNavigationBarItem(
                 icon: Container(
@@ -84,7 +84,7 @@ class LandingPage extends StatelessWidget {
                   ),
                 ),
                 label: 'Settings',
-                backgroundColor: Colors.green,
+                backgroundColor: const Color.fromARGB(255, 86, 211, 138),
               ),
             ],
           ),

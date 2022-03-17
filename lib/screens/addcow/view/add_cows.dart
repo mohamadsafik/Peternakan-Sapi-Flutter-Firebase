@@ -143,7 +143,7 @@ class AddCowsPage extends GetView<AddCowController> {
                       decoration: const InputDecoration(
                         suffixIcon: Icon(Icons.date_range),
                         border: OutlineInputBorder(),
-                        labelText: "Bergabung Pada Tanggal",
+                        labelText: "Masuk Kandang Tanggal",
                       ),
                       onTap: () {
                         controller.choosejoin;

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:peternakan_sapi/screens/add_task_cow.dart';
 
 import '../../../constants/constant.dart';
 
@@ -13,7 +14,7 @@ class DetailSapiPage extends GetView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 86, 211, 138),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -102,19 +103,23 @@ class DetailSapiPage extends GetView {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    data['eartag'],
-                    style: kTinyTitleTextStyle,
-                  ),
                   const SizedBox(
                     height: 10.0,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        data['name'],
-                        style: kNormalTitleTextStyle,
+                      Container(
+                        height: 25,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12)),
+                        child: const Center(
+                          child: Text(
+                            'Detail Sapi',
+                            style: TextStyle(fontSize: 15, color: Colors.black),
+                          ),
+                        ),
                       ),
                       InkWell(
                         onTap: () => Get.back(),
@@ -143,7 +148,7 @@ class DetailSapiPage extends GetView {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: Colors.yellow,
+                      color: const Color(0xFFEBFEF6),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(15.0),
@@ -156,7 +161,7 @@ class DetailSapiPage extends GetView {
                             child: const Center(
                                 child: Text('Informasi Sapi',
                                     style: TextStyle(
-                                      color: Colors.yellow,
+                                      color: Color(0xFFEBFEF6),
                                       fontSize: 20,
                                     ))),
                           ),
@@ -169,26 +174,74 @@ class DetailSapiPage extends GetView {
                               Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
-                                  color: Colors.yellow,
+                                  color: const Color(0xFFEBFEF6),
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: const [
-                                    Text("Nama:"),
+                                    Text(
+                                      "Nama:",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                      ),
+                                    ),
                                     SizedBox(height: 5),
-                                    Text("Eartag:"),
+                                    Text(
+                                      "Eartag:",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                      ),
+                                    ),
                                     SizedBox(height: 5),
-                                    Text("Jenis Ras:"),
+                                    Text(
+                                      "Jenis Ras:",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                      ),
+                                    ),
                                     SizedBox(height: 5),
-                                    Text("Jenis Kelamin:"),
+                                    Text(
+                                      "Jenis Kelamin:",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                      ),
+                                    ),
                                     SizedBox(height: 5),
-                                    Text("Keturunan Dari:"),
+                                    Text(
+                                      "Keturunan Dari:",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                      ),
+                                    ),
                                     SizedBox(height: 5),
-                                    Text("Tanggal Lahir:"),
+                                    Text(
+                                      "Tanggal Lahir:",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                      ),
+                                    ),
                                     SizedBox(height: 5),
-                                    Text("Gabung:"),
+                                    Text(
+                                      "Gabung:",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                      ),
+                                    ),
                                     SizedBox(height: 5),
-                                    Text("Catatan:"),
+                                    Text(
+                                      "Catatan:",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -196,7 +249,7 @@ class DetailSapiPage extends GetView {
                               Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
-                                  color: Colors.yellow,
+                                  color: const Color(0xFFEBFEF6),
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -226,8 +279,8 @@ class DetailSapiPage extends GetView {
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const SizedBox(
+                            children: const [
+                              SizedBox(
                                 width: 70,
                               ),
                             ],
@@ -237,8 +290,8 @@ class DetailSapiPage extends GetView {
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const SizedBox(
+                            children: const [
+                              SizedBox(
                                 width: 70,
                               ),
                             ],
@@ -248,8 +301,8 @@ class DetailSapiPage extends GetView {
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const SizedBox(
+                            children: const [
+                              SizedBox(
                                 width: 70,
                               ),
                             ],
@@ -259,8 +312,8 @@ class DetailSapiPage extends GetView {
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const SizedBox(
+                            children: const [
+                              SizedBox(
                                 width: 70,
                               ),
                             ],
@@ -270,8 +323,8 @@ class DetailSapiPage extends GetView {
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const SizedBox(
+                            children: const [
+                              SizedBox(
                                 width: 70,
                               ),
                             ],
@@ -281,8 +334,8 @@ class DetailSapiPage extends GetView {
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const SizedBox(
+                            children: const [
+                              SizedBox(
                                 width: 70,
                               ),
                             ],
@@ -292,8 +345,8 @@ class DetailSapiPage extends GetView {
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const SizedBox(
+                            children: const [
+                              SizedBox(
                                 width: 70,
                               ),
                             ],
@@ -311,25 +364,68 @@ class DetailSapiPage extends GetView {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: Colors.yellow,
+                      color: const Color(0xFFEBFEF6),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         children: [
-                          Container(
-                            height: 30,
-                            width: 300,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: Colors.green,
-                            ),
-                            child: const Center(
-                                child: Text('Riwayat Pencatatan',
-                                    style: TextStyle(
-                                      color: Colors.yellow,
-                                      fontSize: 20,
-                                    ))),
+                          Row(
+                            children: [
+                              Container(
+                                  height: 30,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: const Color(0xFFEBFEF6),
+                                  ),
+                                  child: Center(
+                                    child: GestureDetector(
+                                      onTap: () => Get.to(AddTaskPage(
+                                        docID: data,
+                                      )),
+                                      child: const Icon(
+                                        Icons.list,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  )),
+                              const SizedBox(width: 5),
+                              Container(
+                                  height: 30,
+                                  width: 270,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Colors.green,
+                                  ),
+                                  child: const Center(
+                                    child: Text('Riwayat Pencatatan',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                        )),
+                                  )),
+                              const SizedBox(width: 5),
+                              Container(
+                                  height: 30,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: const Color(0xFFEBFEF6),
+                                  ),
+                                  child: Center(
+                                    child: GestureDetector(
+                                      onTap: () => Get.to(AddTaskPage(
+                                        docID: data.id,
+                                        data: data,
+                                      )),
+                                      child: const Icon(
+                                        Icons.edit,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ))
+                            ],
                           ),
                           StreamBuilder(
                             stream: FirebaseFirestore.instance
