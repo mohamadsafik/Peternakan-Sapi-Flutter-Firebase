@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/screens/home/home.dart';
 import 'package:peternakan_sapi/screens/listcows/list_cows.dart';
 import 'controller/landing_pageController.dart';
@@ -19,15 +20,16 @@ class LandingPage extends StatelessWidget {
     return Obx(() => MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
         child: SizedBox(
-          height: 54,
+          height: 59,
           child: BottomNavigationBar(
             showUnselectedLabels: true,
             showSelectedLabels: true,
             onTap: landingPageController.changeTabIndex,
             currentIndex: landingPageController.tabIndex.value,
-            backgroundColor: const Color.fromARGB(255, 86, 211, 138),
-            unselectedItemColor: Colors.white.withOpacity(0.5),
-            selectedItemColor: Colors.white,
+            backgroundColor: background,
+            unselectedItemColor:
+                Color.fromARGB(255, 141, 139, 139).withOpacity(0.5),
+            selectedItemColor: green,
             unselectedLabelStyle: unselectedLabelStyle,
             selectedLabelStyle: selectedLabelStyle,
             items: [
@@ -36,55 +38,55 @@ class LandingPage extends StatelessWidget {
                   margin: const EdgeInsets.only(bottom: 7),
                   child: const Icon(
                     Icons.home,
-                    size: 20.0,
+                    size: 25.0,
                   ),
                 ),
                 label: 'Home',
-                backgroundColor: const Color.fromARGB(255, 86, 211, 138),
+                backgroundColor: background,
               ),
               BottomNavigationBarItem(
                 icon: Container(
                   margin: const EdgeInsets.only(bottom: 7),
                   child: const Icon(
                     Icons.search,
-                    size: 20.0,
+                    size: 25.0,
                   ),
                 ),
                 label: 'Explore',
-                backgroundColor: const Color.fromARGB(255, 86, 211, 138),
+                backgroundColor: background,
               ),
               BottomNavigationBarItem(
                 icon: Container(
                   margin: const EdgeInsets.only(bottom: 7),
                   child: const Icon(
                     Icons.qr_code_scanner,
-                    size: 20.0,
+                    size: 25.0,
                   ),
                 ),
                 label: 'Scan',
-                backgroundColor: const Color.fromARGB(255, 86, 211, 138),
+                backgroundColor: background,
               ),
               BottomNavigationBarItem(
                 icon: Container(
                   margin: const EdgeInsets.only(bottom: 7),
                   child: const Icon(
                     Icons.location_history,
-                    size: 20.0,
+                    size: 25.0,
                   ),
                 ),
                 label: 'Places',
-                backgroundColor: const Color.fromARGB(255, 86, 211, 138),
+                backgroundColor: background,
               ),
               BottomNavigationBarItem(
                 icon: Container(
                   margin: const EdgeInsets.only(bottom: 7),
                   child: const Icon(
                     Icons.settings,
-                    size: 20.0,
+                    size: 25.0,
                   ),
                 ),
                 label: 'Settings',
-                backgroundColor: const Color.fromARGB(255, 86, 211, 138),
+                backgroundColor: background,
               ),
             ],
           ),
