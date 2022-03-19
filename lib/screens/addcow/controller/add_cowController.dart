@@ -1,17 +1,19 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddCowController extends GetxController {
-  late TextEditingController name = TextEditingController();
-  late TextEditingController eartag = TextEditingController();
-  late TextEditingController rasCow = TextEditingController();
-  late TextEditingController gender = TextEditingController();
-  late TextEditingController breed = TextEditingController();
-  late TextEditingController birthdate = TextEditingController();
-  late TextEditingController joinedwhen = TextEditingController();
-  late TextEditingController note = TextEditingController();
+  late TextEditingController name = TextEditingController(text: '');
+  late TextEditingController eartag = TextEditingController(text: '');
+  late TextEditingController rasCow = TextEditingController(text: '');
+  late TextEditingController gender = TextEditingController(text: '');
+  late TextEditingController breed = TextEditingController(text: '');
+  late TextEditingController birthdate = TextEditingController(text: '');
+  late TextEditingController joinedwhen = TextEditingController(text: '');
+  late TextEditingController note = TextEditingController(text: '');
   var selectedDate = DateTime.now().obs;
   var dateJoin = DateTime.now().obs;
 
@@ -39,6 +41,16 @@ class AddCowController extends GetxController {
         "birthdate": birthdate,
         "joinedwhen": joinedwhen,
         "note": note,
+        "record": FieldValue.arrayUnion(
+          [
+            {
+              "action": 'belum ada pencatatan',
+              'date': '',
+              'noted': '',
+              'time': '',
+            }
+          ],
+        ),
       });
       Get.defaultDialog(
         title: "berhasil",
@@ -57,6 +69,8 @@ class AddCowController extends GetxController {
       );
     }
   }
+
+  void cleartext() {}
 
   @override
   void onClose() {

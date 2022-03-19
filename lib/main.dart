@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/firebase_constants.dart';
-import 'package:peternakan_sapi/screens/add_task_controller.dart';
-import 'package:peternakan_sapi/screens/auth/view/login.dart';
+import 'package:peternakan_sapi/screens/record/controller/record_controller.dart';
+import 'package:peternakan_sapi/screens/auth/login.dart';
 import 'package:peternakan_sapi/screens/editcow/controller/edit_cowController.dart';
-import 'package:peternakan_sapi/screens/listcows/controller/list_cowController.dart';
-
 import 'screens/auth/controller/authController.dart';
 import 'screens/addcow/controller/add_cowController.dart';
+import 'screens/listcows/controller/list_cowController.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +24,7 @@ void main() async {
     Get.put(ListCowController());
   });
   await addtask.then((value) {
-    Get.put(UpdateTaskController());
+    Get.put(RecordController());
   });
 
   runApp(const MyApp());

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class UpdateTaskController extends GetxController {
+class RecordController extends GetxController {
   late TextEditingController name = TextEditingController();
   late TextEditingController eartag = TextEditingController();
   late TextEditingController rasCow = TextEditingController();
@@ -11,32 +11,37 @@ class UpdateTaskController extends GetxController {
   late TextEditingController birthdate = TextEditingController();
   late TextEditingController joinedwhen = TextEditingController();
   late TextEditingController note = TextEditingController();
+  late TextEditingController time = TextEditingController();
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   var selectedDate = DateTime.now().obs;
   var dateJoin = DateTime.now().obs;
 
-  // Future<DocumentSnapshot<Object?>> getData(String docID) async {
-  //   DocumentReference docRef = firestore.collection("cows").doc(docID);
-  //   return docRef.get();
-  // }
-
-  void editCow(
+  void recordCow(
     String name,
     String eartag,
     String note,
+    String time,
     String docID,
     String text,
   ) async {
     DocumentReference cows = firestore.collection("cows").doc(docID);
 
     try {
-      await cows.update({
-        // "uid": FirebaseAuth.instance.currentUser!.uid,
-        "1.date": name,
-        "1.kegiatan": eartag,
-        "1.note": note
-      });
+      await cows.update(
+        {
+          "record": FieldValue.arrayUnion(
+            [
+              {
+                "action": name,
+                'date': eartag,
+                'noted': note,
+                'time': DateTime.now(),
+              }
+            ],
+          )
+        },
+      );
       Get.defaultDialog(
         title: "berhasil",
         middleText: "berhasil edit sapi",
@@ -65,6 +70,7 @@ class UpdateTaskController extends GetxController {
     birthdate.dispose();
     joinedwhen.dispose();
     note.dispose();
+    time.dispose();
     super.onClose();
   }
 

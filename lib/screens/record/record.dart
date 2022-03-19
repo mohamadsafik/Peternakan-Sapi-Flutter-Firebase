@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import 'add_task_controller.dart';
+import 'controller/record_controller.dart';
 
 //menggunakan getxview
-class AddTaskPage extends GetView<UpdateTaskController> {
+class AddTaskPage extends GetView<RecordController> {
   AddTaskPage({Key? key, this.data, this.docID}) : super(key: key);
 
   var data = Get.arguments;
@@ -84,10 +84,11 @@ class AddTaskPage extends GetView<UpdateTaskController> {
                 height: 20,
               ),
               ElevatedButton(
-                onPressed: () => controller.editCow(
+                onPressed: () => controller.recordCow(
                   controller.name.text,
                   controller.eartag.text,
                   controller.note.text,
+                  controller.time.text,
                   docID,
                   data.toString(),
                 ),

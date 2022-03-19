@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import '../../auth/controller/authController.dart';
+import '../auth/controller/authController.dart';
 // import 'package:hexcolor/hexcolor.dart';
 
 class Homepage extends StatefulWidget {
@@ -77,13 +77,18 @@ class _HomepageState extends State<Homepage> {
                 color: Color.fromARGB(255, 110, 121, 115),
               ),
             ),
-            const Positioned(
+            Positioned(
               top: 10,
               right: 10,
-              child: Icon(
-                Icons.notifications,
-                size: 30,
-                color: Colors.yellow,
+              child: GestureDetector(
+                onTap: () {
+                  AuthController.authInstance.signOut();
+                },
+                child: const Icon(
+                  Icons.notifications,
+                  size: 30,
+                  color: Colors.yellow,
+                ),
               ),
             ),
             Positioned(

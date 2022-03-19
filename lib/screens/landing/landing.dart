@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:peternakan_sapi/screens/home/view/home.dart';
-import 'package:peternakan_sapi/screens/listcows/view/list_cows.dart';
-import '../controller/landing_pageController.dart';
+import 'package:peternakan_sapi/screens/home/home.dart';
+import 'package:peternakan_sapi/screens/listcows/list_cows.dart';
+import 'controller/landing_pageController.dart';
 
 class LandingPage extends StatelessWidget {
   final TextStyle unselectedLabelStyle = TextStyle(

@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:peternakan_sapi/screens/add_task_cow.dart';
+import 'package:peternakan_sapi/screens/record/record.dart';
 
-import '../../../constants/constant.dart';
+import '../../constants/constant.dart';
 
 class DetailSapiPage extends GetView {
   DetailSapiPage({Key? key, this.data}) : super(key: key);
@@ -36,10 +36,10 @@ class DetailSapiPage extends GetView {
                       width: 30.0,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50.0),
-                        color: Colors.green,
+                        color: const Color.fromARGB(255, 86, 211, 138),
                         boxShadow: const [
                           BoxShadow(
-                            color: Colors.green,
+                            color: Color.fromARGB(255, 86, 211, 138),
                             blurRadius: 4,
                           ),
                         ],
@@ -61,10 +61,10 @@ class DetailSapiPage extends GetView {
                       width: 30.0,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50.0),
-                        color: Colors.green,
+                        color: const Color.fromARGB(255, 86, 211, 138),
                         boxShadow: const [
                           BoxShadow(
-                            color: Colors.green,
+                            color: Color.fromARGB(255, 86, 211, 138),
                             blurRadius: 4,
                           ),
                         ],
@@ -83,7 +83,7 @@ class DetailSapiPage extends GetView {
                   child: Container(
                     height: 15.0,
                     decoration: const BoxDecoration(
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 241, 255, 247),
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(30.0),
                         topRight: Radius.circular(30.0),
@@ -110,14 +110,20 @@ class DetailSapiPage extends GetView {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        height: 25,
+                        height: 35,
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: const Color(0xFFEBFEF6),
                             borderRadius: BorderRadius.circular(12)),
                         child: const Center(
-                          child: Text(
-                            'Detail Sapi',
-                            style: TextStyle(fontSize: 15, color: Colors.black),
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'Detail Sapi',
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.black,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -128,10 +134,10 @@ class DetailSapiPage extends GetView {
                           width: 30.0,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50.0),
-                            color: Colors.green,
+                            color: const Color.fromARGB(255, 86, 211, 138),
                             boxShadow: const [
                               BoxShadow(
-                                color: Colors.green,
+                                color: Color.fromARGB(255, 86, 211, 138),
                                 blurRadius: 4,
                               ),
                             ],
@@ -156,8 +162,9 @@ class DetailSapiPage extends GetView {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: Colors.green),
+                              borderRadius: BorderRadius.circular(8),
+                              color: const Color.fromARGB(255, 86, 211, 138),
+                            ),
                             child: const Center(
                                 child: Text('Informasi Sapi',
                                     style: TextStyle(
@@ -254,21 +261,69 @@ class DetailSapiPage extends GetView {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(data['name']),
+                                    Text(
+                                      data['name'],
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                      ),
+                                    ),
                                     const SizedBox(height: 5),
-                                    Text(data['eartag']),
+                                    Text(
+                                      data['eartag'],
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                      ),
+                                    ),
                                     const SizedBox(height: 5),
-                                    Text(data['rasCow']),
+                                    Text(
+                                      data['rasCow'],
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                      ),
+                                    ),
                                     const SizedBox(height: 5),
-                                    Text(data['gender']),
+                                    Text(
+                                      data['gender'],
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                      ),
+                                    ),
                                     const SizedBox(height: 5),
-                                    Text(data['breed']),
+                                    Text(
+                                      data['breed'],
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                      ),
+                                    ),
                                     const SizedBox(height: 5),
-                                    Text(data['birthdate']),
+                                    Text(
+                                      data['birthdate'],
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                      ),
+                                    ),
                                     const SizedBox(height: 5),
-                                    Text(data['joinedwhen']),
+                                    Text(
+                                      data['joinedwhen'],
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                      ),
+                                    ),
                                     const SizedBox(height: 5),
-                                    Text(data['note']),
+                                    Text(
+                                      data['note'],
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -396,7 +451,8 @@ class DetailSapiPage extends GetView {
                                   width: 270,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
-                                    color: Colors.green,
+                                    color:
+                                        const Color.fromARGB(255, 86, 211, 138),
                                   ),
                                   child: const Center(
                                     child: Text('Riwayat Pencatatan',
@@ -427,49 +483,79 @@ class DetailSapiPage extends GetView {
                                   ))
                             ],
                           ),
-                          StreamBuilder(
-                            stream: FirebaseFirestore.instance
-                                .collection('cows')
-                                .where('uid', isEqualTo: currentUser)
-                                .snapshots(),
-                            builder: (context,
-                                AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-                              if (streamSnapshot.hasData) {
-                                return ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: streamSnapshot.data!.docs.length,
-                                  itemBuilder: (context, index) {
-                                    final DocumentSnapshot documentSnapshot =
-                                        streamSnapshot.data!.docs[index];
-                                    return Card(
-                                      margin: const EdgeInsets.fromLTRB(
-                                          10, 5, 5, 0),
-                                      child: ListTile(
-                                        leading: SizedBox(
-                                            height: 70.0,
-                                            width:
-                                                70.0, // fixed width and height
-                                            child: Image.network(
-                                                "https://www.duniasapi.com/media/k2/items/cache/75b44b0e9c2e5d305fa323c6c51d3476_XL.jpg")),
-                                        title: Text(documentSnapshot['name']
-                                            .toString()),
-                                        subtitle: Text(
-                                            documentSnapshot['gender']
-                                                .toString()),
-                                        trailing: const SizedBox(
-                                          width: 100,
-                                        ),
-                                        // onTap: () => Get.to()),
-                                      ),
-                                    );
-                                  },
+                          SingleChildScrollView(
+                            child: StreamBuilder<QuerySnapshot>(
+                              stream: FirebaseFirestore.instance
+                                  .collection('cows')
+                                  .where('uid', isEqualTo: currentUser)
+                                  .where('name', isEqualTo: data['name'])
+                                  .snapshots(),
+                              builder: (context,
+                                  AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                                if (streamSnapshot.hasData) {
+                                  return ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: streamSnapshot.data!.docs.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      final map =
+                                          streamSnapshot.data!.docs[index];
+                                      final records =
+                                          map["record"] as List<dynamic>;
+                                      return Column(
+                                          children: records.map((record) {
+                                        return Card(
+                                          child: ListTile(
+                                            title: Text(
+                                              record["action"],
+                                            ),
+                                          ),
+                                        );
+                                      }).toList());
+                                    },
+                                  );
+                                }
+                                return const Center(
+                                  child: CircularProgressIndicator(),
                                 );
-                              }
-                              return const Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            },
+                              },
+                            ),
                           ),
+                          // StreamBuilder(
+                          //   stream: FirebaseFirestore.instance
+                          //       .collection('cows')
+                          //       .where('uid', isEqualTo: currentUser)
+                          //       .snapshots(),
+                          //   builder: (context,
+                          //       AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                          //     if (streamSnapshot.hasData) {
+                          //       return ListView.builder(
+                          //         shrinkWrap: true,
+                          //         itemCount: streamSnapshot.data!.docs.length,
+                          //         itemBuilder: (context, index) {
+                          //           var task = streamSnapshot
+                          //               .data!.docs[index]['record']
+                          //               .map((e) => e.values.join())
+                          //               .join();
+                          //           return Card(
+                          //               margin: const EdgeInsets.fromLTRB(
+                          //                   10, 5, 5, 0),
+                          //               child: ListTile(
+                          //                 title: Text(
+                          //                   task,
+                          //                   style: TextStyle(
+                          //                       fontSize: 15,
+                          //                       color: Colors.black),
+                          //                 ),
+                          //               ));
+                          //         },
+                          //       );
+                          //     }
+                          //     return const Center(
+                          //       child: CircularProgressIndicator(),
+                          //     );
+                          //   },
+                          // ),
                         ],
                       ),
                     ),
