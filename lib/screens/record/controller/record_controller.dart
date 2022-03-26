@@ -14,8 +14,25 @@ class RecordController extends GetxController {
   late TextEditingController time = TextEditingController();
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  var items = ['Jantan', 'Betina'].obs;
+  var aksi = [
+    'Inseminasi Buatan',
+    'Vaksin',
+    'Sakit',
+  ].obs;
   var selectedDate = DateTime.now().obs;
   var dateJoin = DateTime.now().obs;
+  void cleartext() {
+    name.clear();
+    eartag.clear();
+    rasCow.clear();
+    gender.clear();
+    breed.clear();
+    birthdate.clear();
+    joinedwhen.clear();
+    note.clear();
+  }
 
   void recordCow(
     String name,
@@ -43,11 +60,13 @@ class RecordController extends GetxController {
         },
       );
       Get.defaultDialog(
+        barrierDismissible: true,
         title: "berhasil",
-        middleText: "berhasil edit sapi",
+        middleText: "berhasil record sapi",
         onConfirm: () {
           Get.back();
           Get.back();
+          cleartext();
         },
         textConfirm: "okay",
       );

@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/screens/record/record.dart';
-
-import '../../constants/constant.dart';
+import '../../constants/color.dart';
+import '../barcode.dart';
 
 class DetailSapiPage extends GetView {
   DetailSapiPage({Key? key, this.data}) : super(key: key);
@@ -14,7 +14,7 @@ class DetailSapiPage extends GetView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 86, 211, 138),
+      backgroundColor: background,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -36,7 +36,7 @@ class DetailSapiPage extends GetView {
                       width: 30.0,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50.0),
-                        color: const Color.fromARGB(255, 86, 211, 138),
+                        color: green,
                         boxShadow: const [
                           BoxShadow(
                             color: Color.fromARGB(255, 86, 211, 138),
@@ -61,7 +61,7 @@ class DetailSapiPage extends GetView {
                       width: 30.0,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50.0),
-                        color: const Color.fromARGB(255, 86, 211, 138),
+                        color: green,
                         boxShadow: const [
                           BoxShadow(
                             color: Color.fromARGB(255, 86, 211, 138),
@@ -112,7 +112,7 @@ class DetailSapiPage extends GetView {
                       Container(
                         height: 35,
                         decoration: BoxDecoration(
-                            color: const Color(0xFFEBFEF6),
+                            color: green,
                             borderRadius: BorderRadius.circular(12)),
                         child: const Center(
                           child: Padding(
@@ -121,20 +121,22 @@ class DetailSapiPage extends GetView {
                               'Detail Sapi',
                               style: TextStyle(
                                 fontSize: 15,
-                                color: Colors.black,
+                                color: Colors.white,
                               ),
                             ),
                           ),
                         ),
                       ),
                       InkWell(
-                        onTap: () => Get.back(),
+                        onTap: () => Get.to(BarcodePage(
+                          document: data,
+                        )),
                         child: Container(
                           height: 30.0,
                           width: 30.0,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50.0),
-                            color: const Color.fromARGB(255, 86, 211, 138),
+                            color: green,
                             boxShadow: const [
                               BoxShadow(
                                 color: Color.fromARGB(255, 86, 211, 138),
@@ -153,25 +155,26 @@ class DetailSapiPage extends GetView {
                   const SizedBox(height: 30),
                   Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: const Color(0xFFEBFEF6),
-                    ),
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(8)),
                     child: Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: Column(
                         children: [
                           Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: const Color.fromARGB(255, 86, 211, 138),
-                            ),
-                            child: const Center(
+                              height: 30,
+                              width: 270,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: green,
+                              ),
+                              child: const Center(
                                 child: Text('Informasi Sapi',
                                     style: TextStyle(
-                                      color: Color(0xFFEBFEF6),
+                                      color: Colors.white,
                                       fontSize: 20,
-                                    ))),
-                          ),
+                                    )),
+                              )),
                           const SizedBox(
                             height: 15,
                           ),
@@ -181,7 +184,6 @@ class DetailSapiPage extends GetView {
                               Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
-                                  color: const Color(0xFFEBFEF6),
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -256,7 +258,6 @@ class DetailSapiPage extends GetView {
                               Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
-                                  color: const Color(0xFFEBFEF6),
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -451,8 +452,7 @@ class DetailSapiPage extends GetView {
                                   width: 270,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
-                                    color:
-                                        const Color.fromARGB(255, 86, 211, 138),
+                                    color: green,
                                   ),
                                   child: const Center(
                                     child: Text('Riwayat Pencatatan',
@@ -483,79 +483,47 @@ class DetailSapiPage extends GetView {
                                   ))
                             ],
                           ),
-                          SingleChildScrollView(
-                            child: StreamBuilder<QuerySnapshot>(
-                              stream: FirebaseFirestore.instance
-                                  .collection('cows')
-                                  .where('uid', isEqualTo: currentUser)
-                                  .where('name', isEqualTo: data['name'])
-                                  .snapshots(),
-                              builder: (context,
-                                  AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-                                if (streamSnapshot.hasData) {
-                                  return ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: streamSnapshot.data!.docs.length,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      final map =
-                                          streamSnapshot.data!.docs[index];
-                                      final records =
-                                          map["record"] as List<dynamic>;
-                                      return Column(
-                                          children: records.map((record) {
-                                        return Card(
-                                          child: ListTile(
-                                            title: Text(
-                                              record["action"],
-                                            ),
-                                          ),
-                                        );
-                                      }).toList());
-                                    },
-                                  );
-                                }
-                                return const Center(
-                                  child: CircularProgressIndicator(),
+                          StreamBuilder<QuerySnapshot>(
+                            stream: FirebaseFirestore.instance
+                                .collection('cows')
+                                .where('uid', isEqualTo: currentUser)
+                                .where('name', isEqualTo: data['name'])
+                                .snapshots(),
+                            builder: (context,
+                                AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                              if (streamSnapshot.hasData) {
+                                return ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: streamSnapshot.data!.docs.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    final map =
+                                        streamSnapshot.data!.docs[index];
+                                    final records =
+                                        map["record"] as List<dynamic>;
+                                    //sort data terbaru berdasarkan time
+                                    records.sort((a, b) =>
+                                        b["time"].compareTo(a["time"]));
+                                    return Column(
+                                        children: records.map((record) {
+                                      return Card(
+                                        child: record['action'] == ''
+                                            ? null
+                                            : ListTile(
+                                                title: Text(
+                                                  record["action"],
+                                                ),
+                                              ),
+                                      );
+                                    }).toList());
+                                  },
                                 );
-                              },
-                            ),
+                              }
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            },
                           ),
-                          // StreamBuilder(
-                          //   stream: FirebaseFirestore.instance
-                          //       .collection('cows')
-                          //       .where('uid', isEqualTo: currentUser)
-                          //       .snapshots(),
-                          //   builder: (context,
-                          //       AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-                          //     if (streamSnapshot.hasData) {
-                          //       return ListView.builder(
-                          //         shrinkWrap: true,
-                          //         itemCount: streamSnapshot.data!.docs.length,
-                          //         itemBuilder: (context, index) {
-                          //           var task = streamSnapshot
-                          //               .data!.docs[index]['record']
-                          //               .map((e) => e.values.join())
-                          //               .join();
-                          //           return Card(
-                          //               margin: const EdgeInsets.fromLTRB(
-                          //                   10, 5, 5, 0),
-                          //               child: ListTile(
-                          //                 title: Text(
-                          //                   task,
-                          //                   style: TextStyle(
-                          //                       fontSize: 15,
-                          //                       color: Colors.black),
-                          //                 ),
-                          //               ));
-                          //         },
-                          //       );
-                          //     }
-                          //     return const Center(
-                          //       child: CircularProgressIndicator(),
-                          //     );
-                          //   },
-                          // ),
                         ],
                       ),
                     ),

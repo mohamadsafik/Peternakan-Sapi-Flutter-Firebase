@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/screens/home/widgets/CowContainer.dart';
-import 'package:peternakan_sapi/screens/home/widgets/topBar.dart';
 import '../auth/controller/authController.dart';
+import 'widgets/drawer.dart';
 import 'widgets/monitoring.dart';
 // import 'package:hexcolor/hexcolor.dart';
 
@@ -31,21 +31,61 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: background,
-        // appBar: AppBar(
-        //   title: const Text("Welcome!"),
-        //   actions: [
-        //     IconButton(
-        //         onPressed: () {
-        //           // this icon button for signout
-        //           AuthController.authInstance.signOut();
-        //         },
-        //         icon: const Icon(Icons.power_off))
-        //   ],
-        // ),
-        body: Column(
+      drawer: const drawer(),
+      backgroundColor: background,
+      // appBar: AppBar(
+      //   title: const Text("Welcome!"),
+      //   actions: [
+      //     IconButton(
+      //         onPressed: () {
+      //           // this icon button for signout
+      //           AuthController.authInstance.signOut();
+      //         },
+      //         icon: const Icon(Icons.power_off))
+      //   ],
+      // ),
+      body: SingleChildScrollView(
+        child: Column(
           children: [
-            const topbar(),
+            Container(
+              height: 100,
+              width: 400,
+              decoration: const BoxDecoration(
+                color: green,
+              ),
+              child: Stack(
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        // Scaffold.of(context).openDrawer();
+                      },
+                      icon: const Icon(
+                        Icons.menu_rounded,
+                        color: Colors.white,
+                      )),
+                  Positioned(
+                    right: 60,
+                    child: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.search,
+                          size: 30,
+                          color: Colors.white,
+                        )),
+                  ),
+                  Positioned(
+                    right: 10,
+                    child: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.notifications,
+                          size: 30,
+                          color: Colors.white,
+                        )),
+                  )
+                ],
+              ),
+            ),
             const SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -72,8 +112,35 @@ class _HomepageState extends State<Homepage> {
                 ),
               ],
             ),
-            const monitoring()
+            const monitoring(),
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 20.0),
+              height: 200.0,
+              child: ListView(
+                // This next line does the trick.
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    width: 380.0,
+                    color: Colors.red,
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    width: 380.0,
+                    color: Colors.blue,
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    width: 380.0,
+                    color: Colors.green,
+                  ),
+                ],
+              ),
+            ),
           ],
-        ));
+        ),
+      ),
+    );
   }
 }

@@ -46,9 +46,41 @@ class AddCowsPage extends GetView<AddCowController> {
           padding: const EdgeInsets.all(10.0),
           child: Column(
             children: [
+              Center(
+                child: GestureDetector(
+                  onTap: () {
+                    _showPicker(context);
+                  },
+                  child: CircleAvatar(
+                    radius: 55,
+                    backgroundColor: const Color(0xffFDCF09),
+                    child: controller.photo != null
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: Image.file(
+                              controller.photo!,
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.fitHeight,
+                            ),
+                          )
+                        : Container(
+                            decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.circular(50)),
+                            width: 100,
+                            height: 100,
+                            child: Icon(
+                              Icons.camera_alt,
+                              color: Colors.grey[800],
+                            ),
+                          ),
+                  ),
+                ),
+              ),
               const SizedBox(height: 10),
               TextField(
-                controller: controller.name,
+                controller: controller.name..text = '',
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Nama",
@@ -56,7 +88,7 @@ class AddCowsPage extends GetView<AddCowController> {
               ),
               const SizedBox(height: 10),
               TextField(
-                controller: controller.eartag,
+                controller: controller.eartag..text = '',
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Ear Tag",
@@ -65,7 +97,7 @@ class AddCowsPage extends GetView<AddCowController> {
               const SizedBox(height: 10),
               TextField(
                 readOnly: true,
-                controller: controller.rasCow,
+                controller: controller.rasCow..text = '',
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   labelText: "Ras Sapi",
@@ -85,7 +117,7 @@ class AddCowsPage extends GetView<AddCowController> {
               const SizedBox(height: 10),
               TextField(
                 readOnly: true,
-                controller: controller.gender,
+                controller: controller.gender..text = '',
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   labelText: "Jenis Kelamnin",
@@ -104,7 +136,7 @@ class AddCowsPage extends GetView<AddCowController> {
               ),
               const SizedBox(height: 10),
               TextField(
-                controller: controller.breed,
+                controller: controller.breed..text = '',
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Keturunan Dari",
@@ -152,7 +184,7 @@ class AddCowsPage extends GetView<AddCowController> {
                   }),
               const SizedBox(height: 10),
               TextField(
-                controller: controller.note,
+                controller: controller.note..text = '',
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Catatan Tambahan",
@@ -180,19 +212,34 @@ class AddCowsPage extends GetView<AddCowController> {
       ),
     );
   }
-}
 
-//menggunakan statefull
-// class AddCow extends StatefulWidget {
-//   const AddCow({Key? key}) : super(key: key);
-//   @override
-//   _AddCowState createState() => _AddCowState();
-// }
-// class _AddCowState extends State<AddCow> {
-//   // final TextEditingController name = TextEditingController();
-//   // final TextEditingController code = TextEditingController();
-//   // final TextEditingController gender = TextEditingController();
-// @override
-//   Widget build(BuildContext context) {
-//     // FirebaseFirestore firestore = FirebaseFirestore.instance;
-//     // CollectionReference cows = firestore.collection('cows');
+  void _showPicker(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+            child: Container(
+              child: Wrap(
+                children: <Widget>[
+                  ListTile(
+                      leading: const Icon(Icons.photo_library),
+                      title: const Text('Gallery'),
+                      onTap: () {
+                        controller.imgFromGallery();
+                        Navigator.of(context).pop();
+                      }),
+                  ListTile(
+                    leading: const Icon(Icons.photo_camera),
+                    title: const Text('Camera'),
+                    onTap: () {
+                      controller.imgFromCamera();
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+}

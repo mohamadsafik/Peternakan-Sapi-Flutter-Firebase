@@ -1,23 +1,76 @@
-import 'dart:ffi';
-
+import 'dart:io';
+import 'package:path/path.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddCowController extends GetxController {
-  late TextEditingController name = TextEditingController(text: '');
-  late TextEditingController eartag = TextEditingController(text: '');
-  late TextEditingController rasCow = TextEditingController(text: '');
-  late TextEditingController gender = TextEditingController(text: '');
-  late TextEditingController breed = TextEditingController(text: '');
-  late TextEditingController birthdate = TextEditingController(text: '');
-  late TextEditingController joinedwhen = TextEditingController(text: '');
-  late TextEditingController note = TextEditingController(text: '');
+  late TextEditingController name = TextEditingController();
+  late TextEditingController eartag = TextEditingController();
+  late TextEditingController rasCow = TextEditingController();
+  late TextEditingController gender = TextEditingController();
+  late TextEditingController breed = TextEditingController();
+  late TextEditingController birthdate = TextEditingController();
+  late TextEditingController joinedwhen = TextEditingController();
+  late TextEditingController note = TextEditingController();
   var selectedDate = DateTime.now().obs;
   var dateJoin = DateTime.now().obs;
 
+  FirebaseStorage storage = FirebaseStorage.instance;
+
+  File? photo;
+  final ImagePicker _picker = ImagePicker();
+
+  Future imgFromGallery() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      photo = File(pickedFile.path);
+      uploadFile();
+    } else {
+      print('No image selected.');
+    }
+  }
+
+  Future imgFromCamera() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
+
+    if (pickedFile != null) {
+      photo = File(pickedFile.path);
+      uploadFile();
+    } else {
+      print('No image selected.');
+    }
+  }
+
+  Future uploadFile() async {
+    if (photo == null) return;
+    final fileName = basename(photo!.path);
+    final destination = 'files/$fileName';
+
+    try {
+      final ref = FirebaseStorage.instance.ref(destination).child('file/');
+      await ref.putFile(photo!);
+    } catch (e) {
+      print('error');
+    }
+  }
+
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+//cleartext after press okay
+  void cleartext() {
+    name.clear();
+    eartag.clear();
+    rasCow.clear();
+    gender.clear();
+    breed.clear();
+    birthdate.clear();
+    joinedwhen.clear();
+    note.clear();
+  }
 
   void addCow(
     String name,
@@ -32,6 +85,7 @@ class AddCowController extends GetxController {
     CollectionReference cows = firestore.collection("cows");
     try {
       await cows.add({
+        // "image": ,
         "uid": FirebaseAuth.instance.currentUser!.uid,
         "name": name,
         "eartag": eartag,
@@ -44,18 +98,20 @@ class AddCowController extends GetxController {
         "record": FieldValue.arrayUnion(
           [
             {
-              "action": 'belum ada pencatatan',
+              "action": '',
               'date': '',
               'noted': '',
-              'time': '',
+              'time': DateTime.now(),
             }
           ],
         ),
       });
       Get.defaultDialog(
+        barrierDismissible: false,
         title: "berhasil",
         middleText: "berhasil menambahkan sapi",
         onConfirm: () {
+          cleartext();
           Get.back();
           Get.back();
         },
@@ -69,8 +125,6 @@ class AddCowController extends GetxController {
       );
     }
   }
-
-  void cleartext() {}
 
   @override
   void onClose() {

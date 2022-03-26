@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
+import 'package:peternakan_sapi/imagepicker.dart';
 import 'package:peternakan_sapi/screens/home/home.dart';
 import 'package:peternakan_sapi/screens/listcows/list_cows.dart';
+import 'package:peternakan_sapi/profile.dart';
+import 'package:peternakan_sapi/social_media_beranda.dart';
+import 'package:peternakan_sapi/web_scraper.dart';
 import 'controller/landing_pageController.dart';
 
 class LandingPage extends StatelessWidget {
@@ -106,9 +110,9 @@ class LandingPage extends StatelessWidget {
               children: [
                 const Homepage(),
                 ListCows(),
-                const Homepage(),
-                ListCows(),
-                ListCows(),
+                const SocialMediaPage(),
+                WebScraperApp(),
+                const ProfilePage(),
                 // const RecipeDetailsScreen(),
               ],
             )),

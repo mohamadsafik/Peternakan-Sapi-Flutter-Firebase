@@ -10,12 +10,6 @@ class AddTaskPage extends GetView<RecordController> {
 
   var data = Get.arguments;
   var docID = Get.arguments;
-  var items = ['Jantan', 'Betina'].obs;
-  var aksi = [
-    'Inseminasi Buatan',
-    'Vaksin',
-    'Sakit',
-  ].obs;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +29,7 @@ class AddTaskPage extends GetView<RecordController> {
               const SizedBox(height: 10),
               TextField(
                 readOnly: true,
-                controller: controller.name,
+                controller: controller.name..text = '',
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   labelText: "Aksi apa",
@@ -45,7 +39,8 @@ class AddTaskPage extends GetView<RecordController> {
                       controller.name.text = value;
                     },
                     itemBuilder: (BuildContext context) {
-                      return aksi.map<PopupMenuItem<String>>((String value) {
+                      return controller.aksi
+                          .map<PopupMenuItem<String>>((String value) {
                         return PopupMenuItem(child: Text(value), value: value);
                       }).toList();
                     },
@@ -74,7 +69,7 @@ class AddTaskPage extends GetView<RecordController> {
                   }),
               const SizedBox(height: 10),
               TextField(
-                controller: controller.note,
+                controller: controller.note..text = '',
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Catatan",

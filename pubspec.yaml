@@ -44,6 +44,12 @@ dependencies:
   google_sign_in: ^4.0.4
   flutter_barcode_scanner: ^2.0.0
   hexcolor: ^2.0.6
+  syncfusion_flutter_barcodes: ^19.4.56
+  firebase_storage: ^10.2.9
+  path_provider: ^2.0.9
+  image_picker: ^0.8.4+11
+  web_scraper: ^0.1.4
+  url_launcher: ^6.0.20
 
  
   
