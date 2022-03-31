@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class post extends StatelessWidget {
-  const post({
+class Post extends StatelessWidget {
+  const Post({
     Key? key,
   }) : super(key: key);
 
@@ -11,7 +11,7 @@ class post extends StatelessWidget {
       children: [
         Container(
           height: 15,
-          decoration: BoxDecoration(color: Colors.grey),
+          decoration: const BoxDecoration(color: Colors.grey),
         ),
         Container(
           height: 80,

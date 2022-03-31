@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
 import 'controller/record_controller.dart';
 
 //menggunakan getxview
-class AddTaskPage extends GetView<RecordController> {
+// ignore: must_be_immutable
+class AddTaskPage extends StatelessWidget {
   AddTaskPage({Key? key, this.data, this.docID}) : super(key: key);
-
+  final controller = Get.put(RecordController());
   var data = Get.arguments;
   var docID = Get.arguments;
 
@@ -19,7 +19,6 @@ class AddTaskPage extends GetView<RecordController> {
             child: Text(
           data['name'],
         )),
-        actions: [],
       ),
       body: SingleChildScrollView(
         child: Padding(

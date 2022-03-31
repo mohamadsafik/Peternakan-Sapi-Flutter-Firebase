@@ -1,10 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:peternakan_sapi/constants/firebase_constants.dart';
 import 'package:peternakan_sapi/screens/landing/landing.dart';
 import 'package:peternakan_sapi/screens/auth/login.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   static AuthController authInstance = Get.find();
   late Rx<User?> firebaseUser;
 
@@ -34,7 +38,9 @@ class AuthController extends GetxController {
     } on FirebaseAuthException catch (e) {
       // this is solely for the Firebase Auth Exception
       // for example : password did not match
-      print(e.message);
+      if (kDebugMode) {
+        print(e.message);
+      }
       // Get.snackbar("Error", e.message!);
       Get.snackbar(
         "Error",
@@ -44,7 +50,9 @@ class AuthController extends GetxController {
     } catch (e) {
       // this is temporary. you can handle different kinds of activities
       //such as dialogue to indicate what's wrong
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
   }
 
@@ -54,9 +62,13 @@ class AuthController extends GetxController {
     } on FirebaseAuthException catch (e) {
       // this is solely for the Firebase Auth Exception
       // for example : password did not match
-      print(e.message);
+      if (kDebugMode) {
+        print(e.message);
+      }
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
   }
 
@@ -64,7 +76,9 @@ class AuthController extends GetxController {
     try {
       auth.signOut();
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
   }
 }

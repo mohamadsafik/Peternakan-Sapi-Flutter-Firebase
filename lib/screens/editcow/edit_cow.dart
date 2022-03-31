@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'controller/edit_cowController.dart';
+import 'controller/edit_cow_controller.dart';
 
-//menggunakan getxview
-class EditCowsPage extends GetView<EditCowController> {
+// ignore: must_be_immutable
+class EditCowsPage extends StatelessWidget {
   EditCowsPage({Key? key, this.data, this.docID}) : super(key: key);
-
-  var data = Get.arguments;
-  var docID = Get.arguments;
+  final controller = Get.put(EditCowController());
+  var data = Get.arguments.obs;
+  var docID = Get.arguments.obs;
 
   @override
   Widget build(BuildContext context) {

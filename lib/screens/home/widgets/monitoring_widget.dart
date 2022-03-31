@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Monitoring extends StatelessWidget {
-  const Monitoring({Key? key}) : super(key: key);
+// ignore: camel_case_types
+class monitoring_widget extends StatelessWidget {
+  const monitoring_widget({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -9,6 +12,18 @@ class Monitoring extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       child: Column(
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: const [
+              Text(
+                'Monitoring',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 15,
+          ),
           Row(
             children: [
               Container(

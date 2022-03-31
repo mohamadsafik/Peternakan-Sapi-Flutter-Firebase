@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -54,7 +55,9 @@ class EditCowController extends GetxController {
         textConfirm: "okay",
       );
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
       Get.defaultDialog(
         title: "terjadi kesalahan",
         middleText: "tidak berhasil edit sapi",

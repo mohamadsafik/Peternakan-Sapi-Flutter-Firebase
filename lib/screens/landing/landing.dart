@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
-import 'package:peternakan_sapi/imagepicker.dart';
 import 'package:peternakan_sapi/screens/home/home.dart';
 import 'package:peternakan_sapi/screens/listcows/list_cows.dart';
-import 'package:peternakan_sapi/profile.dart';
-import 'package:peternakan_sapi/social_media_beranda.dart';
-import 'package:peternakan_sapi/web_scraper.dart';
-import 'controller/landing_pageController.dart';
+import 'package:peternakan_sapi/screens/profile/profile.dart';
+import 'package:peternakan_sapi/weigt_prediction/social_media_beranda.dart';
+import 'package:peternakan_sapi/screens/web_scraper/web_scraper.dart';
+import 'controller/landing_page_controller.dart';
 
 class LandingPage extends StatelessWidget {
   final TextStyle unselectedLabelStyle = TextStyle(
@@ -32,7 +31,7 @@ class LandingPage extends StatelessWidget {
             currentIndex: landingPageController.tabIndex.value,
             backgroundColor: background,
             unselectedItemColor:
-                Color.fromARGB(255, 141, 139, 139).withOpacity(0.5),
+                const Color.fromARGB(255, 141, 139, 139).withOpacity(0.5),
             selectedItemColor: green,
             unselectedLabelStyle: unselectedLabelStyle,
             selectedLabelStyle: selectedLabelStyle,
@@ -111,7 +110,7 @@ class LandingPage extends StatelessWidget {
                 const Homepage(),
                 ListCows(),
                 const SocialMediaPage(),
-                WebScraperApp(),
+                const WebScraperApp(),
                 const ProfilePage(),
                 // const RecipeDetailsScreen(),
               ],

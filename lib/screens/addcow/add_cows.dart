@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
-import 'controller/add_cowController.dart';
+import 'controller/add_cow_controller.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 //menggunakan getxview
-class AddCowsPage extends GetView<AddCowController> {
-  AddCowsPage({Key? key}) : super(key: key);
+class AddCowsPage extends StatefulWidget {
+  const AddCowsPage({Key? key}) : super(key: key);
 
-  var items = ['Jantan', 'Betina'].obs;
-  var ras = [
-    'Sapi Limousin',
-    'Sapi Simental',
-    'Sapi Brahman',
-    'Sapi Brangus',
-    'Sapi Ongole',
-    'Sapi Belgian Blue',
-    'Sapi Madura',
-    'Sapi Bali',
-    'Sapi Pegon'
-  ].obs;
+  @override
+  State<AddCowsPage> createState() => _AddCowsPageState();
+}
+
+class _AddCowsPageState extends State<AddCowsPage> {
+  final controller = Get.put(AddCowController());
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +101,8 @@ class AddCowsPage extends GetView<AddCowController> {
                       controller.rasCow.text = value;
                     },
                     itemBuilder: (BuildContext context) {
-                      return ras.map<PopupMenuItem<String>>((String value) {
+                      return controller.ras
+                          .map<PopupMenuItem<String>>((String value) {
                         return PopupMenuItem(child: Text(value), value: value);
                       }).toList();
                     },
@@ -127,7 +122,8 @@ class AddCowsPage extends GetView<AddCowController> {
                       controller.gender.text = value;
                     },
                     itemBuilder: (BuildContext context) {
-                      return items.map<PopupMenuItem<String>>((String value) {
+                      return controller.items
+                          .map<PopupMenuItem<String>>((String value) {
                         return PopupMenuItem(child: Text(value), value: value);
                       }).toList();
                     },
@@ -218,7 +214,7 @@ class AddCowsPage extends GetView<AddCowController> {
         context: context,
         builder: (BuildContext bc) {
           return SafeArea(
-            child: Container(
+            child: SizedBox(
               child: Wrap(
                 children: <Widget>[
                   ListTile(

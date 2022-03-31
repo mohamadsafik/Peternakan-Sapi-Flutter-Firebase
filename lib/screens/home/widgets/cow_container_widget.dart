@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-class cowContainer extends StatelessWidget {
-  const cowContainer({
+// ignore: camel_case_types
+class cows_container_widget extends StatelessWidget {
+  const cows_container_widget({
     Key? key,
   }) : super(key: key);
 
@@ -9,6 +10,18 @@ class cowContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: const [
+            Padding(
+              padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
+              child: Text(
+                'Cows',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        ),
         Container(
           width: 375,
           height: 85,

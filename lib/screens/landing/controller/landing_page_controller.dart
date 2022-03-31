@@ -8,11 +8,13 @@ class LandingPageController extends GetxController {
   }
 
   @override
+  // ignore: unnecessary_overrides
   void onInit() {
     super.onInit();
   }
 
   @override
+  // ignore: unnecessary_overrides
   void dispose() {
     super.dispose();
   }

@@ -1,17 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/screens/detailcow/detail_sapi.dart';
 import '../../constants/color.dart';
 import '../addcow/add_cows.dart';
 import '../editcow/edit_cow.dart';
-import 'controller/list_cowController.dart';
+import 'controller/list_cow_controller.dart';
 
-class ListCows extends GetView<ListCowController> {
+class ListCows extends StatelessWidget {
   ListCows({Key? key}) : super(key: key);
-
-  var currentUser = FirebaseAuth.instance.currentUser!.uid;
+  final controller = Get.put(ListCowController());
 
   @override
   Widget build(BuildContext context) {
@@ -71,24 +69,26 @@ class ListCows extends GetView<ListCowController> {
               ),
             ),
             SizedBox(
-              height: 500,
+              height: 619,
               width: 500,
               child: StreamBuilder(
                 stream: FirebaseFirestore.instance
                     .collection('cows')
-                    .where('uid', isEqualTo: currentUser)
+                    .orderBy('name')
+                    .where('uid', isEqualTo: controller.currentUser)
                     .snapshots(),
                 builder:
                     (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                   if (streamSnapshot.hasData) {
                     return ListView.builder(
+                      shrinkWrap: true,
                       itemCount: streamSnapshot.data!.docs.length,
                       itemBuilder: (context, index) {
                         final DocumentSnapshot documentSnapshot =
                             streamSnapshot.data!.docs[index];
                         return Card(
                           margin: const EdgeInsets.fromLTRB(10, 5, 5, 0),
-                          child: Container(
+                          child: SizedBox(
                             child: ListTile(
                               leading: SizedBox(
                                   height: 70.0,
@@ -145,7 +145,7 @@ class ListCows extends GetView<ListCowController> {
         ),
         floatingActionButton: FloatingActionButton(
           heroTag: null,
-          onPressed: () => Get.to(AddCowsPage()),
+          onPressed: () => Get.to(const AddCowsPage()),
           // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
           child: const Icon(Icons.add),
         ));

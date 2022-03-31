@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,6 +19,18 @@ class AddCowController extends GetxController {
   late TextEditingController note = TextEditingController();
   var selectedDate = DateTime.now().obs;
   var dateJoin = DateTime.now().obs;
+  var items = ['Jantan', 'Betina'].obs;
+  var ras = [
+    'Sapi Limousin',
+    'Sapi Simental',
+    'Sapi Brahman',
+    'Sapi Brangus',
+    'Sapi Ongole',
+    'Sapi Belgian Blue',
+    'Sapi Madura',
+    'Sapi Bali',
+    'Sapi Pegon'
+  ].obs;
 
   FirebaseStorage storage = FirebaseStorage.instance;
 
@@ -31,7 +44,7 @@ class AddCowController extends GetxController {
       photo = File(pickedFile.path);
       uploadFile();
     } else {
-      print('No image selected.');
+      const Text('No image selected.');
     }
   }
 
@@ -42,7 +55,7 @@ class AddCowController extends GetxController {
       photo = File(pickedFile.path);
       uploadFile();
     } else {
-      print('No image selected.');
+      const Text('No image selected.');
     }
   }
 
@@ -55,7 +68,7 @@ class AddCowController extends GetxController {
       final ref = FirebaseStorage.instance.ref(destination).child('file/');
       await ref.putFile(photo!);
     } catch (e) {
-      print('error');
+      const Text('error');
     }
   }
 
@@ -118,7 +131,9 @@ class AddCowController extends GetxController {
         textConfirm: "okay",
       );
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
       Get.defaultDialog(
         title: "terjadi kesalahan",
         middleText: "tidak berhasil menambahkan sapi",

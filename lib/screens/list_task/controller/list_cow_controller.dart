@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
-class ListCowController extends GetxController {
+class ListTaskController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   void deleteSapi(String docID) async {
@@ -18,7 +19,9 @@ class ListCowController extends GetxController {
           textConfirm: "YES",
           textCancel: "NO");
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
       Get.defaultDialog(
         title: "Terjadi kesalahan",
         middleText: "Gagal menghapus data",

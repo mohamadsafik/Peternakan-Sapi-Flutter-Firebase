@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:peternakan_sapi/screens/auth/controller/authController.dart';
+import 'package:peternakan_sapi/screens/auth/controller/auth_controller.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-
   LoginPage({Key? key}) : super(key: key);
-
+  final controller = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +19,7 @@ class LoginPage extends StatelessWidget {
                 style: Get.textTheme.headline3,
               ),
               TextField(
-                controller: emailController,
+                controller: controller.emailController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -34,7 +31,7 @@ class LoginPage extends StatelessWidget {
               ),
               TextField(
                 obscureText: true,
-                controller: passwordController,
+                controller: controller.passwordController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -51,8 +48,8 @@ class LoginPage extends StatelessWidget {
                     onPressed: () {
                       // this is for the register function in auth controller
                       AuthController.authInstance.register(
-                        emailController.text.trim(),
-                        passwordController.text.trim(),
+                        controller.emailController.text.trim(),
+                        controller.passwordController.text.trim(),
                       );
                     },
                     child: const Text("Sign Up"),
@@ -61,8 +58,8 @@ class LoginPage extends StatelessWidget {
                     onPressed: () {
                       // this is for the login function in auth controller
                       AuthController.authInstance.login(
-                        emailController.text.trim(),
-                        passwordController.text.trim(),
+                        controller.emailController.text.trim(),
+                        controller.passwordController.text.trim(),
                       );
                     },
                     child: const Text("Login"),
