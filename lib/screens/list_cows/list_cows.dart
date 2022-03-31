@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:peternakan_sapi/screens/detailcow/detail_sapi.dart';
+import 'package:peternakan_sapi/screens/detail_cow/detail_sapi.dart';
 import '../../constants/color.dart';
-import '../addcow/add_cows.dart';
-import '../editcow/edit_cow.dart';
+import '../add_cow/add_cows.dart';
+import '../edit_cow/edit_cow.dart';
 import 'controller/list_cow_controller.dart';
 
 class ListCows extends StatelessWidget {
@@ -15,7 +15,6 @@ class ListCows extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: background,
-        //streambuilder agar membaca data realtime
         body: Column(
           children: [
             Container(

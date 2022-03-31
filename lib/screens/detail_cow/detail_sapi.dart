@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:peternakan_sapi/screens/detailcow/widgets/record_history.dart';
+import 'package:peternakan_sapi/screens/detail_cow/widgets/record_history.dart';
 import '../../constants/color.dart';
 import '../weigt_prediction/weight_prediction.dart';
 import 'widgets/cow_information.dart';
