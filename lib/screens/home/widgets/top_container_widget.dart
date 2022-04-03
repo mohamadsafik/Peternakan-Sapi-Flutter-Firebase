@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants/color.dart';
-import '../../auth/controller/auth_controller.dart';
+import '../../../controllers/auth_controller.dart';
 
 // ignore: camel_case_types
 class Top_Container_Widget extends StatelessWidget {

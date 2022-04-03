@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../constants/firebase_constants.dart';
+
 class RecordController extends GetxController {
   late TextEditingController name = TextEditingController();
   late TextEditingController eartag = TextEditingController();
@@ -13,8 +15,6 @@ class RecordController extends GetxController {
   late TextEditingController joinedwhen = TextEditingController();
   late TextEditingController note = TextEditingController();
   late TextEditingController time = TextEditingController();
-
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   var items = ['Jantan', 'Betina'].obs;
   var aksi = [

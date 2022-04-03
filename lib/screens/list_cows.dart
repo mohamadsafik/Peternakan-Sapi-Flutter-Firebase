@@ -1,15 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
-import 'package:peternakan_sapi/screens/detail_cow/detail_sapi.dart';
-import '../../constants/color.dart';
-import '../add_cow/add_cows.dart';
-import '../edit_cow/edit_cow.dart';
-import 'controller/list_cow_controller.dart';
+import 'package:peternakan_sapi/routes/route_name.dart';
+import 'package:peternakan_sapi/screens/detail_cow/detail_cow.dart';
+import '../constants/color.dart';
+import 'update_cow.dart';
+import '../controllers/list_cow_controller.dart';
 
 class ListCows extends StatelessWidget {
   ListCows({Key? key}) : super(key: key);
   final controller = Get.put(ListCowController());
+
+  Future<void> startBarcodeScanStream() async {
+    FlutterBarcodeScanner.getBarcodeStreamReceiver(
+            '#ff6666', 'Cancel', true, ScanMode.BARCODE)!
+        .listen((barcode) => Text(barcode));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +64,11 @@ class ListCows extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                     child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          startBarcodeScanStream();
+                        },
                         icon: const Icon(
-                          Icons.notifications,
+                          Icons.qr_code_scanner,
                           size: 30,
                           color: Colors.white,
                         )),
@@ -68,7 +77,7 @@ class ListCows extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 619,
+              height: 617,
               width: 500,
               child: StreamBuilder(
                 stream: FirebaseFirestore.instance
@@ -102,10 +111,10 @@ class ListCows extends StatelessWidget {
                                 child: Row(
                                   children: [
                                     IconButton(
-                                        onPressed: () => Get.to(EditCowsPage(
-                                              docID: documentSnapshot.id,
-                                              data: documentSnapshot,
-                                            )),
+                                        onPressed: () => Get.toNamed(
+                                              RouteName.updatecow,
+                                              arguments: documentSnapshot,
+                                            ),
                                         icon: const Icon(
                                           Icons.edit,
                                           color: Colors.green,
@@ -120,12 +129,9 @@ class ListCows extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              onTap: () => Get.to(
-                                DetailSapiPage(
-                                  data: documentSnapshot,
-                                  // docId: documentSnapshot.id,
-                                ),
-                                // arguments: Get.arguments[documentSnapshot],
+                              onTap: () => Get.toNamed(
+                                RouteName.detailcow,
+                                arguments: documentSnapshot,
                               ),
                             ),
                           ),
@@ -144,7 +150,7 @@ class ListCows extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           heroTag: null,
-          onPressed: () => Get.to(const AddCowsPage()),
+          onPressed: () => Get.toNamed(RouteName.addcow),
           // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
           child: const Icon(Icons.add),
         ));

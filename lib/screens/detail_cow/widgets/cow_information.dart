@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../constants/color.dart';
 
-// ignore: camel_case_types
-class cow_information extends StatelessWidget {
-  const cow_information({Key? key, this.data}) : super(key: key);
+class CowInformation extends StatelessWidget {
+  const CowInformation({Key? key, this.data}) : super(key: key);
 
   // ignore: prefer_typing_uninitialized_variables
   final data;

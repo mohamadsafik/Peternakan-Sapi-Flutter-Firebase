@@ -1,9 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
-class ListTaskController extends GetxController {
+import '../constants/firebase_constants.dart';
+
+class ListCowController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  var currentUser = auth.currentUser!.uid;
 
   void deleteSapi(String docID) async {
     try {

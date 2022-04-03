@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:peternakan_sapi/screens/labor.dart';
 
-// ignore: camel_case_types
-class cows_container_widget extends StatelessWidget {
-  const cows_container_widget({
-    Key? key,
-  }) : super(key: key);
+class CowContainer extends StatelessWidget {
+  const CowContainer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +41,11 @@ class cows_container_widget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
                     Text(
-                      'tores',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      'sapi',
                     ),
                     Text(
                       '15',
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -57,7 +56,7 @@ class cows_container_widget extends StatelessWidget {
                 child: IconButton(
                     onPressed: () {},
                     icon: const Icon(
-                      Icons.next_plan,
+                      Icons.arrow_forward,
                       color: Colors.grey,
                       size: 35,
                     )),
@@ -78,7 +77,8 @@ class cows_container_widget extends StatelessWidget {
                   left: 5,
                   child: SizedBox(
                       height: 85,
-                      child: Image(image: AssetImage('assets/home/cow2.png')))),
+                      child:
+                          Image(image: AssetImage('assets/home/labor.png')))),
               Positioned(
                 top: 20,
                 left: 125,
@@ -86,11 +86,11 @@ class cows_container_widget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
                     Text(
-                      'tores',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      'tenaga kerja',
                     ),
                     Text(
                       '15',
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -99,9 +99,11 @@ class cows_container_widget extends StatelessWidget {
                 right: 20,
                 top: 20,
                 child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(const LaborPage());
+                    },
                     icon: const Icon(
-                      Icons.next_plan,
+                      Icons.arrow_forward,
                       color: Colors.grey,
                       size: 35,
                     )),
@@ -145,7 +147,7 @@ class cows_container_widget extends StatelessWidget {
                 child: IconButton(
                     onPressed: () {},
                     icon: const Icon(
-                      Icons.next_plan,
+                      Icons.arrow_forward,
                       color: Colors.grey,
                       size: 35,
                     )),

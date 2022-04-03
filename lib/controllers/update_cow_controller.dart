@@ -3,7 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class EditCowController extends GetxController {
+import '../constants/firebase_constants.dart';
+
+class UpdateCowController extends GetxController {
   late TextEditingController name = TextEditingController();
   late TextEditingController eartag = TextEditingController();
   late TextEditingController rasCow = TextEditingController();
@@ -12,8 +14,6 @@ class EditCowController extends GetxController {
   late TextEditingController birthdate = TextEditingController();
   late TextEditingController joinedwhen = TextEditingController();
   late TextEditingController note = TextEditingController();
-
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   // Future<DocumentSnapshot<Object?>> getData(String docID) async {
   //   DocumentReference docRef = firestore.collection("cows").doc(docID);
@@ -29,9 +29,9 @@ class EditCowController extends GetxController {
     String birthdate,
     String joinedwhen,
     String note,
-    String docID,
+    String data,
   ) async {
-    DocumentReference cows = firestore.collection("cows").doc(docID);
+    DocumentReference cows = firestore.collection("cows").doc(data);
 
     try {
       await cows.update({

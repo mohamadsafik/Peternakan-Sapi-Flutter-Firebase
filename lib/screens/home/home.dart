@@ -22,12 +22,6 @@ class _HomepageState extends State<Homepage> {
     super.initState();
   }
 
-  Future<void> startBarcodeScanStream() async {
-    FlutterBarcodeScanner.getBarcodeStreamReceiver(
-            '#ff6666', 'Cancel', true, ScanMode.BARCODE)!
-        .listen((barcode) => Text(barcode));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +32,7 @@ class _HomepageState extends State<Homepage> {
           children: [
             const Top_Container_Widget(),
             const SizedBox(height: 5),
-            const cows_container_widget(),
+            const CowContainer(),
             const SizedBox(height: 5),
             const monitoring_widget(),
             Container(

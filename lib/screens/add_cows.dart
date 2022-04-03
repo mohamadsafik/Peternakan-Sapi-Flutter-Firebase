@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'controller/add_cow_controller.dart';
+import '../controllers/add_cow_controller.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -12,7 +12,7 @@ class AddCowsPage extends StatefulWidget {
 }
 
 class _AddCowsPageState extends State<AddCowsPage> {
-  final controller = Get.put(AddCowController());
+  final controller = Get.find<AddCowController>();
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +74,7 @@ class _AddCowsPageState extends State<AddCowsPage> {
               ),
               const SizedBox(height: 10),
               TextField(
-                controller: controller.name..text = '',
+                controller: controller.name,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Nama",
@@ -82,7 +82,7 @@ class _AddCowsPageState extends State<AddCowsPage> {
               ),
               const SizedBox(height: 10),
               TextField(
-                controller: controller.eartag..text = '',
+                controller: controller.eartag,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Ear Tag",
@@ -91,7 +91,7 @@ class _AddCowsPageState extends State<AddCowsPage> {
               const SizedBox(height: 10),
               TextField(
                 readOnly: true,
-                controller: controller.rasCow..text = '',
+                controller: controller.rasCow,
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   labelText: "Ras Sapi",
@@ -112,7 +112,7 @@ class _AddCowsPageState extends State<AddCowsPage> {
               const SizedBox(height: 10),
               TextField(
                 readOnly: true,
-                controller: controller.gender..text = '',
+                controller: controller.gender,
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   labelText: "Jenis Kelamnin",
@@ -132,7 +132,7 @@ class _AddCowsPageState extends State<AddCowsPage> {
               ),
               const SizedBox(height: 10),
               TextField(
-                controller: controller.breed..text = '',
+                controller: controller.breed,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Keturunan Dari",
@@ -180,7 +180,7 @@ class _AddCowsPageState extends State<AddCowsPage> {
                   }),
               const SizedBox(height: 10),
               TextField(
-                controller: controller.note..text = '',
+                controller: controller.note,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Catatan Tambahan",

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'controller/edit_cow_controller.dart';
+import '../controllers/update_cow_controller.dart';
 
 // ignore: must_be_immutable
-class EditCowsPage extends StatelessWidget {
-  EditCowsPage({Key? key, this.data, this.docID}) : super(key: key);
-  final controller = Get.put(EditCowController());
-  var data = Get.arguments.obs;
-  var docID = Get.arguments.obs;
+class UpdateCowsPage extends StatelessWidget {
+  UpdateCowsPage({Key? key, data}) : super(key: key);
+  final controller = Get.find<UpdateCowController>();
+  var data = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +96,7 @@ class EditCowsPage extends StatelessWidget {
                     controller.birthdate.text,
                     controller.joinedwhen.text,
                     controller.note.text,
-                    docID),
+                    data.id),
                 child: const Text("Tambah Sapi"),
               )
             ],

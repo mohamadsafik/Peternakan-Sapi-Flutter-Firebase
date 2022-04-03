@@ -110,12 +110,12 @@ class AddCowController extends GetxController {
         "note": note,
         "record": FieldValue.arrayUnion(
           [
-            {
-              "action": '',
-              'date': '',
-              'noted': '',
-              'time': DateTime.now(),
-            }
+            // {
+            //   "action": '',
+            //   'date': '',
+            //   'noted': '',
+            //   'time': DateTime.now(),
+            // }
           ],
         ),
       });

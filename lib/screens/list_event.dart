@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../constants/color.dart';
-import 'controller/list_cow_controller.dart';
+import '../constants/color.dart';
+import '../controllers/list_event_controller.dart';
 
 // ignore: must_be_immutable
-class ListTask extends GetView<ListTaskController> {
-  ListTask({Key? key}) : super(key: key);
+class ListEvent extends GetView<ListEventController> {
+  ListEvent({Key? key}) : super(key: key);
 
   var currentUser = FirebaseAuth.instance.currentUser!.uid;
   @override

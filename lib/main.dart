@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/firebase_constants.dart';
-import 'package:peternakan_sapi/screens/auth/controller/auth_controller.dart';
-import 'package:peternakan_sapi/screens/auth/login.dart';
+import 'package:peternakan_sapi/routes/app_page.dart';
+import 'package:peternakan_sapi/controllers/auth_controller.dart';
+import 'package:peternakan_sapi/routes/route_name.dart';
+import 'package:peternakan_sapi/screens/login.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,6 +16,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -24,24 +27,10 @@ class MyApp extends StatelessWidget {
         // backgroundColor: const Color.fromRGBO(36, 54, 101, 1.0),
       ),
       home: LoginPage(),
-      // home: const Center(
-      //   child: CircularProgressIndicator(),
-      // ),
+      getPages: AppPages.pages,
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 // void main() async {
 //   //initial firebase agar dapat menggunakannya

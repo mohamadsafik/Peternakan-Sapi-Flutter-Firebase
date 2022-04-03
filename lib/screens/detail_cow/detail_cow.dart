@@ -3,18 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/screens/detail_cow/widgets/record_history.dart';
 import '../../constants/color.dart';
-import '../weigt_prediction/weight_prediction.dart';
+import '../weight_prediction.dart';
 import 'widgets/cow_information.dart';
 
 // ignore: must_be_immutable
-class DetailSapiPage extends GetView {
-  DetailSapiPage({Key? key, this.data}) : super(key: key);
+class DetailCowPage extends GetView {
+  DetailCowPage({Key? key, data}) : super(key: key);
 
   var currentUser = FirebaseAuth.instance.currentUser!.uid;
   var data = Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: green,
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.settings))
+        ],
+      ),
       backgroundColor: background,
       body: SingleChildScrollView(
         child: Column(
@@ -23,74 +29,8 @@ class DetailSapiPage extends GetView {
               children: [
                 Image.network(
                   "https://www.duniasapi.com/media/k2/items/cache/75b44b0e9c2e5d305fa323c6c51d3476_XL.jpg",
-                  height: 250.0,
                   width: double.infinity,
                   fit: BoxFit.cover,
-                ),
-                Positioned(
-                  top: 30.0,
-                  left: 15.0,
-                  child: InkWell(
-                    onTap: () => Get.back(),
-                    child: Container(
-                      height: 30.0,
-                      width: 30.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50.0),
-                        color: green,
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color.fromARGB(255, 86, 211, 138),
-                            blurRadius: 4,
-                          ),
-                        ],
-                      ),
-                      child: const Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 30.0,
-                  right: 15.0,
-                  child: InkWell(
-                    onTap: () => {},
-                    child: Container(
-                      height: 30.0,
-                      width: 30.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50.0),
-                        color: green,
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color.fromARGB(255, 86, 211, 138),
-                            blurRadius: 4,
-                          ),
-                        ],
-                      ),
-                      child: const Icon(
-                        Icons.settings,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 0.0,
-                  left: 0.0,
-                  right: 0.0,
-                  child: Container(
-                    height: 15.0,
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 241, 255, 247),
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30.0),
-                        topRight: Radius.circular(30.0),
-                      ),
-                    ),
-                  ),
                 ),
               ],
             ),
@@ -152,7 +92,7 @@ class DetailSapiPage extends GetView {
                     ],
                   ),
                   const SizedBox(height: 30),
-                  cow_information(data: data),
+                  CowInformation(data: data),
                   const SizedBox(
                     height: 10,
                   ),

@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:peternakan_sapi/constants/firebase_constants.dart';
-import 'package:peternakan_sapi/screens/landing/landing.dart';
-import 'package:peternakan_sapi/screens/auth/login.dart';
+import 'package:peternakan_sapi/screens/landing.dart';
+import 'package:peternakan_sapi/screens/login.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {

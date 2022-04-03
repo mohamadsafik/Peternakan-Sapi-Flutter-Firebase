@@ -1,12 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
-class ListCowController extends GetxController {
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
-  var currentUser = FirebaseAuth.instance.currentUser!.uid;
+import '../constants/firebase_constants.dart';
 
+class ListEventController extends GetxController {
   void deleteSapi(String docID) async {
     try {
       DocumentReference cows = firestore.collection("cows").doc(docID);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'controller/record_controller.dart';
+import '../controllers/record_controller.dart';
 
 //menggunakan getxview
 // ignore: must_be_immutable

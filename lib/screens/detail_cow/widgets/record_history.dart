@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/color.dart';
-import '../../../list_task/list_task.dart';
-import '../../record/record.dart';
+import '../../list_event.dart';
+import '../../record.dart';
 
 // ignore: camel_case_types
 class record_history extends StatelessWidget {
-  const record_history({
-    Key? key,
-    required this.data,
-    required this.currentUser,
-  }) : super(key: key);
+  const record_history(
+      {Key? key, required this.data, required this.currentUser})
+      : super(key: key);
 
   // ignore: prefer_typing_uninitialized_variables
   final data;
@@ -23,7 +21,7 @@ class record_history extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: const Color(0xFFEBFEF6),
+        color: background,
       ),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -36,11 +34,11 @@ class record_history extends StatelessWidget {
                     width: 30,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: const Color(0xFFEBFEF6),
+                      color: background,
                     ),
                     child: Center(
                       child: GestureDetector(
-                        onTap: () => Get.to(ListTask()),
+                        onTap: () => Get.to(ListEvent()),
                         child: const Icon(
                           Icons.list,
                           color: Colors.black,
@@ -68,7 +66,7 @@ class record_history extends StatelessWidget {
                     width: 30,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: const Color(0xFFEBFEF6),
+                      color: background,
                     ),
                     child: Center(
                       child: GestureDetector(
@@ -88,30 +86,34 @@ class record_history extends StatelessWidget {
               stream: FirebaseFirestore.instance
                   .collection('cows')
                   .where('uid', isEqualTo: currentUser)
-                  // .where(Document(), isEqualTo: data[data.id])
+                  .where('name', isEqualTo: data['name'])
                   .snapshots(),
               builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                 if (streamSnapshot.hasData) {
                   return ListView.builder(
                     shrinkWrap: true,
-                    itemCount: streamSnapshot.data!.docs.length,
+                    itemCount: streamSnapshot.data?.docs.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final map = streamSnapshot.data!.docs[index];
-                      final records = map["record"] as List<dynamic>;
-                      //sort data terbaru berdasarkan time
-                      records.sort((a, b) => b["time"].compareTo(a["time"]));
-                      return Column(
-                          children: records.map((record) {
-                        return Card(
-                          child: record['action'] == ''
-                              ? null
-                              : ListTile(
-                                  title: Text(
-                                    record["action"],
-                                  ),
-                                ),
-                        );
-                      }).toList());
+                      if (streamSnapshot.data?.docs[index] != null) {
+                        final map = streamSnapshot.data?.docs[index];
+                        final records = map?["record"] as List<dynamic>;
+                        records.sort((a, b) => b["time"].compareTo(a["time"]));
+                        return Column(
+                            children: records.map((record) {
+                          return Card(
+                            child:
+                                // record == null
+                                // ? null
+                                // :
+                                ListTile(
+                              title: Text(
+                                record["action"],
+                              ),
+                            ),
+                          );
+                        }).toList());
+                      }
+                      return Text('data');
                     },
                   );
                 }
