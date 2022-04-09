@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -6,20 +8,20 @@ import 'package:peternakan_sapi/constants/firebase_constants.dart';
 
 class WeightPredictionController extends GetxController {
   late TextEditingController weight = TextEditingController();
-  double firstFieldValue = 0.toDouble();
-  double secondFieldValue = 0.toDouble();
+  int firstFieldValue = 0;
+  int secondFieldValue = 0;
 
   editCow(
     String weight,
     String docID,
   ) async {
     DocumentReference cows = firestore.collection("cows").doc(docID);
-
     try {
       await cows.update({
         // "uid": FirebaseAuth.instance.currentUser!.uid,
-
-        "weight": weight,
+        "weight": FieldValue.arrayUnion([
+          weight,
+        ]),
       });
       Get.defaultDialog(
         title: "berhasil",

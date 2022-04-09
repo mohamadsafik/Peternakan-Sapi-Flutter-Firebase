@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/firebase_constants.dart';
+import 'package:peternakan_sapi/modules/auth/view/auth_main.dart';
 import 'package:peternakan_sapi/routes/app_page.dart';
-import 'package:peternakan_sapi/controllers/auth_controller.dart';
-import 'package:peternakan_sapi/routes/route_name.dart';
-import 'package:peternakan_sapi/screens/login.dart';
+
+import 'modules/auth/controller/auth_controller.dart';
+import 'routes/route_name.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         // backgroundColor: const Color.fromRGBO(36, 54, 101, 1.0),
       ),
-      home: LoginPage(),
+      initialRoute: RouteName.authmain,
       getPages: AppPages.pages,
     );
   }
