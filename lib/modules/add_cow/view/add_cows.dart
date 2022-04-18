@@ -10,27 +10,11 @@ class AddCowsPage extends StatelessWidget {
   AddCowsPage({Key? key}) : super(key: key);
 
   final controller = Get.find<AddCowController>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text('add sapi')),
-        actions: [
-          ElevatedButton(
-            onPressed: () => controller.addCow(
-              controller.name.text,
-              controller.eartag.text,
-              controller.rasCow.text,
-              controller.gender.text,
-              controller.breed.text,
-              controller.birthdate.text,
-              controller.joinedwhen.text,
-              controller.note.text,
-            ),
-            child: const Text("Save"),
-          )
-        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -84,14 +68,6 @@ class AddCowsPage extends StatelessWidget {
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Nama",
-                ),
-              ),
-              const SizedBox(height: 10),
-              TextField(
-                controller: controller.eartag,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Ear Tag",
                 ),
               ),
               const SizedBox(height: 10),
@@ -187,23 +163,27 @@ class AddCowsPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              ElevatedButton(
-                onPressed: () => controller.addCow(
-                  controller.name.text,
-                  controller.eartag.text,
-                  controller.rasCow.text,
-                  controller.gender.text,
-                  controller.breed.text,
-                  controller.birthdate.text,
-                  controller.joinedwhen.text,
-                  controller.note.text,
-                ),
-                child: const Text("Tambah Sapi"),
-              )
             ],
           ),
         ),
       ),
+      persistentFooterButtons: [
+        Center(
+            child: SizedBox(
+                height: 50,
+                width: 240,
+                child: ElevatedButton(
+                    onPressed: () => controller.addCow(
+                          controller.name.text,
+                          controller.rasCow.text,
+                          controller.gender.text,
+                          controller.breed.text,
+                          controller.birthdate.text,
+                          controller.joinedwhen.text,
+                          controller.note.text,
+                        ),
+                    child: Text('simpan sapi'))))
+      ],
     );
   }
 }

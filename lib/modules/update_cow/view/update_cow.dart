@@ -29,18 +29,10 @@ class UpdateCowsPage extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               TextField(
-                controller: controller.eartag..text = data['eartag'],
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Ear Tag",
-                ),
-              ),
-              const SizedBox(height: 10),
-              TextField(
                 controller: controller.rasCow..text = data['rasCow'],
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: "Kode Ear Tag",
+                  labelText: "Jenis",
                 ),
               ),
               const SizedBox(height: 10),
@@ -89,7 +81,6 @@ class UpdateCowsPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () => controller.editCow(
                     controller.name.text,
-                    controller.eartag.text,
                     controller.rasCow.text,
                     controller.gender.text,
                     controller.breed.text,

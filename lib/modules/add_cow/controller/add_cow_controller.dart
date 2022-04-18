@@ -11,7 +11,6 @@ import 'package:uuid/uuid.dart';
 
 class AddCowController extends GetxController {
   late TextEditingController name = TextEditingController();
-  late TextEditingController eartag = TextEditingController();
   late TextEditingController rasCow = TextEditingController();
   late TextEditingController gender = TextEditingController();
   late TextEditingController breed = TextEditingController();
@@ -40,7 +39,6 @@ class AddCowController extends GetxController {
 
   void cleartext() {
     name.clear();
-    eartag.clear();
     rasCow.clear();
     gender.clear();
     breed.clear();
@@ -51,7 +49,6 @@ class AddCowController extends GetxController {
 
   void addCow(
     String name,
-    String eartag,
     String rasCow,
     String gender,
     String breed,
@@ -63,9 +60,7 @@ class AddCowController extends GetxController {
     var nameImage = pickedImage?.name;
     var storageImage =
         FirebaseStorage.instance.ref().child('cowsImage/$nameImage');
-
     if (pickedImage == null) {
-      //jika image kosong image url = null
       imageUrl = null;
     } else {
       //jika image tidak kosong maka image = url gambar
@@ -73,7 +68,7 @@ class AddCowController extends GetxController {
       imageUrl = await (await task).ref.getDownloadURL();
     }
     try {
-      await cows.doc(uuid.v1()).set({
+      await cows.add({
         "image": imageUrl,
         "uid": FirebaseAuth.instance.currentUser!.uid,
         "name": name,
@@ -85,6 +80,9 @@ class AddCowController extends GetxController {
         "joinedwhen": joinedwhen,
         "note": note,
         "record": FieldValue.arrayUnion(
+          [],
+        ),
+        "weights": FieldValue.arrayUnion(
           [],
         ),
       });
@@ -124,7 +122,9 @@ class AddCowController extends GetxController {
       }
       update();
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
       update();
     }
   }
@@ -132,7 +132,6 @@ class AddCowController extends GetxController {
   @override
   void onClose() {
     name.dispose();
-    eartag.dispose();
     rasCow.dispose();
     gender.dispose();
     breed.dispose();

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
-
 import '../../../constants/firebase_constants.dart';
 import '../../../routes/route_name.dart';
 
@@ -36,13 +35,12 @@ class ListCowController extends GetxController {
   Future<void> scanBarcode(
       context, AsyncSnapshot<QuerySnapshot> streamSnapshot) async {
     String data;
-    // get index cow from firebase database with document.id from firestore database and redirect to detailcowpage  with argument documentsnapshot from firebase database with document.id from firestore database and redirect to detailcowpage with argument documentsnapshot from firebase database with document.id from firestore database
     try {
       data = await FlutterBarcodeScanner.scanBarcode(
           "", "", true, ScanMode.BARCODE);
       if (data != null) {
         for (int i = 0; i < streamSnapshot.data!.docs.length; i++) {
-          if (data == streamSnapshot.data!.docs[i]['eartag']) {
+          if (data == streamSnapshot.data!.docs[i]["eartag"]) {
             Get.toNamed(
               RouteName.detailcow,
               arguments: streamSnapshot.data!.docs[i].data(),

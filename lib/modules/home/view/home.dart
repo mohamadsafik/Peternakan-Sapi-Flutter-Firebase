@@ -12,6 +12,9 @@ class Homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final height = size.height;
+    final width = size.width;
     return Scaffold(
       drawer: const drawer(),
       backgroundColor: background,

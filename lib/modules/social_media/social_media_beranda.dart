@@ -1,16 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:peternakan_sapi/modules/social_media/social_media_controller.dart';
 
 import '../../constants/color.dart';
 
-class SocialMediaPage extends StatefulWidget {
+class SocialMediaPage extends GetView<SocialMediaController> {
   const SocialMediaPage({Key? key}) : super(key: key);
 
-  @override
-  State<SocialMediaPage> createState() => _SocialMediaPageState();
-}
-
-class _SocialMediaPageState extends State<SocialMediaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +15,7 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
           preferredSize: const Size.fromHeight(100),
           child: AppBar(
             backgroundColor: green,
+            actions: [],
           )),
       backgroundColor: background,
       body: StreamBuilder(
@@ -75,9 +73,13 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
                       width: 400,
                       decoration: const BoxDecoration(color: Colors.white),
                       child: Stack(
-                        children: const [
-                          Positioned(top: 10, left: 30, child: Text('5 like')),
+                        children: [
                           Positioned(
+                              top: 10,
+                              left: 30,
+                              child:
+                                  Obx(() => Text(controller.like.toString()))),
+                          const Positioned(
                               top: 10, right: 30, child: Text('9 comment')),
                         ],
                       ),
@@ -94,10 +96,15 @@ class _SocialMediaPageState extends State<SocialMediaPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           IconButton(
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.favorite_border,
+                              color: controller.click == true
+                                  ? Colors.pink
+                                  : Colors.grey,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              controller.likeUnlike();
+                            },
                           ),
                           const Icon(
                             Icons.chat_bubble_outline,

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:peternakan_sapi/modules/detail_cow/widgets/weight_record.dart';
 import '../../../constants/color.dart';
 import '../../weight_prediction.dart';
 import '../controller/detail_cow_controller.dart';
@@ -61,10 +62,9 @@ class DetailCowPage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(
-                top: 0.0,
-                bottom: 15.0,
-                left: 15.0,
-                right: 15.0,
+                bottom: 16.0,
+                left: 12.0,
+                right: 12.0,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,43 +75,22 @@ class DetailCowPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        height: 35,
-                        decoration: BoxDecoration(
-                            color: green,
-                            borderRadius: BorderRadius.circular(12)),
-                        child: const Center(
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              'Detail Sapi',
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                              ),
+                      const Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            'Detail Sapi',
+                            style: TextStyle(
+                              fontSize: 15,
                             ),
                           ),
                         ),
                       ),
                       InkWell(
                         onTap: () => Get.to(WeightPredictionPage(data: data)),
-                        child: Container(
-                          height: 30.0,
-                          width: 30.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50.0),
-                            color: green,
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color.fromARGB(255, 86, 211, 138),
-                                blurRadius: 4,
-                              ),
-                            ],
-                          ),
-                          child: const Icon(
-                            Icons.bedroom_baby,
-                            color: Colors.white,
-                          ),
+                        child: const Icon(
+                          Icons.favorite,
+                          color: Colors.pink,
                         ),
                       ),
                     ],
@@ -122,6 +101,9 @@ class DetailCowPage extends StatelessWidget {
                     height: 10,
                   ),
                   record_history(
+                      data: data,
+                      currentUser: controller.currentUser.toString()),
+                  WeightRecord(
                       data: data,
                       currentUser: controller.currentUser.toString()),
                 ],

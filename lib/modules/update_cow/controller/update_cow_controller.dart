@@ -7,7 +7,6 @@ import '../../../constants/firebase_constants.dart';
 
 class UpdateCowController extends GetxController {
   late TextEditingController name = TextEditingController();
-  late TextEditingController eartag = TextEditingController();
   late TextEditingController rasCow = TextEditingController();
   late TextEditingController gender = TextEditingController();
   late TextEditingController breed = TextEditingController();
@@ -22,7 +21,6 @@ class UpdateCowController extends GetxController {
 
   void editCow(
     String name,
-    String eartag,
     String rasCow,
     String gender,
     String breed,
@@ -37,7 +35,6 @@ class UpdateCowController extends GetxController {
       await cows.update({
         // "uid": FirebaseAuth.instance.currentUser!.uid,
         "name": name,
-        "eartag": eartag,
         "rasCow": rasCow,
         "gender": gender,
         "breed": breed,
@@ -68,7 +65,6 @@ class UpdateCowController extends GetxController {
   @override
   void onClose() {
     name.dispose();
-    eartag.dispose();
     rasCow.dispose();
     gender.dispose();
     breed.dispose();

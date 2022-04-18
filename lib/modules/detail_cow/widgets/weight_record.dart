@@ -6,10 +6,8 @@ import 'package:peternakan_sapi/routes/route_name.dart';
 import '../../../constants/color.dart';
 import '../../record.dart';
 
-// ignore: camel_case_types
-class record_history extends StatelessWidget {
-  const record_history(
-      {Key? key, required this.data, required this.currentUser})
+class WeightRecord extends StatelessWidget {
+  const WeightRecord({Key? key, required this.data, required this.currentUser})
       : super(key: key);
 
   // ignore: prefer_typing_uninitialized_variables
@@ -40,7 +38,7 @@ class record_history extends StatelessWidget {
                         child: GestureDetector(
                           onTap: () => Get.toNamed(RouteName.listevent),
                           child: const Icon(
-                            Icons.list,
+                            Icons.show_chart,
                             color: Colors.black,
                           ),
                         ),
@@ -95,21 +93,21 @@ class record_history extends StatelessWidget {
                       itemBuilder: (BuildContext context, int index) {
                         if (streamSnapshot.data?.docs[index] != null) {
                           final map = streamSnapshot.data?.docs[index];
-                          final records = map?["record"] as List<dynamic>;
-                          records
-                              .sort((a, b) => b["time"].compareTo(a["time"]));
+                          final records = map?["weights"] as List<dynamic>;
+                          // records
+                          //     .sort((a, b) => b["time"].compareTo(a["time"]));
                           return Container(
                             child: Column(
                                 children: records.map((record) {
                               return ListTile(
                                 leading: const Icon(
-                                  Icons.warning,
+                                  Icons.monitor_weight_outlined,
                                   color: Colors.orange,
                                 ),
                                 title: Text(
-                                  record["action"],
+                                  record["weight"],
                                 ),
-                                trailing: Text(record["date"]),
+                                // trailing: Text(record["date"]),
                               );
                             }).toList()),
                           );

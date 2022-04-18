@@ -109,7 +109,7 @@ class LandingPage extends StatelessWidget {
               children: [
                 const Homepage(),
                 ListCows(),
-                const SocialMediaPage(),
+                SocialMediaPage(),
                 const WebScraperApp(),
                 ProfilePage(),
                 // const RecipeDetailsScreen(),

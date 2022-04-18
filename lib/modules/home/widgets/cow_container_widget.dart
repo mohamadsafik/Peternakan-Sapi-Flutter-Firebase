@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:peternakan_sapi/constants/constant.dart';
 
 import '../../labor/view/labor.dart';
 
@@ -8,22 +9,19 @@ class CowContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final height = size.height;
+    final width = size.width;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
-            Padding(
-              padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
-              child: Text(
-                'Cows',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ],
+        Padding(
+          padding: EdgeInsets.only(left: width / 40),
+          child: const Text('Cows'),
         ),
         Container(
-          width: 375,
+          margin: const EdgeInsets.all(10),
+          width: width,
           height: 85,
           decoration: BoxDecoration(
               border: Border.all(color: Colors.grey),
@@ -46,7 +44,6 @@ class CowContainer extends StatelessWidget {
                     ),
                     Text(
                       '15',
-                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -65,9 +62,9 @@ class CowContainer extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 10),
         Container(
-          width: 375,
+          margin: const EdgeInsets.all(10),
+          width: width,
           height: 85,
           decoration: BoxDecoration(
               border: Border.all(color: Colors.grey),
@@ -91,7 +88,6 @@ class CowContainer extends StatelessWidget {
                     ),
                     Text(
                       '15',
-                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -101,7 +97,7 @@ class CowContainer extends StatelessWidget {
                 top: 20,
                 child: IconButton(
                     onPressed: () {
-                      Get.to(LaborPage());
+                      Get.to(const LaborPage());
                     },
                     icon: const Icon(
                       Icons.arrow_forward,
@@ -112,9 +108,9 @@ class CowContainer extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 10),
         Container(
-          width: 375,
+          margin: const EdgeInsets.all(10),
+          width: width,
           height: 85,
           decoration: BoxDecoration(
               border: Border.all(color: Colors.grey),
@@ -134,7 +130,6 @@ class CowContainer extends StatelessWidget {
                   children: const [
                     Text(
                       'tores',
-                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text(
                       '15',

@@ -7,7 +7,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 FirebaseAuth auth = FirebaseAuth.instance;
 
 final Future<FirebaseApp> firebaseInitialization = Firebase.initializeApp();
-void main() async {}
 
 // firebase storage
 FirebaseStorage storage = FirebaseStorage.instance;

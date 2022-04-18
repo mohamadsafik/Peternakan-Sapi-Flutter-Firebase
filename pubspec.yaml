@@ -50,6 +50,7 @@ dependencies:
   url_launcher: ^6.0.20
   flutter_svg: ^1.0.3
   uuid: ^3.0.6
+  google_fonts: ^2.3.1
 
  
   
