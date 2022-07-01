@@ -6,11 +6,13 @@ import 'package:peternakan_sapi/modules/auth/view/register.dart';
 import 'package:peternakan_sapi/modules/detail_cow/binding/detail_cow_binding.dart';
 import 'package:peternakan_sapi/modules/labor/binding/labor_binding.dart';
 import 'package:peternakan_sapi/modules/labor/view/add_labor.dart';
+import 'package:peternakan_sapi/modules/labor/view/labor.dart';
 import 'package:peternakan_sapi/modules/landing/view/landing.dart';
 import 'package:peternakan_sapi/modules/list_cow/binding/list_cow_binding.dart';
 import 'package:peternakan_sapi/modules/list_cow/view/list_cows.dart';
 import 'package:peternakan_sapi/modules/list_event/binding/list_event_binding.dart';
 import 'package:peternakan_sapi/modules/list_event/view/list_event.dart';
+import 'package:peternakan_sapi/modules/setting.dart';
 import 'package:peternakan_sapi/modules/update_cow/binding/update_cow_binding.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 import 'package:peternakan_sapi/modules/detail_cow/view/detail_cow.dart';
@@ -18,6 +20,7 @@ import 'package:peternakan_sapi/modules/auth/view/login.dart';
 import 'package:peternakan_sapi/modules/update_cow/view/update_cow.dart';
 import '../modules/add_cow/view/add_cows.dart';
 import '../modules/landing/binding/landing_binding.dart';
+import '../modules/settingbinding.dart';
 
 class AppPages {
   static final pages = [
@@ -68,6 +71,16 @@ class AppPages {
       name: (RouteName.addlabor),
       page: () => const AddLaborPage(),
       binding: LaborBinding(),
+    ),
+    GetPage(
+      name: (RouteName.employee),
+      page: () => LaborPage(),
+      binding: LaborBinding(),
+    ),
+    GetPage(
+      name: (RouteName.setting),
+      page: () => SettingPage(),
+      binding: SettingBinding(),
     ),
   ];
 }

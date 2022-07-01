@@ -82,7 +82,10 @@ class ListCows extends StatelessWidget {
                   stream: controller.stream,
                   builder:
                       (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-                    if (streamSnapshot.hasData) {
+                    if (streamSnapshot.connectionState ==
+                            ConnectionState.active &&
+                        streamSnapshot.hasData &&
+                        streamSnapshot.data != null) {
                       return ListView.builder(
                         shrinkWrap: true,
                         itemCount: streamSnapshot.data!.docs.length,

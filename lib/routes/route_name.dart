@@ -9,4 +9,6 @@ abstract class RouteName {
   static const listcow = '/listcow';
   static const listevent = '/listevent';
   static const addlabor = '/addlabor';
+  static const employee = '/employee';
+  static const setting = '/setting';
 }

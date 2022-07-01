@@ -1,14 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/modules/labor/view/add_labor.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 
-class LaborPage extends StatelessWidget {
-  const LaborPage({Key? key}) : super(key: key);
+import '../controller/labor_controller.dart';
+
+class LaborPage extends GetView<LaborController> {
+  LaborPage({Key? key}) : super(key: key);
 
   @override
+  // final controller = Get.find<LaborController>();
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final height = size.height;
+    final width = size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: green,
@@ -163,6 +171,63 @@ class LaborPage extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+            SizedBox(
+              height: height / 1.3,
+              width: width,
+              child: StreamBuilder(
+                stream: controller.stream,
+                builder:
+                    (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                  if (streamSnapshot.connectionState ==
+                          ConnectionState.active &&
+                      streamSnapshot.hasData &&
+                      streamSnapshot.data != null) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: streamSnapshot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        final DocumentSnapshot documentSnapshot =
+                            streamSnapshot.data!.docs[index];
+                        return Container(
+                          margin: const EdgeInsets.only(
+                              left: 8, right: 8, bottom: 4, top: 4),
+                          width: width,
+                          height: 72,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(8)),
+                          child: ListTile(
+                            leading: const SizedBox(
+                              height: 60.0,
+                              width: 60.0,
+                              // child: documentSnapshot['image'] != null
+                              //     ? Image.network(
+                              //         documentSnapshot['image'].toString())
+                              //     : SvgPicture.asset(
+                              //         'assets/listcow/default.svg',
+                              //         // fit: BoxFit.cover,
+                              //       )
+                            ),
+                            title: Text(
+                              documentSnapshot['email'].toString(),
+                            ),
+                            subtitle:
+                                Text(documentSnapshot['email'].toString()),
+                            trailing: SizedBox(
+                              width: 100,
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }
+
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              ),
             ),
           ],
         ),

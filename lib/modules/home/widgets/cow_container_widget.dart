@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/constant.dart';
+import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../labor/view/labor.dart';
 
@@ -97,7 +98,7 @@ class CowContainer extends StatelessWidget {
                 top: 20,
                 child: IconButton(
                     onPressed: () {
-                      Get.to(const LaborPage());
+                      Get.toNamed(RouteName.employee);
                     },
                     icon: const Icon(
                       Icons.arrow_forward,

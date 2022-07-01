@@ -7,7 +7,6 @@ class CowInformation extends StatelessWidget {
 
   // ignore: prefer_typing_uninitialized_variables
   final data;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,7 @@ class CowInformation extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Center(
-                        child: Text('Riwayat Pencatatan',
+                        child: Text('data sapi',
                             style: TextStyle(
                               fontSize: 20,
                             )),

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
@@ -13,4 +14,9 @@ class SettingController extends GetxController {
       }
     }
   }
+
+  var stream = FirebaseFirestore.instance
+      .collection('users')
+      .where('uid', isEqualTo: auth.currentUser?.uid)
+      .snapshots();
 }

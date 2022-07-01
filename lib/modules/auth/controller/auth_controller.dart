@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 class AuthController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final nameController = TextEditingController();
   static AuthController authInstance = Get.find();
   late Rx<User?> firebaseUser;
 
@@ -35,13 +36,17 @@ class AuthController extends GetxController {
   }
 
   void register(String email, String password) async {
-    CollectionReference cows = firestore.collection("users");
+    CollectionReference users = firestore.collection("users");
     try {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
       authInstance.signOut();
-      await cows.add(
-          {"email": email, "password": password, "uid": auth.currentUser?.uid});
+      await users.add({
+        "email": email,
+        "password": password,
+        "uid": auth.currentUser?.uid,
+        "role": "owner"
+      });
     } on FirebaseAuthException catch (e) {
       // this is solely for the Firebase Auth Exception
       // for example : password did not match

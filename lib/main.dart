@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+          fontFamily: GoogleFonts.poppins().fontFamily,
           primarySwatch: Colors.green,
           scaffoldBackgroundColor: background,
           textTheme: GoogleFonts.poppinsTextTheme().copyWith(

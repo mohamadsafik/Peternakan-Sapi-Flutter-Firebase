@@ -24,7 +24,9 @@ class SocialMediaPage extends GetView<SocialMediaController> {
             // .where('uid', isEqualTo: currentUser)
             .snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-          if (streamSnapshot.hasData) {
+          if (streamSnapshot.connectionState == ConnectionState.active &&
+              streamSnapshot.hasData &&
+              streamSnapshot.data != null) {
             return ListView.builder(
               shrinkWrap: true,
               itemCount: streamSnapshot.data!.docs.length,
@@ -63,10 +65,10 @@ class SocialMediaPage extends GetView<SocialMediaController> {
                       height: 200,
                       width: 400,
                       decoration: const BoxDecoration(color: Colors.blue),
-                      child: Image.network(
-                        "https://www.duniasapi.com/media/k2/items/cache/75b44b0e9c2e5d305fa323c6c51d3476_XL.jpg",
-                        fit: BoxFit.cover,
-                      ),
+                      // child: Image.network(
+                      //   "https://www.duniasapi.com/media/k2/items/cache/75b44b0e9c2e5d305fa323c6c51d3476_XL.jpg",
+                      //   fit: BoxFit.cover,
+                      // ),
                     ),
                     Container(
                       height: 40,

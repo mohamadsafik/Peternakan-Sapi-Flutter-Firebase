@@ -5,6 +5,7 @@ import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../../constants/color.dart';
 import '../../record.dart';
+import '../../weight_prediction.dart';
 
 class WeightRecord extends StatelessWidget {
   const WeightRecord({Key? key, required this.data, required this.currentUser})
@@ -51,7 +52,7 @@ class WeightRecord extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Center(
-                        child: Text('Riwayat Pencatatan',
+                        child: Text('catatan berat',
                             style: TextStyle(
                               fontSize: 20,
                             )),
@@ -66,10 +67,7 @@ class WeightRecord extends StatelessWidget {
                       ),
                       child: Center(
                         child: GestureDetector(
-                          onTap: () => Get.to(AddTaskPage(
-                            docID: data.id,
-                            data: data,
-                          )),
+                          onTap: () => Get.to(WeightPredictionPage(data: data)),
                           child: const Icon(
                             Icons.edit,
                             color: Colors.black,
@@ -107,6 +105,8 @@ class WeightRecord extends StatelessWidget {
                                 title: Text(
                                   record["weight"],
                                 ),
+                                trailing: Text(record['date'].toString()),
+
                                 // trailing: Text(record["date"]),
                               );
                             }).toList()),

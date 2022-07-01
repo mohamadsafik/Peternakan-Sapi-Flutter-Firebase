@@ -182,7 +182,7 @@ class AddCowsPage extends StatelessWidget {
                           controller.joinedwhen.text,
                           controller.note.text,
                         ),
-                    child: Text('simpan sapi'))))
+                    child: const Text('simpan sapi'))))
       ],
     );
   }

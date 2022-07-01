@@ -70,7 +70,7 @@ class _WeightPredictionPageState extends State<WeightPredictionPage> {
                           readOnly: true,
                           controller: controller.weight
                             ..text =
-                                ("${((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592}"),
+                                ("${(((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592).round()}"),
                         ));
                   },
                   child: const Center(child: Text('submit')),

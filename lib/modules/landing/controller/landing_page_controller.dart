@@ -18,4 +18,5 @@ class LandingPageController extends GetxController {
   void dispose() {
     super.dispose();
   }
+
 }

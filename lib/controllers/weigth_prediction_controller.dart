@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:peternakan_sapi/constants/firebase_constants.dart';
 
 class WeightPredictionController extends GetxController {
@@ -18,7 +19,10 @@ class WeightPredictionController extends GetxController {
       await cows.update({
         // "uid": FirebaseAuth.instance.currentUser!.uid,
         "weights": FieldValue.arrayUnion([
-          {"weight": weight}
+          {
+            "weight": weight,
+            "date": DateFormat("d MMMM yyyy").format(DateTime.now()),
+          }
         ]),
       });
       Get.defaultDialog(

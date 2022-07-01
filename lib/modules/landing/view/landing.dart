@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
-import '../../../modules/profile.dart';
+import 'package:peternakan_sapi/modules/income/income.dart';
+import 'package:peternakan_sapi/modules/setting.dart';
 import '../../../modules/web_scraper_bib_lembang.dart';
 import '../../home/view/home.dart';
 import '../../list_cow/view/list_cows.dart';
@@ -23,7 +24,7 @@ class LandingPage extends StatelessWidget {
     return Obx(() => MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
         child: SizedBox(
-          height: 59,
+          height: 58,
           child: BottomNavigationBar(
             showUnselectedLabels: true,
             showSelectedLabels: true,
@@ -41,7 +42,7 @@ class LandingPage extends StatelessWidget {
                   margin: const EdgeInsets.only(bottom: 7),
                   child: const Icon(
                     Icons.home,
-                    size: 25.0,
+                    size: 20.0,
                   ),
                 ),
                 label: 'Home',
@@ -52,7 +53,7 @@ class LandingPage extends StatelessWidget {
                   margin: const EdgeInsets.only(bottom: 7),
                   child: const Icon(
                     Icons.search,
-                    size: 25.0,
+                    size: 20.0,
                   ),
                 ),
                 label: 'Explore',
@@ -63,7 +64,7 @@ class LandingPage extends StatelessWidget {
                   margin: const EdgeInsets.only(bottom: 7),
                   child: const Icon(
                     Icons.qr_code_scanner,
-                    size: 25.0,
+                    size: 20.0,
                   ),
                 ),
                 label: 'Scan',
@@ -74,7 +75,7 @@ class LandingPage extends StatelessWidget {
                   margin: const EdgeInsets.only(bottom: 7),
                   child: const Icon(
                     Icons.location_history,
-                    size: 25.0,
+                    size: 20.0,
                   ),
                 ),
                 label: 'Places',
@@ -85,7 +86,7 @@ class LandingPage extends StatelessWidget {
                   margin: const EdgeInsets.only(bottom: 7),
                   child: const Icon(
                     Icons.settings,
-                    size: 25.0,
+                    size: 20.0,
                   ),
                 ),
                 label: 'Settings',
@@ -109,9 +110,11 @@ class LandingPage extends StatelessWidget {
               children: [
                 const Homepage(),
                 ListCows(),
+                IncomePage(),
+                // const WebScraperApp(),
                 SocialMediaPage(),
-                const WebScraperApp(),
-                ProfilePage(),
+                //
+                SettingPage(),
                 // const RecipeDetailsScreen(),
               ],
             )),
