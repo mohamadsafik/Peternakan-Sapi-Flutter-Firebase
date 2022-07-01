@@ -13,39 +13,15 @@ class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(80),
+          child: AppBar(
+            backgroundColor: green,
+            actions: [],
+          )),
       backgroundColor: background,
       body: Column(
         children: [
-          Container(
-            height: 80,
-            width: 400,
-            decoration: const BoxDecoration(
-              color: green,
-            ),
-            child: Stack(
-              children: [
-                const Positioned(
-                  child: Center(
-                    child: Text(
-                      'Profile',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  right: 20,
-                  top: 20,
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.settings,
-                        size: 30,
-                        color: Colors.white,
-                      )),
-                ),
-              ],
-            ),
-          ),
           const Divider(height: 20),
           const ListTile(
               leading: CircleAvatar(

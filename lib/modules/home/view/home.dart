@@ -16,12 +16,18 @@ class Homepage extends StatelessWidget {
     final height = size.height;
     final width = size.width;
     return Scaffold(
-      drawer: const drawer(),
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(80),
+          child: AppBar(
+            backgroundColor: green,
+            actions: [],
+          )),
       backgroundColor: background,
+      drawer: const drawer(),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const Top_Container_Widget(),
+            // const Top_Container_Widget(),
             const SizedBox(height: 5),
             const CowContainer(),
             const SizedBox(height: 5),

@@ -17,64 +17,32 @@ class ListCows extends StatelessWidget {
     final height = size.height;
     final width = size.width;
     return Scaffold(
+        backgroundColor: background,
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(80),
+            child: AppBar(
+              backgroundColor: green,
+              actions: [
+                IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+                StreamBuilder(
+                    stream: controller.stream,
+                    builder:
+                        (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                      return IconButton(
+                          onPressed: () {
+                            controller.scanBarcode(context, streamSnapshot);
+                          },
+                          icon: const Icon(
+                            Icons.qr_code_scanner,
+                            size: 30,
+                            color: Colors.white,
+                          ));
+                    }),
+              ],
+            )),
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                height: 100,
-                width: width,
-                decoration: const BoxDecoration(
-                  color: green,
-                ),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(width / 15, 30, 0, 0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            'List',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Text(
-                            'Sapi',
-                            style: TextStyle(color: Colors.white),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(width * 0.55, 0, 0, 0),
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.search,
-                            size: 30,
-                            color: Colors.white,
-                          )),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      child: StreamBuilder(
-                          stream: controller.stream,
-                          builder: (context,
-                              AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-                            return IconButton(
-                                onPressed: () {
-                                  controller.scanBarcode(
-                                      context, streamSnapshot);
-                                },
-                                icon: const Icon(
-                                  Icons.qr_code_scanner,
-                                  size: 30,
-                                  color: Colors.white,
-                                ));
-                          }),
-                    )
-                  ],
-                ),
-              ),
               SizedBox(
                 height: height / 1.3,
                 width: width,

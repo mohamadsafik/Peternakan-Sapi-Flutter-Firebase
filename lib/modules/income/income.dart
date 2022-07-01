@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/color.dart';
+
 class IncomePage extends StatelessWidget {
   const IncomePage({Key? key}) : super(key: key);
 
@@ -9,7 +11,13 @@ class IncomePage extends StatelessWidget {
     final height = size.height;
     final width = size.width;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(80),
+          child: AppBar(
+            backgroundColor: green,
+            actions: [],
+          )),
+      backgroundColor: background,
       body: Column(
         children: [
           Row(
