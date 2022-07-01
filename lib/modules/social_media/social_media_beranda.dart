@@ -25,7 +25,7 @@ class SocialMediaPage extends GetView<SocialMediaController> {
                       builder: (BuildContext bc) {
                         return Scaffold(
                           appBar: AppBar(
-                            title: const Center(child: Text('add sapi')),
+                            title: Text('buat status'),
                             actions: [
                               IconButton(
                                 onPressed: () {},
@@ -86,13 +86,15 @@ class SocialMediaPage extends GetView<SocialMediaController> {
                                     ),
                                   ),
                                   const SizedBox(height: 10),
-                                  TextField(
+                                  TextFormField(
                                     controller: controller.status,
+                                    minLines:
+                                        12, // any number you need (It works as the rows for the textarea)
+                                    keyboardType: TextInputType.multiline,
+                                    maxLines: null,
                                     decoration: const InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      labelText: "status",
-                                    ),
-                                  ),
+                                        hintText: "apa yang kamu pikirkan?"),
+                                  )
                                 ],
                               ),
                             ),
