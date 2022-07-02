@@ -8,19 +8,19 @@ import 'package:peternakan_sapi/bindings/list_cow_binding.dart';
 import 'package:peternakan_sapi/modules/list_cow/list_cows.dart';
 import 'package:peternakan_sapi/bindings/list_event_binding.dart';
 import 'package:peternakan_sapi/modules/list_event/list_event.dart';
-import 'package:peternakan_sapi/modules/setting.dart';
+import 'package:peternakan_sapi/modules/setting/setting.dart';
 import 'package:peternakan_sapi/bindings/update_cow_binding.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
-import 'package:peternakan_sapi/modules/detail_cow/detail_cow.dart';
-import 'package:peternakan_sapi/modules/update_cow/update_cow.dart';
+import 'package:peternakan_sapi/modules/cow-record/update_cow.dart';
 import '../modules/add_cow/add_cows.dart';
 import '../bindings/landing_binding.dart';
 import '../modules/auth/auth_main.dart';
 import '../modules/auth/login.dart';
 import '../modules/auth/register.dart';
+import '../modules/cow-record/detail_cow/detail_cow.dart';
 import '../modules/labor/add_labor.dart';
 import '../modules/labor/labor.dart';
-import '../modules/settingbinding.dart';
+import '../bindings/settingbinding.dart';
 
 class AppPages {
   static final pages = [

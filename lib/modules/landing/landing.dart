@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/modules/income/income.dart';
-import 'package:peternakan_sapi/modules/setting.dart';
+import 'package:peternakan_sapi/modules/setting/setting.dart';
 import '../../controllers/landing_page_controller.dart';
 import '../home/home.dart';
 import '../list_cow/list_cows.dart';

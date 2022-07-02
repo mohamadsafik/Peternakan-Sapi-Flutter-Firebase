@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/sockets/src/socket_notifier.dart';
-import '../controllers/weigth_prediction_controller.dart';
+import '../../controllers/weigth_prediction_controller.dart';
 
 // ignore: must_be_immutable
 class WeightPredictionPage extends StatefulWidget {

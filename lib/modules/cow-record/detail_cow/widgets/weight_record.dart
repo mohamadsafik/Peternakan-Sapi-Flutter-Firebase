@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 
-import '../../../constants/color.dart';
-import '../../record.dart';
-import '../../weight_prediction.dart';
+import '../../record_weight_prediction.dart';
+
+
 
 class WeightRecord extends StatelessWidget {
   const WeightRecord({Key? key, required this.data, required this.currentUser})

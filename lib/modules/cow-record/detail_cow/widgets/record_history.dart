@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 
-import '../../../constants/color.dart';
-import '../../record.dart';
+import '../../../../constants/color.dart';
+import '../../record_task.dart';
 
 // ignore: camel_case_types
 class record_history extends StatelessWidget {

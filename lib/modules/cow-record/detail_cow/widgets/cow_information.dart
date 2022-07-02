@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/color.dart';
+import '../../../../constants/color.dart';
+
 
 class CowInformation extends StatelessWidget {
   const CowInformation({Key? key, this.data}) : super(key: key);

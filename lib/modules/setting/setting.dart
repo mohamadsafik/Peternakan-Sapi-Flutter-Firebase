@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
-import 'package:peternakan_sapi/modules/setting_controller.dart';
+import 'package:peternakan_sapi/controllers/setting_controller.dart';
 
-import '../controllers/auth_controller.dart';
+import '../../controllers/auth_controller.dart';
 
 class SettingPage extends StatelessWidget {
   SettingPage({Key? key}) : super(key: key);
