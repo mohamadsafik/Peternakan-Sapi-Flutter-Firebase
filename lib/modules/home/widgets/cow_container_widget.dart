@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/constant.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 
-import '../../labor/view/labor.dart';
 
 class CowContainer extends StatelessWidget {
   const CowContainer({Key? key}) : super(key: key);

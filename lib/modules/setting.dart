@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/modules/setting_controller.dart';
 
-import 'auth/controller/auth_controller.dart';
+import '../controllers/auth_controller.dart';
 
 class SettingPage extends StatelessWidget {
   SettingPage({Key? key}) : super(key: key);

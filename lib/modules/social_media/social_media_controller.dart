@@ -18,6 +18,7 @@ class SocialMediaController extends GetxController {
   late ImagePicker imagePicker = ImagePicker();
   String? imageUrl;
   RxInt like = 0.obs;
+
   bool click = false;
   void getLike() {
     if (click == false) {

@@ -25,11 +25,11 @@ class SocialMediaPage extends GetView<SocialMediaController> {
                       builder: (BuildContext bc) {
                         return Scaffold(
                           appBar: AppBar(
-                            title: Text('buat status'),
+                            title: const Text('buat status'),
                             actions: [
                               IconButton(
                                 onPressed: () {},
-                                icon: Icon(Icons.post_add),
+                                icon: const Icon(Icons.post_add),
                               )
                             ],
                           ),
