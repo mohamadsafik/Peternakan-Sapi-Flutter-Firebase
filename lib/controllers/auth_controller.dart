@@ -9,8 +9,6 @@ import 'package:get/get.dart';
 
 import '../modules/auth/auth_main.dart';
 
-
-
 class AuthController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -37,14 +35,18 @@ class AuthController extends GetxController {
       Get.to(AuthMainPage());
     }
   }
+  // void profile(String username, String )async{
+  //    CollectionReference users = firestore.collection("users");
+  // }
 
-  void register(String email, String password) async {
+  void register(String email, String password, String username) async {
     CollectionReference users = firestore.collection("users");
     try {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
       authInstance.signOut();
       await users.add({
+        "username": username,
         "email": email,
         "password": password,
         "uid": auth.currentUser?.uid,

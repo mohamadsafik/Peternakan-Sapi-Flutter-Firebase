@@ -54,6 +54,17 @@ class RegisterPage extends StatelessWidget {
                   child: Column(
                     children: [
                       TextField(
+                        controller: controller.nameController,
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            labelText: "Username"),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      TextField(
                         controller: controller.emailController,
                         decoration: InputDecoration(
                             border: OutlineInputBorder(
@@ -73,7 +84,6 @@ class RegisterPage extends StatelessWidget {
                             ),
                             labelText: "Password"),
                       ),
-
                       const SizedBox(
                         height: 20,
                       ),
@@ -84,6 +94,7 @@ class RegisterPage extends StatelessWidget {
                           controller.register(
                             controller.emailController.text,
                             controller.passwordController.text,
+                            controller.nameController.text,
                           );
                         },
                         child: Container(
@@ -158,7 +169,7 @@ class RegisterPage extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: 70,
+                  height: 35,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

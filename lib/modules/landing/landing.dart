@@ -4,8 +4,8 @@ import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/modules/income/income.dart';
 import 'package:peternakan_sapi/modules/setting/setting.dart';
 import '../../controllers/landing_page_controller.dart';
+import '../cow-record/list_cow/list_cows.dart';
 import '../home/home.dart';
-import '../list_cow/list_cows.dart';
 import '../social_media/social_media_beranda.dart';
 
 class LandingPage extends StatelessWidget {
@@ -107,7 +107,7 @@ class LandingPage extends StatelessWidget {
         body: Obx(() => IndexedStack(
               index: landingPageController.tabIndex.value,
               children: [
-                const Homepage(),
+                Homepage(),
                 ListCows(),
                 IncomePage(),
                 // const WebScraperApp(),

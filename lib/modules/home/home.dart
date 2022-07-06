@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
+import 'package:peternakan_sapi/controllers/list_cow_controller.dart';
 import 'widgets/cow_container_widget.dart';
 import 'widgets/drawer.dart';
 import 'widgets/monitoring_widget.dart';
@@ -8,7 +11,8 @@ import 'widgets/monitoring_widget.dart';
 // import 'package:hexcolor/hexcolor.dart';
 
 class Homepage extends StatelessWidget {
-  const Homepage({Key? key}) : super(key: key);
+  Homepage({Key? key}) : super(key: key);
+  final controller = Get.find<ListCowController>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +35,92 @@ class Homepage extends StatelessWidget {
             const SizedBox(height: 5),
             const CowContainer(),
             const SizedBox(height: 5),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+              Container(
+                  color: Colors.transparent,
+                  height: 75,
+                  width: 75,
+                  child: Column(
+                    children: const [
+                      SizedBox(
+                        height: 50,
+                        child: Image(
+                          image: AssetImage('assets/home/grass.png'),
+                        ),
+                      ),
+                      Text(
+                        'Pakan',
+                        style: TextStyle(fontSize: 15),
+                      )
+                    ],
+                  )),
+              Container(
+                  color: Colors.transparent,
+                  height: 75,
+                  width: 75,
+                  child: Column(
+                    children: const [
+                      SizedBox(
+                        height: 50,
+                        child: Image(
+                          image: AssetImage('assets/home/cowshed.png'),
+                        ),
+                      ),
+                      Text(
+                        'Kandang',
+                        style: TextStyle(fontSize: 15),
+                      )
+                    ],
+                  )),
+              Container(
+                  color: Colors.transparent,
+                  height: 75,
+                  width: 75,
+                  child: Column(
+                    children: const [
+                      SizedBox(
+                        height: 50,
+                        child: Image(
+                          image: AssetImage('assets/home/grass.png'),
+                        ),
+                      ),
+                      Text(
+                        'Scan',
+                        style: TextStyle(fontSize: 15),
+                      )
+                    ],
+                  )),
+              Container(
+                  color: Colors.transparent,
+                  height: 75,
+                  width: 75,
+                  child: Column(
+                    children: [
+                      StreamBuilder(
+                          stream: controller.stream,
+                          builder: (context,
+                              AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                            return SizedBox(
+                              height: 50,
+                              child: GestureDetector(
+                                onTap: () {
+                                  controller.scanBarcode(
+                                      context, streamSnapshot);
+                                },
+                                child: const Image(
+                                  image: AssetImage('assets/home/qr-scan.png'),
+                                ),
+                              ),
+                            );
+                          }),
+                      Text(
+                        'Scan',
+                        style: TextStyle(fontSize: 15),
+                      )
+                    ],
+                  )),
+            ]),
+            const SizedBox(height: 10),
             const monitoring_widget(),
             const SizedBox(height: 10),
             Padding(

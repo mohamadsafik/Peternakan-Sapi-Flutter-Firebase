@@ -20,87 +20,85 @@ class SettingPage extends StatelessWidget {
             actions: [],
           )),
       backgroundColor: background,
-      body: Column(
-        children: [
-          const Divider(height: 20),
-          const ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Color.fromARGB(255, 223, 219, 219),
-                child: Icon(Icons.person),
-              ),
-              title: Text(
-                "Safik",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              )),
-          const Divider(height: 10),
-          StreamBuilder(
-            stream: controller.stream,
-            builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-              if (streamSnapshot.connectionState == ConnectionState.active &&
-                  streamSnapshot.hasData &&
-                  streamSnapshot.data != null) {
-                return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: streamSnapshot.data!.docs.length,
-                  itemBuilder: (context, index) {
-                    final DocumentSnapshot documentSnapshot =
-                        streamSnapshot.data!.docs[index];
-                    return Column(
-                      children: [
-                        SizedBox(
-                          height: 40,
-                          width: 400,
-                          child: Stack(
-                            children: [
-                              Positioned(left: 20, child: Text('Nomor HP')),
-                              Positioned(left: 200, child: Text('08284302727')),
-                            ],
-                          ),
+      body: StreamBuilder(
+        stream: controller.stream,
+        builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+          if (streamSnapshot.connectionState == ConnectionState.active &&
+              streamSnapshot.hasData &&
+              streamSnapshot.data != null) {
+            return ListView.builder(
+              shrinkWrap: true,
+              itemCount: streamSnapshot.data!.docs.length,
+              itemBuilder: (context, index) {
+                final DocumentSnapshot documentSnapshot =
+                    streamSnapshot.data!.docs[index];
+                return Column(children: [
+                  const Divider(height: 20),
+                  ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: Color.fromARGB(255, 223, 219, 219),
+                        child: Icon(Icons.person),
+                      ),
+                      title: Text(
+                        documentSnapshot['username'],
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )),
+                  const Divider(height: 10),
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: 40,
+                        width: 400,
+                        child: Stack(
+                          children: [
+                            Positioned(left: 20, child: Text('Nomor HP')),
+                            Positioned(left: 200, child: Text('08284302727')),
+                          ],
                         ),
-                        Divider(height: 10),
-                        SizedBox(
-                          height: 40,
-                          width: 400,
-                          child: Stack(
-                            children: [
-                              Positioned(left: 20, child: Text('Kata Sandi')),
-                              Positioned(left: 200, child: Text('******')),
-                            ],
-                          ),
+                      ),
+                      Divider(height: 10),
+                      SizedBox(
+                        height: 40,
+                        width: 400,
+                        child: Stack(
+                          children: [
+                            Positioned(left: 20, child: Text('Kata Sandi')),
+                            Positioned(left: 200, child: Text('******')),
+                          ],
                         ),
-                        Divider(height: 10),
-                        SizedBox(
-                          height: 40,
-                          width: 400,
-                          child: Stack(children: [
-                            Positioned(left: 20, child: Text('E-mail')),
-                            Positioned(
-                              left: 200,
-                              child: Text(documentSnapshot['email']),
-                            )
-                          ]),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              }
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            },
-          ),
-          Divider(height: 10),
-          IconButton(
-              onPressed: () {
-                AuthController.authInstance.signOut();
+                      ),
+                      Divider(height: 10),
+                      SizedBox(
+                        height: 40,
+                        width: 400,
+                        child: Stack(children: [
+                          Positioned(left: 20, child: Text('E-mail')),
+                          Positioned(
+                            left: 200,
+                            child: Text(documentSnapshot['email']),
+                          )
+                        ]),
+                      ),
+                    ],
+                  ),
+                  Divider(height: 10),
+                  IconButton(
+                      onPressed: () {
+                        AuthController.authInstance.signOut();
+                      },
+                      icon: Icon(
+                        Icons.logout,
+                        color: Colors.red,
+                      )),
+                  Divider(height: 10)
+                ]);
               },
-              icon: Icon(
-                Icons.logout,
-                color: Colors.red,
-              )),
-          Divider(height: 10)
-        ],
+            );
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
     );
   }

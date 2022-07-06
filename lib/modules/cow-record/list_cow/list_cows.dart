@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
-import '../../constants/color.dart';
-import '../../controllers/list_cow_controller.dart';
+
+import '../../../constants/color.dart';
+import '../../../controllers/list_cow_controller.dart';
 
 class ListCows extends StatelessWidget {
   ListCows({Key? key, transitionType}) : super(key: key);
