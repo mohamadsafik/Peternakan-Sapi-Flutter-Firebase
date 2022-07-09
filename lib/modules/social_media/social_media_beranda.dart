@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:peternakan_sapi/modules/social_media/social_media_controller.dart';
 
 import '../../constants/color.dart';
+import '../home/widgets/drawer.dart';
 
 class SocialMediaPage extends GetView<SocialMediaController> {
   SocialMediaPage({Key? key}) : super(key: key);
@@ -18,7 +19,6 @@ class SocialMediaPage extends GetView<SocialMediaController> {
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(80),
           child: AppBar(
-            leading: Text(data['username']),
             title: Center(
               child: GestureDetector(
                 onTap: () {
@@ -27,7 +27,6 @@ class SocialMediaPage extends GetView<SocialMediaController> {
                       builder: (BuildContext bc) {
                         return Scaffold(
                           appBar: AppBar(
-                            title: const Text('buat status'),
                             actions: [
                               IconButton(
                                 onPressed: () {},
@@ -96,6 +95,11 @@ class SocialMediaPage extends GetView<SocialMediaController> {
                                     maxLines: null,
                                     decoration: const InputDecoration(
                                         hintText: "apa yang kamu pikirkan?"),
+                                  ),
+                                  TextFormField(
+                                    controller: controller.username
+                                      ..text = data['username'],
+                                    decoration: const InputDecoration(),
                                   )
                                 ],
                               ),
@@ -109,8 +113,9 @@ class SocialMediaPage extends GetView<SocialMediaController> {
                                     child: ElevatedButton(
                                         onPressed: () => controller.addStatus(
                                               controller.status.text,
+                                              controller.username.text,
                                             ),
-                                        child: const Text('simpan sapi'))))
+                                        child: const Text('Bagikan Status'))))
                           ],
                         );
                       });
@@ -118,8 +123,12 @@ class SocialMediaPage extends GetView<SocialMediaController> {
                 child: Container(
                     height: 50,
                     width: 150,
-                    decoration: const BoxDecoration(color: Colors.black),
-                    child: const Text('apa yang terjadi di peternakanmu')),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(60),
+                        color: Colors.grey.withOpacity(0.7)),
+                    child: const Center(
+                        child: Text('Buat Status',
+                            style: TextStyle(fontSize: 16)))),
               ),
             ),
             backgroundColor: green,
@@ -127,6 +136,7 @@ class SocialMediaPage extends GetView<SocialMediaController> {
               IconButton(onPressed: () {}, icon: Icon(Icons.filter_alt))
             ],
           )),
+      drawer: const drawer(),
       backgroundColor: background,
       body: StreamBuilder(
         stream: FirebaseFirestore.instance

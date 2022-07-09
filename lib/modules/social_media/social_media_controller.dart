@@ -15,6 +15,7 @@ import '../../constants/firebase_constants.dart';
 
 class SocialMediaController extends GetxController {
   late TextEditingController status = TextEditingController();
+  late TextEditingController username = TextEditingController();
   XFile? pickedImage;
   late ImagePicker imagePicker = ImagePicker();
   String? imageUrl;
@@ -39,10 +40,9 @@ class SocialMediaController extends GetxController {
     status.clear();
   }
 
-  
-
   void addStatus(
     String status,
+    String username,
   ) async {
     CollectionReference post = firestore.collection("post");
     var nameImage = pickedImage?.name;
@@ -60,6 +60,7 @@ class SocialMediaController extends GetxController {
         "grup": "peternakan sapi indonesia",
         // "username": stream,
         "uid": FirebaseAuth.instance.currentUser!.uid,
+        "username": username,
         "status": status,
         "image": imageUrl,
         "uid": FirebaseAuth.instance.currentUser!.uid,

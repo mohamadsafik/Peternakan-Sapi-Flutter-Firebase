@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
-import 'package:peternakan_sapi/modules/social_media/social_media_beranda.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../../constants/firebase_constants.dart';
@@ -45,21 +44,20 @@ class drawer extends StatelessWidget {
                             ),
                           ),
                           ListTile(
-                            title: const Text('Item 1'),
+                            leading: Icon(Icons.catching_pokemon),
+                            title: const Text('Peternakan Sapi'),
                             onTap: () {
-                              // Update the state of the app
-                              // ...
-                              // Then close the drawer
-                              Navigator.pop(context);
+                              Get.offAllNamed(RouteName.landing);
                             },
                           ),
                           ListTile(
+                            leading: Icon(Icons.catching_pokemon),
                             title: const Text('Komunitas'),
                             onTap: () {
                               // Update the state of the app
                               // ...
                               // Then close the drawer
-                              Get.toNamed(RouteName.socialmedia,
+                              Get.offAllNamed(RouteName.socialmedia,
                                   arguments: documentSnapshot);
                             },
                           )
