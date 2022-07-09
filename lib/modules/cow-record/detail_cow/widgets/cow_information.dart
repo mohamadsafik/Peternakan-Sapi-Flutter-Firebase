@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../constants/color.dart';
 
-
 class CowInformation extends StatelessWidget {
   const CowInformation({Key? key, this.data}) : super(key: key);
 
@@ -74,11 +73,10 @@ class CowInformation extends StatelessWidget {
                 children: [
                   const Text('eartag :'),
                   Text(
-                    data['eartag'].toString(),
+                    data['nomortag'].toString(),
                     maxLines: 1,
                     style: const TextStyle(
                         color: Color.fromRGBO(0, 0, 0, 1),
-                        fontSize: 8,
                         overflow: TextOverflow.ellipsis),
                   ),
                 ],

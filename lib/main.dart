@@ -6,14 +6,12 @@ import 'package:peternakan_sapi/routes/app_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'controllers/auth_controller.dart';
-import 'modules/social_media/social_media_controller.dart';
 import 'routes/route_name.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await firebaseInitialization.then((value) {
     Get.put(AuthController());
-    Get.put(SocialMediaController());
   });
   runApp(const MyApp());
 }

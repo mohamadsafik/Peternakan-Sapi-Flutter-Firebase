@@ -12,6 +12,7 @@ import 'package:uuid/uuid.dart';
 
 class AddCowController extends GetxController {
   late TextEditingController name = TextEditingController();
+  late TextEditingController nomortag = TextEditingController();
   late TextEditingController rasCow = TextEditingController();
   late TextEditingController gender = TextEditingController();
   late TextEditingController breed = TextEditingController();
@@ -40,6 +41,7 @@ class AddCowController extends GetxController {
 
   void cleartext() {
     name.clear();
+    nomortag.clear();
     rasCow.clear();
     gender.clear();
     breed.clear();
@@ -65,6 +67,7 @@ class AddCowController extends GetxController {
         "image": imageUrl,
         "uid": FirebaseAuth.instance.currentUser!.uid,
         "name": cowModel.name,
+        "nomortag": cowModel.nomortag,
         "eartag": uuid.v1(),
         "rasCow": cowModel.rasCow,
         "gender": cowModel.gender,
@@ -125,6 +128,7 @@ class AddCowController extends GetxController {
   @override
   void onClose() {
     name.dispose();
+    nomortag.dispose();
     rasCow.dispose();
     gender.dispose();
     breed.dispose();

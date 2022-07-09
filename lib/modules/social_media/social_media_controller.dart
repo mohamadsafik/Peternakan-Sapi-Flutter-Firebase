@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,8 @@ class SocialMediaController extends GetxController {
     status.clear();
   }
 
+  
+
   void addStatus(
     String status,
   ) async {
@@ -55,7 +58,8 @@ class SocialMediaController extends GetxController {
     try {
       await post.add({
         "grup": "peternakan sapi indonesia",
-        "username": "safik",
+        // "username": stream,
+        "uid": FirebaseAuth.instance.currentUser!.uid,
         "status": status,
         "image": imageUrl,
         "uid": FirebaseAuth.instance.currentUser!.uid,

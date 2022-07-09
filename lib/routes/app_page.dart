@@ -3,12 +3,14 @@ import 'package:peternakan_sapi/bindings/add_cow_binding.dart';
 import 'package:peternakan_sapi/bindings/auth_binding.dart';
 import 'package:peternakan_sapi/bindings/detail_cow_binding.dart';
 import 'package:peternakan_sapi/bindings/labor_binding.dart';
+import 'package:peternakan_sapi/bindings/social_media_binding.dart';
 import 'package:peternakan_sapi/modules/cow-record/add_cows.dart';
 import 'package:peternakan_sapi/modules/landing/landing.dart';
 import 'package:peternakan_sapi/bindings/list_cow_binding.dart';
 import 'package:peternakan_sapi/bindings/list_event_binding.dart';
 import 'package:peternakan_sapi/modules/setting/setting.dart';
 import 'package:peternakan_sapi/bindings/update_cow_binding.dart';
+import 'package:peternakan_sapi/modules/social_media/social_media_beranda.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 import 'package:peternakan_sapi/modules/cow-record/update_cow.dart';
 import '../bindings/landing_binding.dart';
@@ -81,6 +83,11 @@ class AppPages {
       name: (RouteName.setting),
       page: () => SettingPage(),
       binding: SettingBinding(),
+    ),
+    GetPage(
+      name: (RouteName.socialmedia),
+      page: () => SocialMediaPage(),
+      binding: SocialMediaBinding(),
     ),
   ];
 }

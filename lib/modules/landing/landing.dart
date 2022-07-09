@@ -73,17 +73,6 @@ class LandingPage extends StatelessWidget {
                 icon: Container(
                   margin: const EdgeInsets.only(bottom: 7),
                   child: const Icon(
-                    Icons.location_history,
-                    size: 20.0,
-                  ),
-                ),
-                label: 'Places',
-                backgroundColor: background,
-              ),
-              BottomNavigationBarItem(
-                icon: Container(
-                  margin: const EdgeInsets.only(bottom: 7),
-                  child: const Icon(
                     Icons.settings,
                     size: 20.0,
                   ),
@@ -111,7 +100,7 @@ class LandingPage extends StatelessWidget {
                 ListCows(),
                 IncomePage(),
                 // const WebScraperApp(),
-                SocialMediaPage(),
+                // SocialMediaPage(),
                 //
                 SettingPage(),
                 // const RecipeDetailsScreen(),

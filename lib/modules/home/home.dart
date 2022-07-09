@@ -81,11 +81,11 @@ class Homepage extends StatelessWidget {
                       SizedBox(
                         height: 50,
                         child: Image(
-                          image: AssetImage('assets/home/grass.png'),
+                          image: AssetImage('assets/home/weight.png'),
                         ),
                       ),
                       Text(
-                        'Scan',
+                        'Bobot',
                         style: TextStyle(fontSize: 15),
                       )
                     ],

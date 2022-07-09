@@ -1,4 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:peternakan_sapi/constants/color.dart';
+import 'package:peternakan_sapi/modules/social_media/social_media_beranda.dart';
+import 'package:peternakan_sapi/routes/route_name.dart';
+
+import '../../../constants/firebase_constants.dart';
 
 // ignore: camel_case_types
 class drawer extends StatelessWidget {
@@ -9,36 +16,60 @@ class drawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        // Important: Remove any padding from the ListView.
-        padding: EdgeInsets.zero,
-        children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-            ),
-            child: Text('Drawer Header'),
-          ),
-          ListTile(
-            title: const Text('Item 1'),
-            onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            title: const Text('Item 2'),
-            onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              Navigator.pop(context);
-            },
-          ),
-        ],
-      ),
-    );
+        child: StreamBuilder(
+            stream: FirebaseFirestore.instance
+                .collection('users')
+                .where('uid', isEqualTo: auth.currentUser?.uid)
+                .snapshots(),
+            builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+              if (streamSnapshot.connectionState == ConnectionState.active &&
+                  streamSnapshot.hasData &&
+                  streamSnapshot.data != null) {
+                return ListView.builder(
+                    // shrinkWrap: true,
+                    itemCount: streamSnapshot.data!.docs.length,
+                    itemBuilder: (context, index) {
+                      final DocumentSnapshot documentSnapshot =
+                          streamSnapshot.data!.docs[index];
+                      return Column(
+                        // Important: Remove any padding from the ListView.
+                        children: [
+                          SizedBox(
+                            height: 200,
+                            width: 400,
+                            child: DrawerHeader(
+                              decoration: BoxDecoration(
+                                color: green,
+                              ),
+                              child: Text(documentSnapshot['username']),
+                            ),
+                          ),
+                          ListTile(
+                            title: const Text('Item 1'),
+                            onTap: () {
+                              // Update the state of the app
+                              // ...
+                              // Then close the drawer
+                              Navigator.pop(context);
+                            },
+                          ),
+                          ListTile(
+                            title: const Text('Komunitas'),
+                            onTap: () {
+                              // Update the state of the app
+                              // ...
+                              // Then close the drawer
+                              Get.toNamed(RouteName.socialmedia,
+                                  arguments: documentSnapshot);
+                            },
+                          )
+                        ],
+                      );
+                    });
+              }
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }));
   }
 }

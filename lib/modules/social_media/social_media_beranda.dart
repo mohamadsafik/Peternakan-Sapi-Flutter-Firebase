@@ -9,7 +9,8 @@ import 'package:peternakan_sapi/modules/social_media/social_media_controller.dar
 import '../../constants/color.dart';
 
 class SocialMediaPage extends GetView<SocialMediaController> {
-  const SocialMediaPage({Key? key}) : super(key: key);
+  SocialMediaPage({Key? key}) : super(key: key);
+  var data = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +18,7 @@ class SocialMediaPage extends GetView<SocialMediaController> {
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(80),
           child: AppBar(
+            leading: Text(data['username']),
             title: Center(
               child: GestureDetector(
                 onTap: () {
