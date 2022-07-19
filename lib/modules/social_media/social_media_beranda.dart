@@ -219,6 +219,7 @@ class SocialMediaPage extends GetView<SocialMediaController> {
                         height: 8,
                         color: Colors.white,
                       ),
+                      // Text(documentSnapshot.id),
                       Container(
                         height: 40,
                         width: 400,
@@ -235,6 +236,7 @@ class SocialMediaPage extends GetView<SocialMediaController> {
                               ),
                               onPressed: () {
                                 controller.likeUnlike();
+                                // controller.addlike();
                               },
                             ),
                             const Icon(

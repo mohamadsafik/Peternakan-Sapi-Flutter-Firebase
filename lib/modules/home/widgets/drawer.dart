@@ -37,7 +37,7 @@ class drawer extends StatelessWidget {
                             height: 200,
                             width: 400,
                             child: DrawerHeader(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: green,
                               ),
                               child: Text(documentSnapshot['username']),

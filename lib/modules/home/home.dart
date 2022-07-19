@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/controllers/list_cow_controller.dart';
+import 'package:peternakan_sapi/modules/cow-record/record_weight_prediction.dart';
 import 'widgets/cow_container_widget.dart';
 import 'widgets/drawer.dart';
 import 'widgets/monitoring_widget.dart';
@@ -77,11 +78,16 @@ class Homepage extends StatelessWidget {
                   height: 75,
                   width: 75,
                   child: Column(
-                    children: const [
-                      SizedBox(
-                        height: 50,
-                        child: Image(
-                          image: AssetImage('assets/home/weight.png'),
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(WeightPredictionPage());
+                        },
+                        child: const SizedBox(
+                          height: 50,
+                          child: Image(
+                            image: AssetImage('assets/home/weight.png'),
+                          ),
                         ),
                       ),
                       Text(

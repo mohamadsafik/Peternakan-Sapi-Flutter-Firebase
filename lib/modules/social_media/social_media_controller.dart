@@ -16,12 +16,25 @@ import '../../constants/firebase_constants.dart';
 class SocialMediaController extends GetxController {
   late TextEditingController status = TextEditingController();
   late TextEditingController username = TextEditingController();
+    late TextEditingController documentId= TextEditingController();
   XFile? pickedImage;
   late ImagePicker imagePicker = ImagePicker();
   String? imageUrl;
   RxInt like = 0.obs;
 
   bool click = false;
+  void addlike() async {
+    DocumentReference likes = firestore.collection("post").doc("status");
+
+    await likes.update({
+      "like": FieldValue.arrayUnion(
+        [
+          {"username": "safik"}
+        ],
+      ),
+    });
+  }
+
   void getLike() {
     if (click == false) {
       like - 1;
