@@ -61,6 +61,8 @@ class ListCows extends StatelessWidget {
                         itemBuilder: (context, index) {
                           final DocumentSnapshot documentSnapshot =
                               streamSnapshot.data!.docs[index];
+                          final int documentsum =
+                              streamSnapshot.data!.docs.length;
                           return Container(
                             margin: const EdgeInsets.only(
                                 left: 8, right: 8, bottom: 4, top: 4),
@@ -76,15 +78,14 @@ class ListCows extends StatelessWidget {
                                   child: documentSnapshot['image'] != null
                                       ? Image.network(
                                           documentSnapshot['image'].toString())
-                                      : SvgPicture.asset(
-                                          'assets/listcow/default.svg',
+                                      : Image.asset(
+                                          'assets/home/cow1.png',
                                           // fit: BoxFit.cover,
                                         )),
                               title: Text(
                                 documentSnapshot['name'].toString(),
                               ),
-                              subtitle:
-                                  Text(documentSnapshot['gender'].toString()),
+                              subtitle: Text(documentSnapshot['gender']),
                               trailing: SizedBox(
                                 width: 100,
                                 child: Row(

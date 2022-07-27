@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../../../constants/color.dart';
 
@@ -50,10 +53,9 @@ class CowInformation extends StatelessWidget {
                       ),
                       child: Center(
                         child: GestureDetector(
-                          // onTap: () => Get.to(AddTaskPage(
-                          //   docID: data.id,
-                          //   data: data,
-                          // )),
+                          onTap: () {
+                            Get.toNamed(RouteName.updatecow, arguments: data);
+                          },
                           child: const Icon(
                             Icons.edit,
                             color: Colors.black,
@@ -105,11 +107,6 @@ class CowInformation extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [const Text('catatan :'), Text(data['note'])],
-              ),
-              const Divider(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [const Text('berat :'), Text(data['note'])],
               ),
               const Divider(),
             ],

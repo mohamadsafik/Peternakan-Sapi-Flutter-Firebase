@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
+import 'package:peternakan_sapi/controllers/home_controller.dart';
 import 'package:peternakan_sapi/controllers/list_cow_controller.dart';
 import 'package:peternakan_sapi/modules/cow-record/record_weight_prediction.dart';
 import 'widgets/cow_container_widget.dart';
@@ -14,6 +15,7 @@ import 'widgets/monitoring_widget.dart';
 class Homepage extends StatelessWidget {
   Homepage({Key? key}) : super(key: key);
   final controller = Get.find<ListCowController>();
+  final homecontroller = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class Homepage extends StatelessWidget {
           preferredSize: const Size.fromHeight(80),
           child: AppBar(
             backgroundColor: green,
-            actions: const [],
+            actions: [],
           )),
       backgroundColor: background,
       drawer: const drawer(),
@@ -34,7 +36,7 @@ class Homepage extends StatelessWidget {
           children: [
             // const Top_Container_Widget(),
             const SizedBox(height: 5),
-            const CowContainer(),
+             CowContainer(),
             const SizedBox(height: 5),
             Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
               Container(
@@ -127,7 +129,7 @@ class Homepage extends StatelessWidget {
                   )),
             ]),
             const SizedBox(height: 10),
-            const monitoring_widget(),
+            monitoring_widget(),
             const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.only(left: width / 40, right: width / 40),

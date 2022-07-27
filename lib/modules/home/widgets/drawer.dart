@@ -5,6 +5,7 @@ import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../../constants/firebase_constants.dart';
+import '../../../controllers/auth_controller.dart';
 
 // ignore: camel_case_types
 class drawer extends StatelessWidget {
@@ -60,7 +61,7 @@ class drawer extends StatelessWidget {
                               Get.offAllNamed(RouteName.socialmedia,
                                   arguments: documentSnapshot);
                             },
-                          )
+                          ),
                         ],
                       );
                     });

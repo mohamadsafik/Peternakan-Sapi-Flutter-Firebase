@@ -4,9 +4,9 @@ import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 
 // ignore: must_be_immutable
 class BarcodePage extends StatelessWidget {
-  BarcodePage({Key? key, this.document}) : super(key: key);
+  BarcodePage({Key? key, this.document, this.data}) : super(key: key);
   var document = Get.arguments;
-
+  final data;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,12 +16,12 @@ class BarcodePage extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 200),
-            Text(document['name']),
+            Text(data['name'].toString()),
             SizedBox(
-              height: 200,
+              height: 350,
               child: SfBarcodeGenerator(
-                value: document.id,
-                // symbology: QRCode(),
+                value: data['eartag'],
+                symbology: QRCode(),
                 showValue: true,
               ),
             ),

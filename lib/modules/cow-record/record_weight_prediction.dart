@@ -21,9 +21,10 @@ class _WeightPredictionPageState extends State<WeightPredictionPage> {
     return Scaffold(
       backgroundColor: background,
       appBar: AppBar(
-        backgroundColor: green,
-        // title: Text(widget.data['name']),
-      ),
+          backgroundColor: green,
+          title: widget.data?['name'] != null
+              ? Text(widget.data['name'])
+              : Text('data')),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
@@ -70,37 +71,38 @@ class _WeightPredictionPageState extends State<WeightPredictionPage> {
                   color: Colors.green,
                   child: ElevatedButton(
                     onPressed: () {
-                      // Get.defaultDialog(
-                      //     onConfirm: () => controller.editCow(
-                      //         controller.weight.text, widget.data.id),
-                      //     onCancel: () {},
-                      //     textConfirm: "simpan",
-                      //     content: TextField(
-                      //       readOnly: true,
-                      //       controller: controller.weight
-                      //         ..text =
-                      //             ("${(((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592).round()}"),
-                      //     ));
-                      showCupertinoModalPopup(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return Scaffold(
-                              body: Column(
-                                children: [
-                                  Text(
-                                    // readOnly: true,
-                                    // controller: controller.weight
-                                    //   ..text =
-                                    ("${(((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592).round()}"),
+                      widget.data?.id != null
+                          ? Get.defaultDialog(
+                              onConfirm: () => controller.editCow(
+                                  controller.weight.text, widget.data.id),
+                              onCancel: () {},
+                              textConfirm: "simpan",
+                              content: TextField(
+                                readOnly: true,
+                                controller: controller.weight
+                                  ..text =
+                                      ("${(((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592).round()}"),
+                              ))
+                          : showCupertinoModalPopup(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Scaffold(
+                                  body: Column(
+                                    children: [
+                                      Text(
+                                        // readOnly: true,
+                                        // controller: controller.weight
+                                        //   ..text =
+                                        ("${(((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592).round()}"),
+                                      ),
+                                      Text(
+                                          "${(((((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592) / 100) * 10).round()}"),
+                                      Text(
+                                          "${(((((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592) / 100) * 2).round()}"),
+                                    ],
                                   ),
-                                  Text(
-                                      "${(((((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592) / 100) * 10).round()}"),
-                                  Text(
-                                      "${(((((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592) / 100) * 2).round()}"),
-                                ],
-                              ),
-                            );
-                          });
+                                );
+                              });
                     },
                     child: const Center(child: Text('submit')),
                   ),

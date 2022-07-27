@@ -9,6 +9,7 @@ class WeightPredictionController extends GetxController {
   late TextEditingController weight = TextEditingController();
   int firstFieldValue = 0;
   int secondFieldValue = 0;
+  var dateformat = ("dd-MM-yyyy");
 
   editCow(
     String weight,
@@ -21,7 +22,7 @@ class WeightPredictionController extends GetxController {
         "weights": FieldValue.arrayUnion([
           {
             "weight": weight,
-            "date": DateFormat("d MMMM yyyy").format(DateTime.now()),
+            "date": DateFormat(dateformat).format(DateTime.now()),
           }
         ]),
       });

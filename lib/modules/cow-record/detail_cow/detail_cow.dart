@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:peternakan_sapi/modules/cow-record/barcode_cow.dart';
 import 'package:peternakan_sapi/modules/cow-record/detail_cow/widgets/weight_record.dart';
 import '../../../constants/color.dart';
 import '../../../controllers/detail_cow_controller.dart';
@@ -86,12 +87,37 @@ class DetailCowPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      InkWell(
-                        onTap: () => Get.to(WeightPredictionPage(data: data)),
-                        child: const Icon(
-                          Icons.favorite,
-                          color: Colors.pink,
-                        ),
+                      Row(
+                        children: [
+                          InkWell(
+                            onTap: () {},
+                            child: const Icon(
+                              Icons.favorite,
+                              color: Colors.pink,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              showCupertinoModalPopup(
+                                  context: context,
+                                  builder: (BuildContext bc) {
+                                    return BarcodePage(
+                                      data: data,
+                                    );
+                                  });
+                            },
+                            child: const Icon(
+                              Icons.qr_code,
+                              color: Colors.black,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -103,6 +129,9 @@ class DetailCowPage extends StatelessWidget {
                   record_history(
                       data: data,
                       currentUser: controller.currentUser.toString()),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   WeightRecord(
                       data: data,
                       currentUser: controller.currentUser.toString()),

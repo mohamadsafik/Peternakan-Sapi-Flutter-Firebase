@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../constants/firebase_constants.dart';
 
 class RecordController extends GetxController {
-  late TextEditingController name = TextEditingController();
+  late TextEditingController action = TextEditingController();
   late TextEditingController eartag = TextEditingController();
   late TextEditingController rasCow = TextEditingController();
   late TextEditingController gender = TextEditingController();
@@ -17,15 +17,11 @@ class RecordController extends GetxController {
   late TextEditingController time = TextEditingController();
 
   var items = ['Jantan', 'Betina'].obs;
-  var aksi = [
-    'Inseminasi Buatan',
-    'Vaksin',
-    'Sakit',
-  ].obs;
+  var aksi = ['Inseminasi Buatan', 'Vaksin', 'Sakit', 'Hamil'].obs;
   var selectedDate = DateTime.now().obs;
   var dateJoin = DateTime.now().obs;
   void cleartext() {
-    name.clear();
+    action.clear();
     eartag.clear();
     rasCow.clear();
     gender.clear();
@@ -36,7 +32,7 @@ class RecordController extends GetxController {
   }
 
   void recordCow(
-    String name,
+    String action,
     String eartag,
     String note,
     String time,
@@ -48,10 +44,11 @@ class RecordController extends GetxController {
     try {
       await cows.update(
         {
+          "statushamil": action,
           "record": FieldValue.arrayUnion(
             [
               {
-                "action": name,
+                "action": action,
                 'date': eartag,
                 'noted': note,
                 'time': DateTime.now(),
@@ -84,7 +81,7 @@ class RecordController extends GetxController {
 
   @override
   void onClose() {
-    name.dispose();
+    action.dispose();
     eartag.dispose();
     rasCow.dispose();
     gender.dispose();

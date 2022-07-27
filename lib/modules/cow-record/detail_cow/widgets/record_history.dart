@@ -98,20 +98,23 @@ class record_history extends StatelessWidget {
                           final records = map?["record"] as List<dynamic>;
                           records
                               .sort((a, b) => b["time"].compareTo(a["time"]));
-                          return Container(
-                            child: Column(
-                                children: records.map((record) {
-                              return ListTile(
-                                leading: const Icon(
-                                  Icons.warning,
-                                  color: Colors.orange,
-                                ),
-                                title: Text(
-                                  record["action"],
-                                ),
-                                trailing: Text(record["date"]),
-                              );
-                            }).toList()),
+                          return SizedBox(
+                            height: 100,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                  children: records.map((record) {
+                                return ListTile(
+                                  leading: const Icon(
+                                    Icons.warning,
+                                    color: Colors.orange,
+                                  ),
+                                  title: Text(
+                                    record["action"],
+                                  ),
+                                  trailing: Text(record["date"]),
+                                );
+                              }).toList(growable: false)),
+                            ),
                           );
                         }
                         return const Text('data');

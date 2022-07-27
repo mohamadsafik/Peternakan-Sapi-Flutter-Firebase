@@ -35,6 +35,7 @@ class AuthController extends GetxController {
       Get.to(AuthMainPage());
     }
   }
+
   // void profile(String username, String )async{
   //    CollectionReference users = firestore.collection("users");
   // }

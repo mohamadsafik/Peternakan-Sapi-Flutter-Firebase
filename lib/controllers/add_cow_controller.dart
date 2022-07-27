@@ -75,6 +75,7 @@ class AddCowController extends GetxController {
         "birthdate": cowModel.birthdate,
         "joinedwhen": cowModel.joinedwhen,
         "note": cowModel.note,
+        "statushamil": '',
         "record": FieldValue.arrayUnion(
           [],
         ),

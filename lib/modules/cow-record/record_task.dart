@@ -28,14 +28,14 @@ class AddTaskPage extends StatelessWidget {
               const SizedBox(height: 10),
               TextField(
                 readOnly: true,
-                controller: controller.name..text = '',
+                controller: controller.action..text = '',
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   labelText: "Aksi apa",
                   suffixIcon: PopupMenuButton<String>(
                     icon: const Icon(Icons.arrow_drop_down),
                     onSelected: (String value) {
-                      controller.name.text = value;
+                      controller.action.text = value;
                     },
                     itemBuilder: (BuildContext context) {
                       return controller.aksi
@@ -79,7 +79,7 @@ class AddTaskPage extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () => controller.recordCow(
-                  controller.name.text,
+                  controller.action.text,
                   controller.eartag.text,
                   controller.note.text,
                   controller.time.text,

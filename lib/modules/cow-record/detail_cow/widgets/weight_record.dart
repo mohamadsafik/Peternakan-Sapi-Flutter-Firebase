@@ -6,8 +6,6 @@ import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../record_weight_prediction.dart';
 
-
-
 class WeightRecord extends StatelessWidget {
   const WeightRecord({Key? key, required this.data, required this.currentUser})
       : super(key: key);
@@ -95,22 +93,25 @@ class WeightRecord extends StatelessWidget {
                           final records = map?["weights"] as List<dynamic>;
                           // records
                           //     .sort((a, b) => b["time"].compareTo(a["time"]));
-                          return Container(
-                            child: Column(
-                                children: records.map((record) {
-                              return ListTile(
-                                leading: const Icon(
-                                  Icons.monitor_weight_outlined,
-                                  color: Colors.orange,
-                                ),
-                                title: Text(
-                                  record["weight"],
-                                ),
-                                trailing: Text(record['date'].toString()),
+                          return SizedBox(
+                            height: 100,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                  children: records.map((record) {
+                                return ListTile(
+                                  leading: const Icon(
+                                    Icons.monitor_weight_outlined,
+                                    color: Colors.orange,
+                                  ),
+                                  title: Text(
+                                    record["weight"],
+                                  ),
+                                  trailing: Text(record['date'].toString()),
 
-                                // trailing: Text(record["date"]),
-                              );
-                            }).toList()),
+                                  // trailing: Text(record["date"]),
+                                );
+                              }).toList()),
+                            ),
                           );
                         }
                         return const Text('data');
