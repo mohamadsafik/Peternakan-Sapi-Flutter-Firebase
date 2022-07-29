@@ -12,4 +12,5 @@ abstract class RouteName {
   static const employee = '/employee';
   static const setting = '/setting';
   static const socialmedia = '/socialmedia';
+   static const updateprofile = '/updateprofile';
 }

@@ -10,6 +10,7 @@ import 'package:peternakan_sapi/bindings/list_cow_binding.dart';
 import 'package:peternakan_sapi/bindings/list_event_binding.dart';
 import 'package:peternakan_sapi/modules/setting/setting.dart';
 import 'package:peternakan_sapi/bindings/update_cow_binding.dart';
+import 'package:peternakan_sapi/modules/setting/update_profile.dart';
 import 'package:peternakan_sapi/modules/social_media/social_media_beranda.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 import 'package:peternakan_sapi/modules/cow-record/update_cow.dart';
@@ -82,6 +83,11 @@ class AppPages {
     GetPage(
       name: (RouteName.setting),
       page: () => SettingPage(),
+      binding: SettingBinding(),
+    ),
+     GetPage(
+      name: (RouteName.updateprofile),
+      page: () => UpdateProfilePage(),
       binding: SettingBinding(),
     ),
     GetPage(

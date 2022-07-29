@@ -20,10 +20,11 @@ class LaborController extends GetxController {
       await FirebaseAuth.instanceFor(app: app)
           .createUserWithEmailAndPassword(email: email, password: password);
       await cows.add({
+        "username": "pekerja",
         "email": email,
         "password": password,
         "uidowner": auth.currentUser?.uid,
-        "role": "employee"
+        "role": "employee",
       });
     } on FirebaseAuthException catch (e) {
       // this is solely for the Firebase Auth Exception

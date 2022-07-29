@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:peternakan_sapi/constants/firebase_constants.dart';
 
 import '../../constants/color.dart';
+import '../../controllers/auth_controller.dart';
 
 class IncomePage extends StatelessWidget {
   const IncomePage({Key? key}) : super(key: key);
@@ -15,7 +17,13 @@ class IncomePage extends StatelessWidget {
           preferredSize: const Size.fromHeight(80),
           child: AppBar(
             backgroundColor: green,
-            actions: [],
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    AuthController.authInstance.signOut();
+                  },
+                  icon: Icon(Icons.abc))
+            ],
           )),
       backgroundColor: background,
       body: Column(

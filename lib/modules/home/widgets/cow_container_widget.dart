@@ -29,8 +29,8 @@ class CowContainer extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: 1,
                 itemBuilder: (context, index) {
-                  final DocumentSnapshot documentSnapshot =
-                      streamSnapshot.data!.docs[index];
+                  // final DocumentSnapshot documentSnapshot =
+                  //     streamSnapshot.data!.docs[index];
                   final int documentsum = streamSnapshot.data!.docs.length;
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +64,9 @@ class CowContainer extends StatelessWidget {
                                   Text(
                                     'sapi',
                                   ),
-                                  Text(documentsum.toString()),
+                                  (streamSnapshot.hasData)
+                                      ? Text(documentsum.toString())
+                                      : const Text('0')
                                 ],
                               ),
                             ),

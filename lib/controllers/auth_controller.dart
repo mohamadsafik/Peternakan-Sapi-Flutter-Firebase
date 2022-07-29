@@ -3,7 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/constants/firebase_constants.dart';
+import 'package:peternakan_sapi/controllers/setting_controller.dart';
+import 'package:peternakan_sapi/modules/cow-record/list_cow/list_cows.dart';
+import 'package:peternakan_sapi/modules/income/income.dart';
+import 'package:peternakan_sapi/modules/landing/landing.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 import 'package:get/get.dart';
 
@@ -25,14 +30,31 @@ class AuthController extends GetxController {
     ever(firebaseUser, _setInitialScreen);
   }
 
-  _setInitialScreen(User? user) {
+  _setInitialScreen(User? user) async {
     if (user != null) {
-      // user is logged in
-      Get.offAllNamed(RouteName.landing);
+      var data = FirebaseFirestore.instance
+          .collection('users')
+          .doc(auth.currentUser?.uid)
+          .get()
+          .then((DocumentSnapshot documentSnapshot) {
+        if (documentSnapshot.exists) {
+          if (documentSnapshot['role'] == 'owner') {
+            Get.offAllNamed(RouteName.landing);
+          } else {
+            Get.offAllNamed(RouteName.setting);
+          }
+          print('Document data: ${documentSnapshot.data()}');
+          print(documentSnapshot['role']);
+        } else {
+          // Get.offAllNamed(RouteName.landing);
+          Get.offAllNamed(RouteName.setting);
+          print('Document does not exist on the database');
+        }
+      });
     } else {
       // user is null as in user is not available or not logged in
       // Get.offAllNamed(RouteName.login);
-      Get.to(AuthMainPage());
+      Get.to(const AuthMainPage());
     }
   }
 
@@ -41,18 +63,19 @@ class AuthController extends GetxController {
   // }
 
   void register(String email, String password, String username) async {
-    CollectionReference users = firestore.collection("users");
     try {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      authInstance.signOut();
-      await users.add({
+      final uid = auth.currentUser?.uid;
+      DocumentReference users = firestore.collection("users").doc(uid);
+      await users.set({
         "username": username,
         "email": email,
         "password": password,
         "uid": auth.currentUser?.uid,
         "role": "owner"
       });
+      authInstance.signOut();
     } on FirebaseAuthException catch (e) {
       // this is solely for the Firebase Auth Exception
       // for example : password did not match

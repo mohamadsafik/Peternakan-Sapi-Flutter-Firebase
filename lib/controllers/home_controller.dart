@@ -12,7 +12,7 @@ class HomeController extends GetxController {
 
   var stream = FirebaseFirestore.instance
       .collection('cows')
-      .orderBy('name')
+      // .orderBy('name')
       .where('uid', isEqualTo: auth.currentUser?.uid)
       .snapshots();
 }
