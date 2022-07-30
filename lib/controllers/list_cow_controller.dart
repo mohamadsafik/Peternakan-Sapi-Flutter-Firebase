@@ -8,6 +8,26 @@ import '../constants/firebase_constants.dart';
 import '../routes/route_name.dart';
 
 class ListCowController extends GetxController {
+  final TextEditingController searchController = TextEditingController();
+
+  late QuerySnapshot snapshotData;
+
+  bool isExecuted = false;
+
+  Future getData(String collection) async {
+    final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    QuerySnapshot snapshot =
+        await firebaseFirestore.collection(collection).get();
+    return snapshot.docs;
+  }
+
+  Future queryData(String querystring) async {
+    return FirebaseFirestore.instance
+        .collection('cows')
+        .where('name', isGreaterThanOrEqualTo: querystring)
+        .get();
+  }
+
   void deleteSapi(String docID) async {
     try {
       DocumentReference cows = firestore.collection("cows").doc(docID);
