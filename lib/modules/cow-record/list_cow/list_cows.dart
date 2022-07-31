@@ -27,6 +27,7 @@ class _ListCowsState extends State<ListCows> {
     final width = size.width;
     Widget searchedData() {
       return ListView.builder(
+          shrinkWrap: true,
           itemCount: controller.snapshotData.docs.length,
           itemBuilder: (BuildContext context, int index) {
             final DocumentSnapshot documentSnapshot =

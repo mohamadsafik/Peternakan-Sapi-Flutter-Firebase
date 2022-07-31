@@ -7,6 +7,8 @@ import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/constants/firebase_constants.dart';
 import 'package:peternakan_sapi/controllers/setting_controller.dart';
 import 'package:peternakan_sapi/modules/cow-record/list_cow/list_cows.dart';
+import 'package:peternakan_sapi/modules/employee/create_profile_employee.dart';
+import 'package:peternakan_sapi/modules/employee/home_employee.dart';
 import 'package:peternakan_sapi/modules/income/income.dart';
 import 'package:peternakan_sapi/modules/landing/landing.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
@@ -47,7 +49,9 @@ class AuthController extends GetxController {
           print(documentSnapshot['role']);
         } else {
           // Get.offAllNamed(RouteName.landing);
-          Get.offAllNamed(RouteName.setting);
+          // Get.offAll(CreateProfileUpdate());
+          Get.offAllNamed(RouteName.createprofile);
+
           print('Document does not exist on the database');
         }
       });

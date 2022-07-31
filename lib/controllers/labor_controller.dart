@@ -24,6 +24,7 @@ class LaborController extends GetxController {
         "email": email,
         "password": password,
         "uidowner": auth.currentUser?.uid,
+        "uid": '',
         "role": "employee",
       });
     } on FirebaseAuthException catch (e) {
