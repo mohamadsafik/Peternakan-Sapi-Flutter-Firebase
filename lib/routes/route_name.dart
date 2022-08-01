@@ -16,4 +16,5 @@ abstract class RouteName {
 
   //employee
   static const createprofile = '/createprofile';
+  static const listcowemployee = '/listcowemployee';
 }

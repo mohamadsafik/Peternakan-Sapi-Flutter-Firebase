@@ -3,10 +3,12 @@ import 'package:peternakan_sapi/bindings/add_cow_binding.dart';
 import 'package:peternakan_sapi/bindings/auth_binding.dart';
 import 'package:peternakan_sapi/bindings/create_profile_employee_binding.dart';
 import 'package:peternakan_sapi/bindings/detail_cow_binding.dart';
+import 'package:peternakan_sapi/bindings/employee/list_cow_employee_binding.dart';
 import 'package:peternakan_sapi/bindings/labor_binding.dart';
 import 'package:peternakan_sapi/bindings/social_media_binding.dart';
 import 'package:peternakan_sapi/modules/cow-record/add_cows.dart';
 import 'package:peternakan_sapi/modules/employee/create_profile_employee.dart';
+import 'package:peternakan_sapi/modules/employee/list_cow_employee.dart';
 import 'package:peternakan_sapi/modules/landing/landing.dart';
 import 'package:peternakan_sapi/bindings/list_cow_binding.dart';
 import 'package:peternakan_sapi/bindings/list_event_binding.dart';
@@ -103,6 +105,11 @@ class AppPages {
       name: (RouteName.createprofile),
       page: () => CreateProfileEmployee(),
       binding: CreateProfileEmployeeBinding(),
+    ),
+    GetPage(
+      name: (RouteName.listcowemployee),
+      page: () => ListCowsEmployee(),
+      binding: ListCowEmployeeBinding(),
     ),
   ];
 }
