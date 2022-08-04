@@ -27,9 +27,16 @@ class monitoring_widget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.only(left: width / 40),
-                child: const Text(
-                  'Monitoring',
+                padding: EdgeInsets.only(left: width / 30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Monitoring',
+                    ),
+                    IconButton(
+                        onPressed: () {}, icon: const Icon(Icons.arrow_forward))
+                  ],
                 ),
               ),
               const SizedBox(
@@ -130,13 +137,20 @@ class monitoring_widget extends StatelessWidget {
                     width: width / 40,
                   ),
                   Container(
-                    height: 90,
-                    width: width / 2.162162162,
-                    decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 250, 80, 68)
-                            .withOpacity(0.3),
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
+                      height: 90,
+                      width: width / 2.162162162,
+                      decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 250, 80, 68)
+                              .withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: const ListTile(
+                        leading: const Icon(
+                          Icons.person,
+                          size: 60,
+                        ),
+                        title: const Text('1'),
+                        subtitle: Text('Hadir'),
+                      ))
                 ],
               ),
             ],

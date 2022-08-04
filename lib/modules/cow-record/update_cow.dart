@@ -14,6 +14,22 @@ class UpdateCowsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text('Edit Sapi')),
+        actions: [
+          IconButton(
+            onPressed: () => controller.editCow(
+              CowModel(
+                  name: controller.name.text,
+                  rasCow: controller.rasCow.text,
+                  gender: controller.gender.text,
+                  breed: controller.breed.text,
+                  birthdate: controller.birthdate.text,
+                  joinedwhen: controller.joinedwhen.text,
+                  note: controller.note.text),
+              data.id,
+            ),
+            icon: const Icon(Icons.add_box),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -30,10 +46,31 @@ class UpdateCowsPage extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               TextField(
-                controller: controller.rasCow..text = data['rasCow'],
+                controller: controller.nomortag..text = data['nomortag'],
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: "Jenis",
+                  labelText: "Nomor Tag",
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                readOnly: true,
+                controller: controller.rasCow..text = data['rasCow'],
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: "Ras Sapi",
+                  suffixIcon: PopupMenuButton<String>(
+                    icon: const Icon(Icons.arrow_drop_down),
+                    onSelected: (String value) {
+                      controller.rasCow.text = value;
+                    },
+                    itemBuilder: (BuildContext context) {
+                      return controller.ras
+                          .map<PopupMenuItem<String>>((String value) {
+                        return PopupMenuItem(child: Text(value), value: value);
+                      }).toList();
+                    },
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
@@ -81,15 +118,16 @@ class UpdateCowsPage extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () => controller.editCow(
-                    CowModel(
-                        name: controller.name.text,
-                        rasCow: controller.rasCow.text,
-                        gender: controller.gender.text,
-                        breed: controller.breed.text,
-                        birthdate: controller.birthdate.text,
-                        joinedwhen: controller.joinedwhen.text,
-                        note: controller.note.text),
-                    data.id),
+                  CowModel(
+                      name: controller.name.text,
+                      rasCow: controller.rasCow.text,
+                      gender: controller.gender.text,
+                      breed: controller.breed.text,
+                      birthdate: controller.birthdate.text,
+                      joinedwhen: controller.joinedwhen.text,
+                      note: controller.note.text),
+                  data.id,
+                ),
                 child: const Text("Tambah Sapi"),
               )
             ],

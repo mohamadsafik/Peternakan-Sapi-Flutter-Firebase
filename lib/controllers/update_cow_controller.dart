@@ -14,6 +14,18 @@ class UpdateCowController extends GetxController {
   late TextEditingController birthdate = TextEditingController();
   late TextEditingController joinedwhen = TextEditingController();
   late TextEditingController note = TextEditingController();
+  late TextEditingController nomortag = TextEditingController();
+  var ras = [
+    'Sapi Limousin',
+    'Sapi Simental',
+    'Sapi Brahman',
+    'Sapi Brangus',
+    'Sapi Ongole',
+    'Sapi Belgian Blue',
+    'Sapi Madura',
+    'Sapi Bali',
+    'Sapi Pegon'
+  ].obs;
 
   // Future<DocumentSnapshot<Object?>> getData(String docID) async {
   //   DocumentReference docRef = firestore.collection("cows").doc(docID);
@@ -21,16 +33,15 @@ class UpdateCowController extends GetxController {
   // }
 
   void editCow(
-    CowModel cowModel,
-    // String name,
-    // String rasCow,
-    // String gender,
-    // String breed,
-    // String birthdate,
-    // String joinedwhen,
-    // String note,
-    String data,
-  ) async {
+      CowModel cowModel,
+      // String name,
+      // String rasCow,
+      // String gender,
+      // String breed,
+      // String birthdate,
+      // String joinedwhen,
+      // String note,
+      String data) async {
     DocumentReference cows = firestore.collection("cows").doc(data);
 
     try {
@@ -38,6 +49,7 @@ class UpdateCowController extends GetxController {
         // "uid": FirebaseAuth.instance.currentUser!.uid,
         "name": cowModel.name,
         "rasCow": cowModel.rasCow,
+        "nomortag": cowModel.nomortag,
         "gender": cowModel.gender,
         "breed": cowModel.breed,
         "birthdate": cowModel.birthdate,

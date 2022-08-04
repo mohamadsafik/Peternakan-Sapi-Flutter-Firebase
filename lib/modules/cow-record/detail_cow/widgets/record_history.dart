@@ -103,15 +103,17 @@ class record_history extends StatelessWidget {
                             child: SingleChildScrollView(
                               child: Column(
                                   children: records.map((record) {
-                                return ListTile(
-                                  leading: const Icon(
-                                    Icons.warning,
-                                    color: Colors.orange,
+                                return Card(
+                                  child: ListTile(
+                                    leading: const Icon(
+                                      Icons.warning,
+                                      color: Colors.orange,
+                                    ),
+                                    title: Text(
+                                      record["action"],
+                                    ),
+                                    trailing: Text(record["date"]),
                                   ),
-                                  title: Text(
-                                    record["action"],
-                                  ),
-                                  trailing: Text(record["date"]),
                                 );
                               }).toList(growable: false)),
                             ),

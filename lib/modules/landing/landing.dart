@@ -62,11 +62,11 @@ class LandingPage extends StatelessWidget {
                 icon: Container(
                   margin: const EdgeInsets.only(bottom: 7),
                   child: const Icon(
-                    Icons.qr_code_scanner,
+                    Icons.monetization_on,
                     size: 20.0,
                   ),
                 ),
-                label: 'Scan',
+                label: 'Cashflow',
                 backgroundColor: background,
               ),
               BottomNavigationBarItem(

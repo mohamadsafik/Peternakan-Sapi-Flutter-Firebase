@@ -16,7 +16,7 @@ import '../../constants/firebase_constants.dart';
 class SocialMediaController extends GetxController {
   late TextEditingController status = TextEditingController();
   late TextEditingController username = TextEditingController();
-    late TextEditingController documentId= TextEditingController();
+  late TextEditingController documentId = TextEditingController();
   XFile? pickedImage;
   late ImagePicker imagePicker = ImagePicker();
   String? imageUrl;
@@ -70,7 +70,7 @@ class SocialMediaController extends GetxController {
     }
     try {
       await post.add({
-        "grup": "peternakan sapi indonesia",
+        "grup": "peternakan sapi",
         // "username": stream,
         "uid": FirebaseAuth.instance.currentUser!.uid,
         "username": username,

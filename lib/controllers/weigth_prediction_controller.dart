@@ -23,6 +23,7 @@ class WeightPredictionController extends GetxController {
           {
             "weight": weight,
             "date": DateFormat(dateformat).format(DateTime.now()),
+            'time': DateTime.now(),
           }
         ]),
       });

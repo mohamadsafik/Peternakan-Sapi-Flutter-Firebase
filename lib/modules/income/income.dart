@@ -3,6 +3,7 @@ import 'package:peternakan_sapi/constants/firebase_constants.dart';
 
 import '../../constants/color.dart';
 import '../../controllers/auth_controller.dart';
+import '../home/widgets/drawer.dart';
 
 class IncomePage extends StatelessWidget {
   const IncomePage({Key? key}) : super(key: key);
@@ -25,6 +26,7 @@ class IncomePage extends StatelessWidget {
                   icon: Icon(Icons.abc))
             ],
           )),
+      drawer: drawer(),
       backgroundColor: background,
       body: Column(
         children: [

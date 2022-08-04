@@ -39,7 +39,7 @@ class CowInformation extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Center(
-                        child: Text('data sapi',
+                        child: Text('Informasi',
                             style: TextStyle(
                               fontSize: 20,
                             )),
@@ -67,13 +67,13 @@ class CowInformation extends StatelessWidget {
               const Divider(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [const Text('name :'), Text(data['name'])],
+                children: [const Text('Nama :'), Text(data['name'])],
               ),
               const Divider(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('eartag :'),
+                  const Text('Eartag :'),
                   Text(
                     data['nomortag'].toString(),
                     maxLines: 1,
@@ -86,12 +86,15 @@ class CowInformation extends StatelessWidget {
               const Divider(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [const Text('gender :'), Text(data['gender'])],
+                children: [const Text('Jenis Kelamin :'), Text(data['gender'])],
               ),
               const Divider(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [const Text('breed :'), Text(data['breed'])],
+                children: [
+                  const Text('Keturunan Induk :'),
+                  Text(data['breed'])
+                ],
               ),
               const Divider(),
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [

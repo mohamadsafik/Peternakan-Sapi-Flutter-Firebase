@@ -144,9 +144,7 @@ class SocialMediaPage extends GetView<SocialMediaController> {
             // .where('uid', isEqualTo: currentUser)
             .snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-          if (streamSnapshot.connectionState == ConnectionState.active &&
-              streamSnapshot.hasData &&
-              streamSnapshot.data != null) {
+          if (streamSnapshot.hasData && streamSnapshot.data != null) {
             return ListView.builder(
               shrinkWrap: true,
               itemCount: streamSnapshot.data!.docs.length,

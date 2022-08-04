@@ -20,7 +20,7 @@ class BarcodePage extends StatelessWidget {
             SizedBox(
               height: 350,
               child: SfBarcodeGenerator(
-                value: data['eartag'],
+                value: data['nomortag'],
                 symbology: QRCode(),
                 showValue: true,
               ),

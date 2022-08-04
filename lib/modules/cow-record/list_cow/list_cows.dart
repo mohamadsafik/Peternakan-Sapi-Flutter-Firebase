@@ -7,6 +7,7 @@ import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../../constants/color.dart';
 import '../../../controllers/list_cow_controller.dart';
+import '../../home/widgets/drawer.dart';
 
 class ListCows extends StatefulWidget {
   ListCows({
@@ -92,34 +93,40 @@ class _ListCowsState extends State<ListCows> {
             preferredSize: const Size.fromHeight(80),
             child: AppBar(
               backgroundColor: green,
-              title: Card(
-                child: TextField(
-                  decoration: const InputDecoration(
-                      prefixIcon: const Icon(Icons.search),
-                      hintText: 'Search...'),
-                  controller: controller.searchController,
-                ),
-              ),
               actions: [
-                GetBuilder<ListCowController>(
-                  init: ListCowController(),
-                  builder: (val) {
-                    return IconButton(
-                        onPressed: () {
-                          val
-                              .queryData(controller.searchController.text)
-                              .then((value) {
-                            controller.snapshotData = value;
-                            setState(() {
-                              controller.isExecuted = true;
-                            });
-                          });
-                        },
-                        icon: Icon(Icons.search));
-                  },
+                Center(
+                  child: Container(
+                    height: 50,
+                    width: 250,
+                    color: background,
+                    child: TextField(
+                      decoration: InputDecoration(
+                          suffixIcon: GetBuilder<ListCowController>(
+                            init: ListCowController(),
+                            builder: (val) {
+                              return IconButton(
+                                  onPressed: () {
+                                    val
+                                        .queryData(
+                                            controller.searchController.text)
+                                        .then((value) {
+                                      controller.snapshotData = value;
+                                      setState(() {
+                                        controller.isExecuted = true;
+                                      });
+                                    });
+                                  },
+                                  icon: Icon(Icons.search));
+                            },
+                          ),
+                          hintText: '  Search...'),
+                      controller: controller.searchController,
+                    ),
+                  ),
                 ),
-                // searchBar(context);
-
+                SizedBox(
+                  width: 20,
+                ),
                 StreamBuilder(
                     stream: controller.stream,
                     builder:
@@ -136,6 +143,7 @@ class _ListCowsState extends State<ListCows> {
                     }),
               ],
             )),
+        drawer:  drawer(),
         body: (controller.isExecuted)
             ? searchedData()
             : SingleChildScrollView(

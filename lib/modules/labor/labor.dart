@@ -7,7 +7,6 @@ import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../controllers/labor_controller.dart';
 
-
 class LaborPage extends GetView<LaborController> {
   LaborPage({Key? key}) : super(key: key);
 
@@ -193,32 +192,21 @@ class LaborPage extends GetView<LaborController> {
                           final DocumentSnapshot documentSnapshot =
                               streamSnapshot.data!.docs[index];
                           return Container(
-                            margin: const EdgeInsets.only(
-                                left: 8, right: 8, bottom: 4, top: 4),
+                            margin: const EdgeInsets.only(bottom: 8, top: 8),
                             width: width,
                             height: 72,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.grey),
                                 borderRadius: BorderRadius.circular(8)),
                             child: ListTile(
-                              leading: const SizedBox(
-                                height: 60.0,
-                                width: 60.0,
-                                // child: documentSnapshot['image'] != null
-                                //     ? Image.network(
-                                //         documentSnapshot['image'].toString())
-                                //     : SvgPicture.asset(
-                                //         'assets/listcow/default.svg',
-                                //         // fit: BoxFit.cover,
-                                //       )
-                              ),
-                              title: Text(
-                                documentSnapshot['email'].toString(),
-                              ),
-                              trailing: const SizedBox(
-                                width: 100,
-                              ),
-                            ),
+                                leading: Icon(Icons.person),
+                                title: Text(
+                                  documentSnapshot['username'].toString(),
+                                ),
+                                subtitle: Text(
+                                  documentSnapshot['email'].toString(),
+                                ),
+                                trailing: Icon(Icons.arrow_right)),
                           );
                         },
                       );

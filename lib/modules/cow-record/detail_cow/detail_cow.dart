@@ -20,127 +20,188 @@ class DetailCowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: green,
-        actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.settings))
-        ],
-      ),
-      backgroundColor: background,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            GestureDetector(
-              onTap: () {
-                showCupertinoModalPopup(
-                    context: context,
-                    builder: (BuildContext bc) {
-                      return ImageShow(data: data);
-                    });
-              },
-              child: Stack(
-                children: [
-                  data['image'] != null
-                      ? SizedBox(
-                          width: 400,
-                          height: 250,
-                          child: Image.network(
-                            data['image'],
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                          ),
-                        )
-                      : SizedBox(
-                          width: 400,
-                          height: 250,
-                          child: SvgPicture.asset(
-                            'assets/listcow/default.svg',
-                            fit: BoxFit.cover,
-                          ),
-                        )
-                ],
+        appBar: AppBar(
+          backgroundColor: green,
+          actions: [
+            IconButton(onPressed: () {}, icon: const Icon(Icons.settings))
+          ],
+        ),
+        backgroundColor: background,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  showCupertinoModalPopup(
+                      context: context,
+                      builder: (BuildContext bc) {
+                        return ImageShow(data: data);
+                      });
+                },
+                child: Stack(
+                  children: [
+                    data['image'] != null
+                        ? SizedBox(
+                            width: 400,
+                            height: 250,
+                            child: Image.network(
+                              data['image'],
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                        : SizedBox(
+                            width: 400,
+                            height: 250,
+                            child: SvgPicture.asset(
+                              'assets/listcow/default.svg',
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                bottom: 16.0,
-                left: 12.0,
-                right: 12.0,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'Detail Sapi',
-                            style: TextStyle(
-                              fontSize: 15,
+              Padding(
+                padding: const EdgeInsets.only(
+                  bottom: 16.0,
+                  left: 12.0,
+                  right: 12.0,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'Detail Sapi',
+                              style: TextStyle(
+                                fontSize: 15,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Row(
+                        Row(
+                          children: [
+                            InkWell(
+                              onTap: () {},
+                              child: const Icon(
+                                Icons.favorite,
+                                color: Colors.pink,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                showCupertinoModalPopup(
+                                    context: context,
+                                    builder: (BuildContext bc) {
+                                      return BarcodePage(
+                                        data: data,
+                                      );
+                                    });
+                              },
+                              child: const Icon(
+                                Icons.qr_code,
+                                color: Colors.black,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 30),
+                    CowInformation(data: data),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    record_history(
+                        data: data,
+                        currentUser: controller.currentUser.toString()),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    WeightRecord(
+                        data: data,
+                        currentUser: controller.currentUser.toString()),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            showCupertinoModalPopup(
+                context: context,
+                builder: (BuildContext bc) {
+                  return Container(
+                    color: Colors.transparent,
+                    height: Get.height * 0.4,
+                    width: Get.width,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 50, right: 50),
+                      child: Column(
                         children: [
-                          InkWell(
-                            onTap: () {},
-                            child: const Icon(
-                              Icons.favorite,
-                              color: Colors.pink,
+                          GestureDetector(
+                            child: Card(
+                              child: ListTile(
+                                leading: Icon(Icons.report),
+                                title: Text('Lapor Hewan Sakit'),
+                              ),
                             ),
                           ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              showCupertinoModalPopup(
-                                  context: context,
-                                  builder: (BuildContext bc) {
-                                    return BarcodePage(
-                                      data: data,
-                                    );
-                                  });
-                            },
-                            child: const Icon(
-                              Icons.qr_code,
-                              color: Colors.black,
+                          GestureDetector(
+                            child: Card(
+                              child: ListTile(
+                                leading: Icon(Icons.report),
+                                title: Text('Lapor Hewan Sembuh'),
+                              ),
                             ),
                           ),
-                          const SizedBox(
-                            width: 20,
+                          GestureDetector(
+                            child: Card(
+                              child: ListTile(
+                                leading: Icon(Icons.report),
+                                title: Text('Lapor Hewan Hamil'),
+                              ),
+                            ),
                           ),
+                          GestureDetector(
+                            child: Card(
+                              child: ListTile(
+                                leading: Icon(Icons.report),
+                                title: Text('Lapor Hewan Terjual'),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            child: Card(
+                              child: ListTile(
+                                leading: Icon(Icons.report),
+                                title: Text('Lapor Hewan Mati'),
+                              ),
+                            ),
+                          )
                         ],
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 30),
-                  CowInformation(data: data),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  record_history(
-                      data: data,
-                      currentUser: controller.currentUser.toString()),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  WeightRecord(
-                      data: data,
-                      currentUser: controller.currentUser.toString()),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+                    ),
+                  );
+                });
+          },
+          // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          child: const Icon(Icons.add),
+        ));
   }
 }

@@ -36,7 +36,7 @@ class Homepage extends StatelessWidget {
           children: [
             // const Top_Container_Widget(),
             const SizedBox(height: 5),
-             CowContainer(),
+            CowContainer(),
             const SizedBox(height: 5),
             Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
               Container(
@@ -92,7 +92,7 @@ class Homepage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Text(
+                      const Text(
                         'Bobot',
                         style: TextStyle(fontSize: 15),
                       )

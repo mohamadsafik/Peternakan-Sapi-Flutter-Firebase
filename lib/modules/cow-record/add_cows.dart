@@ -15,21 +15,24 @@ class AddCowsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Center(child: Text('add sapi')), actions: [
-        ElevatedButton(
-            onPressed: () => controller.addCowModel(
-                CowModel(
-                    name: controller.name.text,
-                    nomortag: controller.nomortag.text,
-                    rasCow: controller.rasCow.text,
-                    gender: controller.gender.text,
-                    breed: controller.breed.text,
-                    birthdate: controller.birthdate.text,
-                    joinedwhen: controller.joinedwhen.text,
-                    note: controller.note.text),
-                child: const Text('simpan sapi')),
-            child: Icon(Icons.add))
-      ]),
+      appBar: AppBar(
+          title: const Center(child: const Text('Tambah Sapi')),
+          actions: [
+            IconButton(
+              onPressed: () => controller.addCowModel(
+                  CowModel(
+                      name: controller.name.text,
+                      nomortag: controller.nomortag.text,
+                      rasCow: controller.rasCow.text,
+                      gender: controller.gender.text,
+                      breed: controller.breed.text,
+                      birthdate: controller.birthdate.text,
+                      joinedwhen: controller.joinedwhen.text,
+                      note: controller.note.text),
+                  child: const Text('simpan sapi')),
+              icon: const Icon(Icons.add_box),
+            ),
+          ]),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -48,7 +51,7 @@ class AddCowsPage extends StatelessWidget {
                 controller: controller.nomortag,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: "Eartag",
+                  labelText: "Nomor Tag",
                 ),
               ),
               const SizedBox(height: 10),
