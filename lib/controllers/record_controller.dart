@@ -7,14 +7,17 @@ import '../constants/firebase_constants.dart';
 
 class RecordController extends GetxController {
   late TextEditingController action = TextEditingController();
+  late TextEditingController status = TextEditingController();
   late TextEditingController date = TextEditingController();
   late TextEditingController diagnosis = TextEditingController();
+  late TextEditingController vaksin = TextEditingController();
   late TextEditingController doctor = TextEditingController();
   late TextEditingController note = TextEditingController();
   late TextEditingController straw = TextEditingController();
   late TextEditingController inseminator = TextEditingController();
 
   var items = ['Jantan', 'Betina'].obs;
+  var pregnant = ['Hamil', 'Tidak'].obs;
   var aksi = ['Inseminasi Buatan', 'Vaksin', 'Sakit', 'Hamil'].obs;
   var selectedDate = DateTime.now().obs;
   var dateJoin = DateTime.now().obs;
@@ -22,6 +25,56 @@ class RecordController extends GetxController {
     action.clear();
 
     straw.clear();
+  }
+
+  void recordVaksin(
+    String action,
+    String vaksin,
+    String date,
+    String doctor,
+    String note,
+    String docID,
+    String text,
+  ) async {
+    DocumentReference cows = firestore.collection("cows").doc(docID);
+    try {
+      await cows.update(
+        {
+          "vaksin": vaksin,
+          "record": FieldValue.arrayUnion(
+            [
+              {
+                "action": action,
+                'vaksin': vaksin,
+                'date': date,
+                'doctor': doctor,
+                'note': note,
+                'time': DateTime.now(),
+              }
+            ],
+          )
+        },
+      );
+      Get.defaultDialog(
+        barrierDismissible: true,
+        title: "berhasil",
+        middleText: "berhasil record sapi",
+        onConfirm: () {
+          Get.back();
+          Get.back();
+          cleartext();
+        },
+        textConfirm: "okay",
+      );
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      Get.defaultDialog(
+        title: "terjadi kesalahan",
+        middleText: "tidak berhasil edit sapi",
+      );
+    }
   }
 
   void recordSakit(
@@ -37,7 +90,7 @@ class RecordController extends GetxController {
     try {
       await cows.update(
         {
-          "statussick": 'sakit',
+          "statussick": 'Sakit',
           "record": FieldValue.arrayUnion(
             [
               {
@@ -74,7 +127,8 @@ class RecordController extends GetxController {
     }
   }
 
-  void recordCow(
+  void recordPregnant(
+    String status,
     String action,
     String date,
     String straw,
@@ -87,7 +141,57 @@ class RecordController extends GetxController {
     try {
       await cows.update(
         {
-          "statushamil": 'IB',
+          "statuspregnant": status,
+          "record": FieldValue.arrayUnion(
+            [
+              {
+                "action": action,
+                'date': date,
+                'noted': straw,
+                'inseminator': inseminator,
+                'time': DateTime.now(),
+              }
+            ],
+          )
+        },
+      );
+      Get.defaultDialog(
+        barrierDismissible: true,
+        title: "berhasil",
+        middleText: "berhasil record sapi",
+        onConfirm: () {
+          Get.back();
+          Get.back();
+          cleartext();
+        },
+        textConfirm: "okay",
+      );
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      Get.defaultDialog(
+        title: "terjadi kesalahan",
+        middleText: "tidak berhasil edit sapi",
+      );
+    }
+  }
+
+  void recordCow(
+    String status,
+    String action,
+    String date,
+    String straw,
+    String inseminator,
+    String docID,
+    String text,
+  ) async {
+    DocumentReference cows = firestore.collection("cows").doc(docID);
+
+    try {
+      await cows.update(
+        {
+          "statuspregnant": '',
           "record": FieldValue.arrayUnion(
             [
               {
@@ -129,7 +233,10 @@ class RecordController extends GetxController {
     date.dispose();
     straw.dispose();
     inseminator.dispose();
-
+    vaksin.dispose();
+    doctor.dispose();
+    note.dispose();
+    diagnosis.dispose();
     super.onClose();
   }
 

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/models/cow.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -17,7 +18,8 @@ class AddCowsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Center(child: const Text('Tambah Sapi')),
+          backgroundColor: green,
+          title: const Center(child: Text('Tambah Sapi')),
           actions: [
             IconButton(
               onPressed: () => controller.addCowModel(

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:peternakan_sapi/constants/color.dart';
-import '../../controllers/record_controller.dart';
+import 'package:peternakan_sapi/controllers/record_controller.dart';
 
-//menggunakan getxview
-// ignore: must_be_immutable
-class InseminasiBuatanPage extends StatelessWidget {
-  InseminasiBuatanPage({Key? key, this.data, this.docID}) : super(key: key);
+import '../../constants/color.dart';
+
+class PregnantRecordPage extends StatelessWidget {
+  PregnantRecordPage({Key? key, this.data, this.docID}) : super(key: key);
   final controller = Get.put(RecordController());
   var data = Get.arguments;
   var docID = Get.arguments;
@@ -17,8 +16,8 @@ class InseminasiBuatanPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: green,
-        title: Text(
-          'Inseminasi Buatan',
+        title: const Text(
+          'Catat Hamil',
         ),
       ),
       body: SingleChildScrollView(
@@ -29,9 +28,18 @@ class InseminasiBuatanPage extends StatelessWidget {
               const SizedBox(height: 10),
               TextField(
                 readOnly: true,
-                controller: controller.action..text = 'Inseminasi Buatan (IB)',
+                controller: controller.action..text = 'Catat Hamil (PKB)',
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                readOnly: true,
+                controller: controller.status..text = 'Hamil',
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Hasil Pemeriksaan",
                 ),
               ),
               const SizedBox(height: 10),
@@ -59,7 +67,7 @@ class InseminasiBuatanPage extends StatelessWidget {
                 controller: controller.inseminator..text = '',
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: "Nama Inseminator",
+                  labelText: "Nama Pemeriksa",
                 ),
               ),
               const SizedBox(height: 10),
@@ -74,7 +82,7 @@ class InseminasiBuatanPage extends StatelessWidget {
                 height: 20,
               ),
               ElevatedButton(
-                onPressed: () => controller.recordCow(
+                onPressed: () => controller.recordPregnant(
                   controller.status.text,
                   controller.action.text,
                   controller.date.text,

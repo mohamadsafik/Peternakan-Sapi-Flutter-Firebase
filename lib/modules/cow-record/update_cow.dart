@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/models/cow.dart';
@@ -116,20 +118,61 @@ class UpdateCowsPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              ElevatedButton(
-                onPressed: () => controller.editCow(
-                  CowModel(
-                      name: controller.name.text,
-                      rasCow: controller.rasCow.text,
-                      gender: controller.gender.text,
-                      breed: controller.breed.text,
-                      birthdate: controller.birthdate.text,
-                      joinedwhen: controller.joinedwhen.text,
-                      note: controller.note.text),
-                  data.id,
+              Center(
+                child: GestureDetector(
+                  onTap: () {
+                    controller.getImage();
+                  },
+                  child: GetBuilder<UpdateCowController>(
+                    builder: (c) => controller.pickedImage != null
+                        ? Column(
+                            children: [
+                              Container(
+                                height: 200,
+                                width: 400,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: FileImage(
+                                          File(controller.pickedImage!.path),
+                                        ),
+                                        fit: BoxFit.cover)),
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  controller.cancelImage();
+                                },
+                                child: const Text('Hapus'),
+                              ),
+                            ],
+                          )
+                        : Container(
+                            decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.circular(50)),
+                            width: 100,
+                            height: 100,
+                            child: Icon(
+                              Icons.camera_alt,
+                              color: Colors.grey[800],
+                            ),
+                          ),
+                  ),
                 ),
-                child: const Text("Tambah Sapi"),
-              )
+              ),
+              // ElevatedButton(
+              //   onPressed: () => controller.editCow(
+              //     CowModel(
+              //         name: controller.name.text,
+              //         rasCow: controller.rasCow.text,
+              //         gender: controller.gender.text,
+              //         breed: controller.breed.text,
+              //         birthdate: controller.birthdate.text,
+              //         joinedwhen: controller.joinedwhen.text,
+              //         note: controller.note.text),
+              //     data.id,
+              //   ),
+              //   child: const Text("Tambah Sapi"),
+              // )
             ],
           ),
         ),

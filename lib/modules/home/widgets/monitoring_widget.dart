@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/constant.dart';
+import '../../../constants/firebase_constants.dart';
 import '../../../controllers/auth_controller.dart';
 import '../../../controllers/home_controller.dart';
 import '../../../controllers/list_cow_controller.dart';
@@ -14,7 +16,6 @@ class monitoring_widget extends StatelessWidget {
 
   final controller = Get.find<ListCowController>();
   final homecontroller = Get.find<HomeController>();
-  bool _validate = false;
 
   @override
   Widget build(BuildContext context) {
@@ -53,16 +54,44 @@ class monitoring_widget extends StatelessWidget {
                         color: const Color.fromARGB(255, 147, 177, 202)
                             .withOpacity(0.3),
                         borderRadius: BorderRadius.circular(10)),
-                    child: const Center(
+                    child: Center(
                       child: ListTile(
-                        leading: SizedBox(
-                          height: 70.0,
-                          width: 60.0, // fixed width and height
-                          child: Image(
-                              image: AssetImage('assets/home/milk-bottle.png')),
-                        ),
-                        title: Text('13'),
-                        subtitle: Text(
+                        leading: const SizedBox(
+                            height: 70.0,
+                            width: 60.0, // fixed width and height
+                            child: Icon(
+                              Icons.male,
+                              size: 50,
+                              color: Color.fromARGB(255, 17, 107, 180),
+                            )
+                            // Image(
+                            //     image: AssetImage('assets/home/milk-bottle.png')),
+                            ),
+                        title: StreamBuilder(
+                            stream: FirebaseFirestore.instance
+                                .collection('cows')
+                                .where('gender', isEqualTo: "Jantan")
+                                .snapshots(),
+                            builder: (context,
+                                AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                              if (streamSnapshot.hasData &&
+                                  streamSnapshot.data != null) {
+                                return ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: 1,
+                                    itemBuilder: (context, index) {
+                                      // final DocumentSnapshot documentSnapshot =
+                                      //     streamSnapshot.data!.docs[index];
+                                      final int sumJantan =
+                                          streamSnapshot.data!.docs.length;
+                                      return Text((streamSnapshot.hasData)
+                                          ? sumJantan.toString()
+                                          : '0');
+                                    });
+                              }
+                              return const CircularProgressIndicator();
+                            }),
+                        subtitle: const Text(
                           'Jantan',
                           style: TextStyle(
                             color: Color.fromARGB(255, 22, 90, 155),
@@ -82,13 +111,37 @@ class monitoring_widget extends StatelessWidget {
                           color: const Color.fromARGB(255, 250, 80, 68)
                               .withOpacity(0.3),
                           borderRadius: BorderRadius.circular(10)),
-                      child: const ListTile(
+                      child: ListTile(
                         leading: const Icon(
-                          Icons.person,
+                          Icons.female,
                           size: 60,
+                          color: Color.fromARGB(255, 197, 86, 78),
                         ),
-                        title: const Text('1'),
-                        subtitle: Text('Betina'),
+                        title: StreamBuilder(
+                            stream: FirebaseFirestore.instance
+                                .collection('cows')
+                                .where('gender', isEqualTo: "Betina")
+                                .snapshots(),
+                            builder: (context,
+                                AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                              if (streamSnapshot.hasData &&
+                                  streamSnapshot.data != null) {
+                                return ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: 1,
+                                    itemBuilder: (context, index) {
+                                      // final DocumentSnapshot documentSnapshot =
+                                      //     streamSnapshot.data!.docs[index];
+                                      final int sumBetina =
+                                          streamSnapshot.data!.docs.length;
+                                      return Text((streamSnapshot.hasData)
+                                          ? sumBetina.toString()
+                                          : '0');
+                                    });
+                              }
+                              return const CircularProgressIndicator();
+                            }),
+                        subtitle: const Text('Betina'),
                       ))
                 ],
               ),
@@ -103,7 +156,7 @@ class monitoring_widget extends StatelessWidget {
                         color: const Color.fromARGB(255, 59, 209, 116)
                             .withOpacity(0.3),
                         borderRadius: BorderRadius.circular(10)),
-                    child: const Center(
+                    child: Center(
                       child: ListTile(
                         leading: SizedBox(
                           height: 70.0,
@@ -111,7 +164,30 @@ class monitoring_widget extends StatelessWidget {
                           child:
                               Image(image: AssetImage('assets/home/cow4.png')),
                         ),
-                        title: Text('13'),
+                        title: StreamBuilder(
+                            stream: FirebaseFirestore.instance
+                                .collection('cows')
+                                .where('statuspregnant', isEqualTo: "Hamil")
+                                .snapshots(),
+                            builder: (context,
+                                AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                              if (streamSnapshot.hasData &&
+                                  streamSnapshot.data != null) {
+                                return ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: 1,
+                                    itemBuilder: (context, index) {
+                                      // final DocumentSnapshot documentSnapshot =
+                                      //     streamSnapshot.data!.docs[index];
+                                      final int sumPregnant =
+                                          streamSnapshot.data!.docs.length;
+                                      return Text((streamSnapshot.hasData)
+                                          ? sumPregnant.toString()
+                                          : '0');
+                                    });
+                              }
+                              return CircularProgressIndicator();
+                            }),
                         subtitle: Text(
                           'Hamil',
                           style: TextStyle(
@@ -131,7 +207,7 @@ class monitoring_widget extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: Colors.orange.withOpacity(0.3),
                         borderRadius: BorderRadius.circular(10)),
-                    child: const Center(
+                    child: Center(
                       child: ListTile(
                         leading: SizedBox(
                           height: 70.0,
@@ -139,16 +215,41 @@ class monitoring_widget extends StatelessWidget {
                           child: Image(
                               image: AssetImage('assets/home/thermometer.png')),
                         ),
-                        title: Text(
-                          '13',
-                        ),
-                        subtitle: Text(
-                          'Sakit',
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 218, 105, 0),
-                            fontFamily: 'poppins',
-                          ),
-                        ),
+                        title: StreamBuilder(
+                            stream: FirebaseFirestore.instance
+                                .collection('cows')
+                                .where('statussick', isEqualTo: "Sakit")
+                                .snapshots(),
+                            builder: (context,
+                                AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                              if (streamSnapshot.hasData &&
+                                  streamSnapshot.data != null) {
+                                return ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: 1,
+                                    itemBuilder: (context, index) {
+                                      // final DocumentSnapshot documentSnapshot =
+                                      //     streamSnapshot.data!.docs[index];
+                                      final int sumSick =
+                                          streamSnapshot.data!.docs.length;
+                                      return Text((streamSnapshot.hasData)
+                                          ? sumSick.toString()
+                                          : '0');
+                                    });
+                              }
+                              return CircularProgressIndicator();
+                            }),
+                        subtitle: StreamBuilder<Object>(
+                            stream: null,
+                            builder: (context, snapshot) {
+                              return Text(
+                                'Sakit',
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 218, 105, 0),
+                                  fontFamily: 'poppins',
+                                ),
+                              );
+                            }),
                       ),
                     ),
                   ),

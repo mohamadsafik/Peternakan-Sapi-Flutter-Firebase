@@ -6,8 +6,8 @@ import '../../controllers/record_controller.dart';
 
 //menggunakan getxview
 // ignore: must_be_immutable
-class InseminasiBuatanPage extends StatelessWidget {
-  InseminasiBuatanPage({Key? key, this.data, this.docID}) : super(key: key);
+class VaksinRecord extends StatelessWidget {
+  VaksinRecord({Key? key, this.data, this.docID}) : super(key: key);
   final controller = Get.put(RecordController());
   var data = Get.arguments;
   var docID = Get.arguments;
@@ -18,7 +18,7 @@ class InseminasiBuatanPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: green,
         title: Text(
-          'Inseminasi Buatan',
+          'Vaksinasi',
         ),
       ),
       body: SingleChildScrollView(
@@ -29,7 +29,7 @@ class InseminasiBuatanPage extends StatelessWidget {
               const SizedBox(height: 10),
               TextField(
                 readOnly: true,
-                controller: controller.action..text = 'Inseminasi Buatan (IB)',
+                controller: controller.action..text = 'Vaksin',
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                 ),
@@ -56,30 +56,38 @@ class InseminasiBuatanPage extends StatelessWidget {
                   }),
               const SizedBox(height: 10),
               TextField(
-                controller: controller.inseminator..text = '',
+                controller: controller.vaksin..text = '',
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: "Nama Inseminator",
+                  labelText: "jenis vaksin",
                 ),
               ),
               const SizedBox(height: 10),
               TextField(
-                controller: controller.straw..text = '',
+                controller: controller.note..text = '',
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: "Kode Semen (straw)",
+                  labelText: "Catatan",
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: controller.doctor..text = '',
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Nama Dokter/Mantri",
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
               ElevatedButton(
-                onPressed: () => controller.recordCow(
-                  controller.status.text,
+                onPressed: () => controller.recordVaksin(
                   controller.action.text,
+                  controller.vaksin.text,
                   controller.date.text,
-                  controller.straw.text,
-                  controller.inseminator.text,
+                  controller.doctor.text,
+                  controller.note.text,
                   docID,
                   data.toString(),
                 ),

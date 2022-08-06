@@ -155,42 +155,42 @@ class DetailCowPage extends StatelessWidget {
                       child: Column(
                         children: [
                           GestureDetector(
-                            child: Card(
+                            child: const Card(
                               child: ListTile(
                                 leading: Icon(Icons.report),
-                                title: Text('Lapor Hewan Sakit'),
+                                title: const Text('Lapor Hewan Sakit'),
                               ),
                             ),
                           ),
                           GestureDetector(
-                            child: Card(
+                            child: const Card(
                               child: ListTile(
                                 leading: Icon(Icons.report),
-                                title: Text('Lapor Hewan Sembuh'),
+                                title: const Text('Lapor Hewan Sembuh'),
                               ),
                             ),
                           ),
                           GestureDetector(
-                            child: Card(
+                            child: const Card(
                               child: ListTile(
                                 leading: Icon(Icons.report),
-                                title: Text('Lapor Hewan Hamil'),
+                                title: const Text('Lapor Hewan Hamil'),
                               ),
                             ),
                           ),
                           GestureDetector(
-                            child: Card(
+                            child: const Card(
                               child: ListTile(
-                                leading: Icon(Icons.report),
-                                title: Text('Lapor Hewan Terjual'),
+                                leading: const Icon(Icons.report),
+                                title: const Text('Lapor Hewan Terjual'),
                               ),
                             ),
                           ),
                           GestureDetector(
-                            child: Card(
+                            child: const Card(
                               child: ListTile(
                                 leading: Icon(Icons.report),
-                                title: Text('Lapor Hewan Mati'),
+                                title: const Text('Lapor Hewan Mati'),
                               ),
                             ),
                           )
