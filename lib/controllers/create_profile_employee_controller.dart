@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../constants/firebase_constants.dart';
+import '../modules/employee/home_employee.dart';
 
 class CreateProfileEmployeeController extends GetxController {
   late TextEditingController username = TextEditingController();
@@ -27,9 +28,9 @@ class CreateProfileEmployeeController extends GetxController {
       .snapshots();
 
   void updateProfile(
-    String username,
-    String alamat,
-    String gender,
+    // String username,
+    // String alamat,
+    // String gender,
     // String gender,
     // String breed,
     // String birthdate,
@@ -42,19 +43,10 @@ class CreateProfileEmployeeController extends GetxController {
     try {
       await users.update({
         "uid": FirebaseAuth.instance.currentUser!.uid,
-        "username": username,
-        "alamat": alamat,
-        "gender": gender,
+        // "username": username,
+        // "alamat": alamat,
+        // "gender": gender,
       });
-      Get.defaultDialog(
-        title: "berhasil",
-        middleText: "berhasil edit sapi",
-        onConfirm: () {
-          Get.back();
-          Get.back();
-        },
-        textConfirm: "okay",
-      );
     } catch (e) {
       if (kDebugMode) {
         print(e);

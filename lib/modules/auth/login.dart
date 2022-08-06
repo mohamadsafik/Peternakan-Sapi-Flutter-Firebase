@@ -93,6 +93,7 @@ class LoginPage extends StatelessWidget {
                             controller.emailController.text.trim(),
                             controller.passwordController.text.trim(),
                           );
+                          
                         },
                         child: Container(
                           width: 380,

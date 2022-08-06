@@ -30,19 +30,12 @@ class monitoring_widget extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.only(left: width / 30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'Monitoring',
-                    ),
-                    IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.arrow_forward))
-                  ],
+                child: Text(
+                  'Monitoring',
                 ),
               ),
               const SizedBox(
-                height: 15,
+                height: 10,
               ),
               Row(
                 children: [
@@ -70,6 +63,7 @@ class monitoring_widget extends StatelessWidget {
                         title: StreamBuilder(
                             stream: FirebaseFirestore.instance
                                 .collection('cows')
+                                .where('uid', isEqualTo: auth.currentUser?.uid)
                                 .where('gender', isEqualTo: "Jantan")
                                 .snapshots(),
                             builder: (context,
@@ -120,6 +114,7 @@ class monitoring_widget extends StatelessWidget {
                         title: StreamBuilder(
                             stream: FirebaseFirestore.instance
                                 .collection('cows')
+                                .where('uid', isEqualTo: auth.currentUser?.uid)
                                 .where('gender', isEqualTo: "Betina")
                                 .snapshots(),
                             builder: (context,
@@ -167,6 +162,7 @@ class monitoring_widget extends StatelessWidget {
                         title: StreamBuilder(
                             stream: FirebaseFirestore.instance
                                 .collection('cows')
+                                .where('uid', isEqualTo: auth.currentUser?.uid)
                                 .where('statuspregnant', isEqualTo: "Hamil")
                                 .snapshots(),
                             builder: (context,
@@ -218,6 +214,7 @@ class monitoring_widget extends StatelessWidget {
                         title: StreamBuilder(
                             stream: FirebaseFirestore.instance
                                 .collection('cows')
+                                .where('uid', isEqualTo: auth.currentUser?.uid)
                                 .where('statussick', isEqualTo: "Sakit")
                                 .snapshots(),
                             builder: (context,
