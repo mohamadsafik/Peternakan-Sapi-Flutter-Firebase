@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:peternakan_sapi/constants/color.dart';
 import '../../controllers/record_controller.dart';
 
 //menggunakan getxview
 // ignore: must_be_immutable
-class AddTaskPage extends StatelessWidget {
-  AddTaskPage({Key? key, this.data, this.docID}) : super(key: key);
+class InseminasiBuatanPage extends StatelessWidget {
+  InseminasiBuatanPage({Key? key, this.data, this.docID}) : super(key: key);
   final controller = Get.put(RecordController());
   var data = Get.arguments;
   var docID = Get.arguments;
@@ -15,10 +16,10 @@ class AddTaskPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-            child: Text(
-          data['name'],
-        )),
+        backgroundColor: green,
+        title: Text(
+          'Inseminasi Buatan',
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -28,22 +29,9 @@ class AddTaskPage extends StatelessWidget {
               const SizedBox(height: 10),
               TextField(
                 readOnly: true,
-                controller: controller.action..text = '',
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  labelText: "Aksi apa",
-                  suffixIcon: PopupMenuButton<String>(
-                    icon: const Icon(Icons.arrow_drop_down),
-                    onSelected: (String value) {
-                      controller.action.text = value;
-                    },
-                    itemBuilder: (BuildContext context) {
-                      return controller.aksi
-                          .map<PopupMenuItem<String>>((String value) {
-                        return PopupMenuItem(child: Text(value), value: value);
-                      }).toList();
-                    },
-                  ),
+                controller: controller.action..text = 'Inseminasi Buatan (IB)',
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 10),
@@ -52,7 +40,7 @@ class AddTaskPage extends StatelessWidget {
                   builder: (context, snapshot) {
                     return TextField(
                       readOnly: true,
-                      controller: controller.eartag
+                      controller: controller.date
                         ..text = DateFormat("dd-MM-yyyy")
                             .format(controller.selectedDate.value)
                             .toString(),
@@ -68,10 +56,18 @@ class AddTaskPage extends StatelessWidget {
                   }),
               const SizedBox(height: 10),
               TextField(
-                controller: controller.note..text = '',
+                controller: controller.inseminator..text = '',
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: "Catatan",
+                  labelText: "Nama Inseminator",
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: controller.straw..text = '',
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Kode Semen (straw)",
                 ),
               ),
               const SizedBox(
@@ -80,9 +76,9 @@ class AddTaskPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () => controller.recordCow(
                   controller.action.text,
-                  controller.eartag.text,
-                  controller.note.text,
-                  controller.time.text,
+                  controller.date.text,
+                  controller.straw.text,
+                  controller.inseminator.text,
                   docID,
                   data.toString(),
                 ),

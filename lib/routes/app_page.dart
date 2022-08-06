@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/bindings/add_cow_binding.dart';
+import 'package:peternakan_sapi/bindings/add_money_binding.dart';
 import 'package:peternakan_sapi/bindings/auth_binding.dart';
 import 'package:peternakan_sapi/bindings/create_profile_employee_binding.dart';
 import 'package:peternakan_sapi/bindings/detail_cow_binding.dart';
@@ -12,6 +13,8 @@ import 'package:peternakan_sapi/modules/employee/list_cow_employee.dart';
 import 'package:peternakan_sapi/modules/landing/landing.dart';
 import 'package:peternakan_sapi/bindings/list_cow_binding.dart';
 import 'package:peternakan_sapi/bindings/list_event_binding.dart';
+import 'package:peternakan_sapi/modules/money_manager/add_money.dart';
+import 'package:peternakan_sapi/modules/money_manager/money_manager.dart';
 import 'package:peternakan_sapi/modules/setting/setting.dart';
 import 'package:peternakan_sapi/bindings/update_cow_binding.dart';
 import 'package:peternakan_sapi/modules/setting/update_profile.dart';
@@ -98,6 +101,16 @@ class AppPages {
       name: (RouteName.socialmedia),
       page: () => SocialMediaPage(),
       binding: SocialMediaBinding(),
+    ),
+    GetPage(
+      name: (RouteName.moneymanager),
+      page: () => MoneyManagerPage(),
+      binding: SocialMediaBinding(),
+    ),
+    GetPage(
+      name: (RouteName.addmoney),
+      page: () => AddMoneyPage(),
+      binding: AddMoneyBinding(),
     ),
 
     //employee

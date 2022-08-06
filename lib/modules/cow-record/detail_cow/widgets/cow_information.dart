@@ -112,6 +112,11 @@ class CowInformation extends StatelessWidget {
                 children: [const Text('catatan :'), Text(data['note'])],
               ),
               const Divider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [const Text('Berat :'), Text(data['weight'])],
+              ),
+              const Divider(),
             ],
           ),
         ),

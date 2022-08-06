@@ -19,6 +19,7 @@ class AddCowController extends GetxController {
   late TextEditingController birthdate = TextEditingController();
   late TextEditingController joinedwhen = TextEditingController();
   late TextEditingController note = TextEditingController();
+  final RxBool validate = false.obs;
   var uuid = const Uuid();
   XFile? pickedImage;
   late ImagePicker imagePicker = ImagePicker();
@@ -76,6 +77,7 @@ class AddCowController extends GetxController {
         "joinedwhen": cowModel.joinedwhen,
         "note": cowModel.note,
         "statushamil": '',
+        "weight": '',
         "record": FieldValue.arrayUnion(
           [],
         ),

@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:peternakan_sapi/modules/cow-record/record_sick.dart';
+import 'package:peternakan_sapi/modules/cow-record/test.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 
+import '../../../../component/alert_component.dart';
 import '../../../../constants/color.dart';
-import '../../record_task.dart';
+import '../../inseminasi_buatan.dart';
 
 // ignore: camel_case_types
 class record_history extends StatelessWidget {
@@ -68,10 +71,99 @@ class record_history extends StatelessWidget {
                       ),
                       child: Center(
                         child: GestureDetector(
-                          onTap: () => Get.to(AddTaskPage(
-                            docID: data.id,
-                            data: data,
-                          )),
+                          onTap: () =>
+                              // Get.to(AddTaskPage(
+                              //   docID: data.id,
+                              //   data: data,
+                              // )
+                              showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                        title: const Text("add"),
+                                        content: Container(
+                                          height: 160.0,
+                                          child: Column(
+                                            children: <Widget>[
+                                              //this is the button to add income
+                                              Row(
+                                                children: <Widget>[
+                                                  const Padding(
+                                                    padding:
+                                                        EdgeInsets.all(4.0),
+                                                    child: Icon(
+                                                        Icons.attach_money),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            2.0),
+                                                    child: MaterialButton(
+                                                      onPressed: () {
+                                                        Get.to(
+                                                            InseminasiBuatanPage(
+                                                          docID: data.id,
+                                                          data: data,
+                                                        ));
+                                                      },
+                                                      child: const Text(
+                                                          "Inseminasi Buatan"),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                              //    the button to add expense
+                                              Row(
+                                                children: <Widget>[
+                                                  const Padding(
+                                                    padding:
+                                                        EdgeInsets.all(4.0),
+                                                    child:
+                                                        Icon(Icons.money_off),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            2.0),
+                                                    child: MaterialButton(
+                                                      onPressed: () {
+                                                        Get.to(SickRecordPage(
+                                                          docID: data.id,
+                                                          data: data,
+                                                        ));
+                                                      },
+                                                      child: const Text(
+                                                          "Diagnosa Sakit"),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                              //    this is the button to add category
+                                              Row(
+                                                children: <Widget>[
+                                                  const Padding(
+                                                    padding:
+                                                        EdgeInsets.all(4.0),
+                                                    child:
+                                                        Icon(Icons.dashboard),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            2.0),
+                                                    child: MaterialButton(
+                                                      onPressed: () {
+                                                        // Navigator.push(context, MaterialPageRoute(builder: (context)=> Catagory()));
+                                                      },
+                                                      child:
+                                                          const Text("Vaksin"),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      )),
                           child: const Icon(
                             Icons.edit,
                             color: Colors.black,
@@ -103,19 +195,24 @@ class record_history extends StatelessWidget {
                             child: SingleChildScrollView(
                               child: Column(
                                   children: records.map((record) {
-                                return Card(
-                                  child: ListTile(
-                                    leading: const Icon(
-                                      Icons.warning,
-                                      color: Colors.orange,
+                                return GestureDetector(
+                                  onTap: () {
+                                    Get.to(MyWidget(data: map!.id));
+                                  },
+                                  child: Card(
+                                    child: ListTile(
+                                      leading: const Icon(
+                                        Icons.warning,
+                                        color: Colors.orange,
+                                      ),
+                                      title: Text(
+                                        record["action"],
+                                      ),
+                                      trailing: Text(record["date"]),
                                     ),
-                                    title: Text(
-                                      record["action"],
-                                    ),
-                                    trailing: Text(record["date"]),
                                   ),
                                 );
-                              }).toList(growable: false)),
+                              }).toList(growable: true)),
                             ),
                           );
                         }

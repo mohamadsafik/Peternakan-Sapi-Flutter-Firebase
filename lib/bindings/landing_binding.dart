@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:peternakan_sapi/controllers/money_manager_controller.dart';
 import 'package:peternakan_sapi/controllers/setting_controller.dart';
 
 import '../controllers/home_controller.dart';
@@ -12,5 +13,6 @@ class LandingBinding extends Bindings {
     Get.put(ListCowController());
     Get.put(SettingController());
     Get.put(HomeController());
+    Get.put(MoneyManagerController());
   }
 }

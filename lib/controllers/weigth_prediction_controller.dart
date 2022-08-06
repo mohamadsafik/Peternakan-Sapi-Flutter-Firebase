@@ -18,7 +18,7 @@ class WeightPredictionController extends GetxController {
     DocumentReference cows = firestore.collection("cows").doc(docID);
     try {
       await cows.update({
-        // "uid": FirebaseAuth.instance.currentUser!.uid,
+        "weight": weight,
         "weights": FieldValue.arrayUnion([
           {
             "weight": weight,

@@ -7,14 +7,12 @@ import '../constants/firebase_constants.dart';
 
 class RecordController extends GetxController {
   late TextEditingController action = TextEditingController();
-  late TextEditingController eartag = TextEditingController();
-  late TextEditingController rasCow = TextEditingController();
-  late TextEditingController gender = TextEditingController();
-  late TextEditingController breed = TextEditingController();
-  late TextEditingController birthdate = TextEditingController();
-  late TextEditingController joinedwhen = TextEditingController();
+  late TextEditingController date = TextEditingController();
+  late TextEditingController diagnosis = TextEditingController();
+  late TextEditingController doctor = TextEditingController();
   late TextEditingController note = TextEditingController();
-  late TextEditingController time = TextEditingController();
+  late TextEditingController straw = TextEditingController();
+  late TextEditingController inseminator = TextEditingController();
 
   var items = ['Jantan', 'Betina'].obs;
   var aksi = ['Inseminasi Buatan', 'Vaksin', 'Sakit', 'Hamil'].obs;
@@ -22,20 +20,65 @@ class RecordController extends GetxController {
   var dateJoin = DateTime.now().obs;
   void cleartext() {
     action.clear();
-    eartag.clear();
-    rasCow.clear();
-    gender.clear();
-    breed.clear();
-    birthdate.clear();
-    joinedwhen.clear();
-    note.clear();
+
+    straw.clear();
+  }
+
+  void recordSakit(
+    String action,
+    String diagnosis,
+    String date,
+    String doctor,
+    String note,
+    String docID,
+    String text,
+  ) async {
+    DocumentReference cows = firestore.collection("cows").doc(docID);
+    try {
+      await cows.update(
+        {
+          "statussick": 'sakit',
+          "record": FieldValue.arrayUnion(
+            [
+              {
+                "action": action,
+                'diagnosis': diagnosis,
+                'date': date,
+                'doctor': doctor,
+                'note': note,
+                'time': DateTime.now(),
+              }
+            ],
+          )
+        },
+      );
+      Get.defaultDialog(
+        barrierDismissible: true,
+        title: "berhasil",
+        middleText: "berhasil record sapi",
+        onConfirm: () {
+          Get.back();
+          Get.back();
+          cleartext();
+        },
+        textConfirm: "okay",
+      );
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      Get.defaultDialog(
+        title: "terjadi kesalahan",
+        middleText: "tidak berhasil edit sapi",
+      );
+    }
   }
 
   void recordCow(
     String action,
-    String eartag,
-    String note,
-    String time,
+    String date,
+    String straw,
+    String inseminator,
     String docID,
     String text,
   ) async {
@@ -44,13 +87,14 @@ class RecordController extends GetxController {
     try {
       await cows.update(
         {
-          "statushamil": action,
+          "statushamil": 'IB',
           "record": FieldValue.arrayUnion(
             [
               {
                 "action": action,
-                'date': eartag,
-                'noted': note,
+                'date': date,
+                'noted': straw,
+                'inseminator': inseminator,
                 'time': DateTime.now(),
               }
             ],
@@ -82,14 +126,10 @@ class RecordController extends GetxController {
   @override
   void onClose() {
     action.dispose();
-    eartag.dispose();
-    rasCow.dispose();
-    gender.dispose();
-    breed.dispose();
-    birthdate.dispose();
-    joinedwhen.dispose();
-    note.dispose();
-    time.dispose();
+    date.dispose();
+    straw.dispose();
+    inseminator.dispose();
+
     super.onClose();
   }
 

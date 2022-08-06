@@ -37,6 +37,7 @@ class _WeightPredictionPageState extends State<WeightPredictionPage> {
                         image: AssetImage(
                             'assets/weightprediction/metode-winter.png'))),
                 TextField(
+                  keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: "Panjang Badan",
@@ -51,6 +52,7 @@ class _WeightPredictionPageState extends State<WeightPredictionPage> {
                 ),
                 const SizedBox(height: 10),
                 TextField(
+                    keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: "Lingkar Dada",

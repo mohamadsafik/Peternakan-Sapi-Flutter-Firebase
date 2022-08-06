@@ -12,6 +12,7 @@ class AddCowsPage extends StatelessWidget {
   AddCowsPage({Key? key}) : super(key: key);
 
   final controller = Get.find<AddCowController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +42,7 @@ class AddCowsPage extends StatelessWidget {
               const SizedBox(height: 10),
               TextField(
                 controller: controller.name,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Nama",
                 ),

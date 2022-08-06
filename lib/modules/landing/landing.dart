@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
-import 'package:peternakan_sapi/modules/income/income.dart';
 import 'package:peternakan_sapi/modules/setting/setting.dart';
 import '../../controllers/landing_page_controller.dart';
 import '../cow-record/list_cow/list_cows.dart';
 import '../home/home.dart';
+import '../money_manager/money_manager.dart';
 import '../social_media/social_media_beranda.dart';
 
 class LandingPage extends StatelessWidget {
@@ -98,7 +98,7 @@ class LandingPage extends StatelessWidget {
               children: [
                 Homepage(),
                 ListCows(),
-                IncomePage(),
+                const MoneyManagerPage(),
                 // const WebScraperApp(),
                 // SocialMediaPage(),
                 //

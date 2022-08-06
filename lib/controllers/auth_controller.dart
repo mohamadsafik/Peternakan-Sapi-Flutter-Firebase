@@ -9,7 +9,6 @@ import 'package:peternakan_sapi/controllers/setting_controller.dart';
 import 'package:peternakan_sapi/modules/cow-record/list_cow/list_cows.dart';
 import 'package:peternakan_sapi/modules/employee/create_profile_employee.dart';
 import 'package:peternakan_sapi/modules/employee/home_employee.dart';
-import 'package:peternakan_sapi/modules/income/income.dart';
 import 'package:peternakan_sapi/modules/landing/landing.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 import 'package:get/get.dart';

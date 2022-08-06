@@ -14,6 +14,7 @@ class monitoring_widget extends StatelessWidget {
 
   final controller = Get.find<ListCowController>();
   final homecontroller = Get.find<HomeController>();
+  bool _validate = false;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +63,7 @@ class monitoring_widget extends StatelessWidget {
                         ),
                         title: Text('13'),
                         subtitle: Text(
-                          'Menyusui',
+                          'Jantan',
                           style: TextStyle(
                             color: Color.fromARGB(255, 22, 90, 155),
                             fontFamily: 'poppins',
@@ -75,6 +76,27 @@ class monitoring_widget extends StatelessWidget {
                     width: width / 40,
                   ),
                   Container(
+                      height: 90,
+                      width: width / 2.162162162,
+                      decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 250, 80, 68)
+                              .withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: const ListTile(
+                        leading: const Icon(
+                          Icons.person,
+                          size: 60,
+                        ),
+                        title: const Text('1'),
+                        subtitle: Text('Betina'),
+                      ))
+                ],
+              ),
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: width / 40),
                     height: 90,
                     width: width / 2.162162162,
                     decoration: BoxDecoration(
@@ -100,13 +122,10 @@ class monitoring_widget extends StatelessWidget {
                       ),
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              Row(
-                children: [
+                  SizedBox(
+                    width: width / 40,
+                  ),
                   Container(
-                    margin: EdgeInsets.only(left: width / 40),
                     height: 90,
                     width: width / 2.162162162,
                     decoration: BoxDecoration(
@@ -133,24 +152,6 @@ class monitoring_widget extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: width / 40,
-                  ),
-                  Container(
-                      height: 90,
-                      width: width / 2.162162162,
-                      decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 250, 80, 68)
-                              .withOpacity(0.3),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: const ListTile(
-                        leading: const Icon(
-                          Icons.person,
-                          size: 60,
-                        ),
-                        title: const Text('1'),
-                        subtitle: Text('Hadir'),
-                      ))
                 ],
               ),
             ],
