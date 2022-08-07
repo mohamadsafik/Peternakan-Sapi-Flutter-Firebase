@@ -54,12 +54,23 @@ class RegisterPage extends StatelessWidget {
                   child: Column(
                     children: [
                       TextField(
+                        controller: controller.namefarm,
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            labelText: "Nama Peternakan"),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      TextField(
                         controller: controller.nameController,
                         decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            labelText: "Username"),
+                            labelText: "Nama Pemilik"),
                       ),
                       const SizedBox(
                         height: 15,
@@ -95,6 +106,7 @@ class RegisterPage extends StatelessWidget {
                             controller.emailController.text,
                             controller.passwordController.text,
                             controller.nameController.text,
+                            controller.namefarm.text,
                           );
                         },
                         child: Container(
@@ -111,7 +123,7 @@ class RegisterPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -128,7 +140,7 @@ class RegisterPage extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 30,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

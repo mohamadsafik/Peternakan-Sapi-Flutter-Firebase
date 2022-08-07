@@ -75,7 +75,7 @@ class CowContainer extends StatelessWidget {
                               top: 20,
                               child: IconButton(
                                   onPressed: () {
-                                    AuthController.authInstance.signOut();
+                                    // AuthController.authInstance.signOut();
                                   },
                                   icon: const Icon(
                                     Icons.arrow_forward,

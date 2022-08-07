@@ -34,25 +34,46 @@ class drawer extends StatelessWidget {
                       return Column(
                         // Important: Remove any padding from the ListView.
                         children: [
-                          SizedBox(
+                          Container(
                             height: 200,
                             width: 400,
-                            child: DrawerHeader(
-                              decoration: const BoxDecoration(
-                                color: green,
+                            color: green,
+                            child: Center(
+                              child: ListTile(
+                                leading: CircleAvatar(
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 223, 219, 219),
+                                  backgroundImage:
+                                      (documentSnapshot['image'] == '')
+                                          ? null
+                                          : NetworkImage(
+                                              documentSnapshot['image'],
+                                              // child: (documentSnapshot['image'] == '')
+                                              //     ? const Icon(Icons.person)
+                                              //     : Image.network(
+                                              //         documentSnapshot['image'],
+                                              //         fit: BoxFit.cover,
+                                              //       )),
+                                            ),
+                                ),
+                                title: Text(
+                                  documentSnapshot['username'],
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                subtitle: Text(documentSnapshot['namefarm']),
                               ),
-                              child: Text(documentSnapshot['username']),
                             ),
                           ),
                           ListTile(
-                            leading: Icon(Icons.catching_pokemon),
+                            leading: const Icon(Icons.catching_pokemon),
                             title: const Text('Peternakan Sapi'),
                             onTap: () {
                               Get.offAllNamed(RouteName.landing);
                             },
                           ),
                           ListTile(
-                            leading: Icon(Icons.catching_pokemon),
+                            leading: const Icon(Icons.catching_pokemon),
                             title: const Text('Komunitas'),
                             onTap: () {
                               // Update the state of the app

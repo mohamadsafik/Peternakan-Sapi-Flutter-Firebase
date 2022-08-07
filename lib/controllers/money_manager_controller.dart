@@ -34,6 +34,7 @@ class MoneyManagerController extends GetxController {
         onConfirm: () {
           Get.back();
           Get.back();
+          Get.back();
           // cleartext();
         },
         textConfirm: "okay",

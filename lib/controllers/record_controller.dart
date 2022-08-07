@@ -63,6 +63,7 @@ class RecordController extends GetxController {
         onConfirm: () {
           Get.back();
           Get.back();
+          Get.back();
           cleartext();
         },
         textConfirm: "okay",
@@ -112,6 +113,7 @@ class RecordController extends GetxController {
         title: "berhasil",
         middleText: "berhasil record sapi",
         onConfirm: () {
+          Get.back();
           Get.back();
           Get.back();
           cleartext();
@@ -165,6 +167,7 @@ class RecordController extends GetxController {
         onConfirm: () {
           Get.back();
           Get.back();
+          Get.back();
           cleartext();
         },
         textConfirm: "okay",
@@ -214,6 +217,7 @@ class RecordController extends GetxController {
         title: "berhasil",
         middleText: "berhasil record sapi",
         onConfirm: () {
+          Get.back();
           Get.back();
           Get.back();
           cleartext();

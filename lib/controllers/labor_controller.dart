@@ -9,10 +9,11 @@ import '../../../constants/firebase_constants.dart';
 
 class LaborController extends GetxController {
   TextEditingController email = TextEditingController();
+  TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController role = TextEditingController();
 
-  void registerLabor(String email, String password) async {
+  void registerLabor(String email, String username, String password) async {
     CollectionReference cows = firestore.collection("users");
     FirebaseApp app = await Firebase.initializeApp(
         name: 'Secondary', options: Firebase.app().options);
@@ -20,12 +21,13 @@ class LaborController extends GetxController {
       await FirebaseAuth.instanceFor(app: app)
           .createUserWithEmailAndPassword(email: email, password: password);
       await cows.add({
-        "username": "pekerja",
+        "username": username,
         "email": email,
         "password": password,
         "uidowner": auth.currentUser?.uid,
         "uid": '',
         "role": "employee",
+        "image": "",
       });
     } on FirebaseAuthException catch (e) {
       // this is solely for the Firebase Auth Exception

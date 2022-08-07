@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../constants/firebase_constants.dart';
 
@@ -10,6 +14,10 @@ class SettingController extends GetxController {
   late TextEditingController username = TextEditingController();
   late TextEditingController alamat = TextEditingController();
   late TextEditingController gender = TextEditingController();
+  XFile? pickedImage;
+  late ImagePicker imagePicker = ImagePicker();
+  String? imageUrl;
+  var items = ['Pria', 'Wanita'].obs;
   void signOut() {
     try {
       auth.signOut();
@@ -38,9 +46,19 @@ class SettingController extends GetxController {
     String data,
   ) async {
     DocumentReference users = firestore.collection("users").doc(data);
-
+    var nameImage = pickedImage?.name;
+    var storageImage =
+        FirebaseStorage.instance.ref().child('userImage/$nameImage');
+    if (pickedImage == null) {
+      imageUrl = null;
+    } else {
+      //jika image tidak kosong maka image = url gambar
+      var task = storageImage.putFile(File(pickedImage!.path));
+      imageUrl = await (await task).ref.getDownloadURL();
+    }
     try {
       await users.update({
+        "image": imageUrl,
         "uid": FirebaseAuth.instance.currentUser!.uid,
         "username": username,
         "alamat": alamat,
@@ -48,7 +66,7 @@ class SettingController extends GetxController {
       });
       Get.defaultDialog(
         title: "berhasil",
-        middleText: "berhasil edit sapi",
+        middleText: "berhasil Merubah Data",
         onConfirm: () {
           Get.back();
           Get.back();
@@ -61,8 +79,29 @@ class SettingController extends GetxController {
       }
       Get.defaultDialog(
         title: "terjadi kesalahan",
-        middleText: "tidak berhasil edit sapi",
+        middleText: "tidak berhasil Merubah",
       );
+    }
+  }
+
+  void cancelImage() async {
+    pickedImage = null;
+    update();
+  }
+
+  void getImage() async {
+    try {
+      final checkImage =
+          await imagePicker.pickImage(source: ImageSource.gallery);
+      if (checkImage != null) {
+        pickedImage = checkImage;
+      }
+      update();
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      update();
     }
   }
 }

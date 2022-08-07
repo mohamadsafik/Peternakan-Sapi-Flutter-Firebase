@@ -92,7 +92,7 @@ class AddMoneyPage extends StatelessWidget {
                     controller.date.text,
                     controller.note.text,
                     controller.total.text),
-                child: const Text("Save"),
+                child: const Text("Simpan"),
               )
             ],
           ),

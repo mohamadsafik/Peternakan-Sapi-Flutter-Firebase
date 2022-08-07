@@ -23,7 +23,7 @@ class SettingPage extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
-                  AuthController.authInstance.signOut();
+                  // AuthController.authInstance.signOut();
                 },
                 icon: const Icon(Icons.settings))
           ],
@@ -46,9 +46,19 @@ class SettingPage extends StatelessWidget {
                 return Column(children: [
                   const Divider(height: 20),
                   ListTile(
-                    leading: const CircleAvatar(
+                    leading: CircleAvatar(
                       backgroundColor: const Color.fromARGB(255, 223, 219, 219),
-                      child: const Icon(Icons.person),
+                      backgroundImage: (documentSnapshot['image'] == '')
+                          ? null
+                          : NetworkImage(
+                              documentSnapshot['image'],
+                              // child: (documentSnapshot['image'] == '')
+                              //     ? const Icon(Icons.person)
+                              //     : Image.network(
+                              //         documentSnapshot['image'],
+                              //         fit: BoxFit.cover,
+                              //       )),
+                            ),
                     ),
                     title: Text(
                       documentSnapshot['username'],

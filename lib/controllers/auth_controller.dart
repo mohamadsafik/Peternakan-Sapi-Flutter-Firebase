@@ -19,6 +19,7 @@ class AuthController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final nameController = TextEditingController();
+  final namefarm = TextEditingController();
   static AuthController authInstance = Get.find();
   late Rx<User?> firebaseUser;
 
@@ -65,7 +66,8 @@ class AuthController extends GetxController {
   //    CollectionReference users = firestore.collection("users");
   // }
 
-  void register(String email, String password, String username) async {
+  void register(
+      String email, String password, String namefarm, String username) async {
     try {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -73,10 +75,12 @@ class AuthController extends GetxController {
       DocumentReference users = firestore.collection("users").doc(uid);
       await users.set({
         "username": username,
+        "namefarm": namefarm,
         "email": email,
         "password": password,
         "uid": auth.currentUser?.uid,
-        "role": "owner"
+        "role": "owner",
+        "image": "",
       });
       authInstance.signOut();
     } on FirebaseAuthException catch (e) {

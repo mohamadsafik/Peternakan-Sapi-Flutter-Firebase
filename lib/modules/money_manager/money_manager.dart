@@ -27,55 +27,59 @@ class _MoneyManagerPageState extends State<MoneyManagerPage> {
 
     return Scaffold(
         backgroundColor: background,
-        appBar: AppBar(
-          title: const Text("Flutter cash app"),
-          backgroundColor: green,
-          centerTitle: false,
-          elevation: 0.5,
-          actions: <Widget>[
-            IconButton(
-                icon: const Icon(Icons.add),
-                onPressed: () {
-                  //this will call the alert
-                  showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                            title: const Text("add"),
-                            content: Container(
-                              height: 160.0,
-                              child: const AlertComponents(),
-                            ),
-                          ));
-                })
-          ],
-        ),
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(80),
+            child: AppBar(
+              backgroundColor: green,
+              actions: <Widget>[
+                IconButton(
+                    icon: const Icon(Icons.add),
+                    onPressed: () {
+                      //this will call the alert
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                title: const Text("add"),
+                                content: Container(
+                                  height: 160.0,
+                                  child: const AlertComponents(),
+                                ),
+                              ));
+                    })
+              ],
+            )),
+        drawer: const drawer(),
         body: Column(children: [
-          Container(
-            color: Colors.white,
-            child: Row(
-              children: const <Widget>[
-                Expanded(
-                  child: ListTile(
-                    title: Text("Income:"),
-                    subtitle: Text("\$720"),
-                  ),
-                ),
-                Expanded(
-                  child: ListTile(
-                    title: Text("Balance:"),
-                    subtitle: Text("\$720"),
-                  ),
-                ),
-                Expanded(
-                  child: ListTile(
-                    title: Text("Expense:"),
-                    subtitle: Text(
-                      "\$230",
-                      style: TextStyle(color: Colors.red),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              height: 120,
+              color: Colors.white,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ListTile(
+                      title: Text("Income:"),
+                      subtitle: Text("720"),
                     ),
                   ),
-                ),
-              ],
+                  Expanded(
+                    child: ListTile(
+                      title: Text("Balance:"),
+                      subtitle: Text("720"),
+                    ),
+                  ),
+                  Expanded(
+                    child: ListTile(
+                      title: Text("Expense:"),
+                      subtitle: Text(
+                        "230",
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           StreamBuilder(
@@ -93,24 +97,31 @@ class _MoneyManagerPageState extends State<MoneyManagerPage> {
                     final DocumentSnapshot documentSnapshot =
                         streamSnapshot.data!.docs[index];
                     final int documentsum = streamSnapshot.data!.docs.length;
-                    return Card(
-                      child: ListTile(
-                        leading: (documentSnapshot['action'] == 'Pemasukan')
-                            ? const Icon(Icons.attach_money,
-                                color: Colors.green)
-                            : const Icon(Icons.attach_money, color: Colors.red),
-                        title: Text(
-                          documentSnapshot['total'],
-                        ),
-                        subtitle: Text(
-                          documentSnapshot['note'],
-                        ),
-                        trailing: Text(
-                            (documentSnapshot['action'] == 'Pemasukan')
-                                ? 'masuk'
-                                : 'keluar'),
-                      ),
-                    );
+                    return (streamSnapshot.hasData)
+                        ? Padding(
+                            padding: const EdgeInsets.only(left: 6.0, right: 6),
+                            child: Card(
+                              child: ListTile(
+                                leading:
+                                    (documentSnapshot['action'] == 'Pemasukan')
+                                        ? const Icon(Icons.attach_money,
+                                            color: Colors.green)
+                                        : const Icon(Icons.attach_money,
+                                            color: Colors.red),
+                                title: Text(
+                                  documentSnapshot['total'],
+                                ),
+                                subtitle: Text(
+                                  documentSnapshot['note'],
+                                ),
+                                trailing: Text(
+                                    (documentSnapshot['action'] == 'Pemasukan')
+                                        ? 'masuk'
+                                        : 'keluar'),
+                              ),
+                            ),
+                          )
+                        : CircularProgressIndicator();
                   },
                 );
               }
