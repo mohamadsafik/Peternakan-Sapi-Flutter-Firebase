@@ -26,7 +26,7 @@ class drawer extends StatelessWidget {
                   streamSnapshot.hasData &&
                   streamSnapshot.data != null) {
                 return ListView.builder(
-                    // shrinkWrap: true,
+                    shrinkWrap: true,
                     itemCount: streamSnapshot.data!.docs.length,
                     itemBuilder: (context, index) {
                       final DocumentSnapshot documentSnapshot =
@@ -62,6 +62,12 @@ class drawer extends StatelessWidget {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 subtitle: Text(documentSnapshot['namefarm']),
+                                trailing: IconButton(
+                                    onPressed: () {
+                                      Get.toNamed(RouteName.updateprofile,
+                                          arguments: documentSnapshot);
+                                    },
+                                    icon: const Icon(Icons.edit)),
                               ),
                             ),
                           ),

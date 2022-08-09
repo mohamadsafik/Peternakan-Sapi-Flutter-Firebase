@@ -56,22 +56,22 @@ class _MoneyManagerPageState extends State<MoneyManagerPage> {
               height: 120,
               color: Colors.white,
               child: Row(
-                children: [
+                children: const [
                   Expanded(
                     child: ListTile(
-                      title: Text("Income:"),
+                      title: Text("Masuk:"),
                       subtitle: Text("720"),
                     ),
                   ),
                   Expanded(
                     child: ListTile(
-                      title: Text("Balance:"),
+                      title: Text("Total:"),
                       subtitle: Text("720"),
                     ),
                   ),
                   Expanded(
                     child: ListTile(
-                      title: Text("Expense:"),
+                      title: Text("Keluar:"),
                       subtitle: Text(
                         "230",
                         style: TextStyle(color: Colors.red),
@@ -121,7 +121,7 @@ class _MoneyManagerPageState extends State<MoneyManagerPage> {
                               ),
                             ),
                           )
-                        : CircularProgressIndicator();
+                        : const CircularProgressIndicator();
                   },
                 );
               }

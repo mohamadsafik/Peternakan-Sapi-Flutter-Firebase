@@ -85,26 +85,90 @@ class _WeightPredictionPageState extends State<WeightPredictionPage> {
                                   ..text =
                                       ("${(((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592).round()}"),
                               ))
-                          : showCupertinoModalPopup(
+                          : showDialog(
                               context: context,
-                              builder: (BuildContext context) {
-                                return Scaffold(
-                                  body: Column(
-                                    children: [
-                                      Text(
-                                        // readOnly: true,
-                                        // controller: controller.weight
-                                        //   ..text =
-                                        ("${(((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592).round()}"),
-                                      ),
-                                      Text(
-                                          "${(((((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592) / 100) * 10).round()}"),
-                                      Text(
-                                          "${(((((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592) / 100) * 2).round()}"),
-                                    ],
-                                  ),
-                                );
-                              });
+                              builder: (context) => AlertDialog(
+                                  title: const Text(""),
+                                  content: SizedBox(
+                                      height: 160.0,
+                                      child: Column(children: <Widget>[
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text('Berat Sapi : '),
+                                            Text(
+                                              // readOnly: true,
+                                              // controller: controller.weight
+                                              //   ..text =
+                                              ("${(((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592).round()} Kg"),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text('Kebutuhan Rumput : '),
+                                            Text(
+                                                "${(((((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592) / 100) * 10).round()} Kg"),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text('Kebutuhan Comboran : '),
+                                            Text(
+                                                "${(((((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592) / 100) * 2).round()} Kg"),
+                                          ],
+                                        ),
+                                      ]))));
+                      // showCupertinoModalPopup(
+                      //     context: context,
+                      //     builder: (BuildContext context) {
+                      //       return Scaffold(
+                      //         appBar: AppBar(
+                      //           backgroundColor: green,
+                      //         ),
+                      //         body: Container(
+                      //           height: 800,
+                      //           width: 800,
+                      //           decoration: BoxDecoration(
+                      //               color: Colors.white,
+                      //               borderRadius: BorderRadius.circular(8)),
+                      //           child: Column(
+                      //             children: [
+                      //               Row(
+                      //                 children: [
+                      //                   Text('Berat Sapi : '),
+                      //                   Text(
+                      //                     // readOnly: true,
+                      //                     // controller: controller.weight
+                      //                     //   ..text =
+                      //                     ("${(((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592).round()}"),
+                      //                   ),
+                      //                 ],
+                      //               ),
+                      //               Row(
+                      //                 children: [
+                      //                   Text('Kebutuhan Rumput : '),
+                      //                   Text(
+                      //                       "${(((((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592) / 100) * 10).round()}"),
+                      //                 ],
+                      //               ),
+                      //               Row(
+                      //                 children: [
+                      //                   Text('Kebutuhan Comboran : '),
+                      //                   Text(
+                      //                       "${(((((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592) / 100) * 2).round()}"),
+                      //                 ],
+                      //               ),
+                      //             ],
+                      //           ),
+                      //         ),
+                      //       );
+                      //     });
                     },
                     child: const Center(child: Text('submit')),
                   ),

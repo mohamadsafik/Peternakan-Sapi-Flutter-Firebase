@@ -17,7 +17,7 @@ class AddMoneyPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: green,
         title: Text(
-          '',
+          'Keuangan',
         ),
       ),
       body: SingleChildScrollView(

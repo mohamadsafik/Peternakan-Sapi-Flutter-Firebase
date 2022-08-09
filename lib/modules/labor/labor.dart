@@ -55,12 +55,12 @@ class LaborPage extends GetView<LaborController> {
                         borderRadius: BorderRadius.circular(10)),
                     child: const Center(
                       child: ListTile(
-                        leading: SizedBox(
-                          height: 70.0,
-                          width: 60.0, // fixed width and height
-                          child: Image(
-                              image: AssetImage('assets/home/milk-bottle.png')),
-                        ),
+                        // leading: SizedBox(
+                        //   height: 70.0,
+                        //   width: 60.0, // fixed width and height
+                        //   child: Image(
+                        //       image: AssetImage('assets/home/milk-bottle.png')),
+                        // ),
                         title: Text(
                           '13',
                           style: TextStyle(
@@ -86,12 +86,12 @@ class LaborPage extends GetView<LaborController> {
                         borderRadius: BorderRadius.circular(10)),
                     child: const Center(
                       child: ListTile(
-                        leading: SizedBox(
-                          height: 70.0,
-                          width: 60.0, // fixed width and height
-                          child:
-                              Image(image: AssetImage('assets/home/cow4.png')),
-                        ),
+                        // leading: SizedBox(
+                        //   height: 70.0,
+                        //   width: 60.0, // fixed width and height
+                        //   child:
+                        //       Image(image: AssetImage('assets/home/cow4.png')),
+                        // ),
                         title: Text(
                           '13',
                           style: TextStyle(
@@ -120,12 +120,12 @@ class LaborPage extends GetView<LaborController> {
                         borderRadius: BorderRadius.circular(10)),
                     child: const Center(
                       child: ListTile(
-                        leading: SizedBox(
-                          height: 70.0,
-                          width: 60.0, // fixed width and height
-                          child: Image(
-                              image: AssetImage('assets/home/milk-bottle.png')),
-                        ),
+                        // leading: SizedBox(
+                        //   height: 70.0,
+                        //   width: 60.0, // fixed width and height
+                        //   child: Image(
+                        //       image: AssetImage('assets/home/milk-bottle.png')),
+                        // ),
                         title: Text(
                           '13',
                           style: TextStyle(
@@ -151,12 +151,12 @@ class LaborPage extends GetView<LaborController> {
                         borderRadius: BorderRadius.circular(10)),
                     child: const Center(
                       child: ListTile(
-                        leading: SizedBox(
-                          height: 70.0,
-                          width: 60.0, // fixed width and height
-                          child:
-                              Image(image: AssetImage('assets/home/cow4.png')),
-                        ),
+                        // leading: SizedBox(
+                        //   height: 70.0,
+                        //   width: 60.0, // fixed width and height
+                        //   child:
+                        //       Image(image: AssetImage('assets/home/cow4.png')),
+                        // ),
                         title: Text(
                           '13',
                           style: TextStyle(
@@ -201,11 +201,11 @@ class LaborPage extends GetView<LaborController> {
                             child: ListTile(
                                 leading: Icon(Icons.person),
                                 title: Text(
-                                  documentSnapshot['username'].toString(),
-                                ),
-                                subtitle: Text(
                                   documentSnapshot['email'].toString(),
                                 ),
+                                // subtitle: Text(
+                                //   documentSnapshot['email'].toString(),
+                                // ),
                                 trailing: Icon(Icons.arrow_right)),
                           );
                         },

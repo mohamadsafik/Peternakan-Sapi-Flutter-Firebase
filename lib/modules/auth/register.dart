@@ -35,15 +35,15 @@ class RegisterPage extends StatelessWidget {
                   height: 100,
                 ),
                 const Text(
-                  "Hello Again!",
-                  style: TextStyle(fontSize: 30),
+                  "Hallo",
+                  style: TextStyle(fontSize: 22),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 const Text(
-                  "Welcome Back You've been missed",
-                  style: TextStyle(fontSize: 20),
+                  "Silakan Daftar Untuk Mengelola Peternakanmu",
+                  style: TextStyle(fontSize: 17),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(
@@ -103,7 +103,7 @@ class RegisterPage extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           controller.register(
-                            controller.emailController.text,
+                            controller.emailController.text.toLowerCase(),
                             controller.passwordController.text,
                             controller.nameController.text,
                             controller.namefarm.text,
@@ -181,7 +181,7 @@ class RegisterPage extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: 35,
+                  height: 25,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

@@ -70,19 +70,20 @@ class CowContainer extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Positioned(
-                              right: 20,
-                              top: 20,
-                              child: IconButton(
-                                  onPressed: () {
-                                    // AuthController.authInstance.signOut();
-                                  },
-                                  icon: const Icon(
-                                    Icons.arrow_forward,
-                                    color: Colors.grey,
-                                    size: 35,
-                                  )),
-                            )
+                            // Positioned(
+                            //   right: 20,
+                            //   top: 20,
+                            //   child: ,
+                            //   // child: IconButton(
+                            //   //     onPressed: () {
+                            //   //       // AuthController.authInstance.signOut();
+                            //   //     },
+                            //   //     icon: const Icon(
+                            //   //       Icons.arrow_forward,
+                            //   //       color: Colors.grey,
+                            //   //       size: 35,
+                            //   //     )),
+                            // )
                           ],
                         ),
                       );

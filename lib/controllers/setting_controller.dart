@@ -58,7 +58,7 @@ class SettingController extends GetxController {
     }
     try {
       await users.update({
-        "image": imageUrl,
+        "image": (imageUrl == null) ? "" : imageUrl,
         "uid": FirebaseAuth.instance.currentUser!.uid,
         "username": username,
         "alamat": alamat,

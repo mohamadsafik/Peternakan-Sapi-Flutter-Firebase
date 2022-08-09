@@ -50,14 +50,14 @@ class MoneyManagerController extends GetxController {
     }
   }
 
-  @override
-  void onClose() {
-    action.dispose();
-    note.dispose();
-    total.dispose();
-    date.dispose();
-    super.onClose();
-  }
+  // @override
+  // void onClose() {
+  //   action.dispose();
+  //   note.dispose();
+  //   total.dispose();
+  //   date.dispose();
+  //   super.onClose();
+  // }
 
   get chooseDate async {
     DateTime? pickedDate = await showDatePicker(

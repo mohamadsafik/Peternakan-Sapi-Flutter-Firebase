@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:peternakan_sapi/constants/firebase_constants.dart';
 import 'package:peternakan_sapi/modules/cow-record/record_pregnant.dart';
 import 'package:peternakan_sapi/modules/cow-record/record_sick.dart';
 import 'package:peternakan_sapi/modules/cow-record/record_vaksin.dart';
-import 'package:peternakan_sapi/modules/cow-record/test.dart';
+import 'package:peternakan_sapi/modules/cow-record/detail_record.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../../../component/alert_component.dart';
@@ -349,22 +351,26 @@ class record_history extends StatelessWidget {
                                   children: records.map((record) {
                                 return GestureDetector(
                                   onTap: () {
-                                    Get.to(MyWidget(data: map!.id));
+                                    Get.to(DetailRecordPage(data: record));
                                   },
                                   child: Card(
                                     child: ListTile(
-                                      leading: const Icon(
-                                        Icons.warning,
-                                        color: Colors.orange,
-                                      ),
-                                      title: Text(
-                                        record["action"],
-                                      ),
-                                      trailing: Text(record["date"]),
-                                    ),
+                                        leading: const Icon(
+                                          Icons.warning,
+                                          color: Colors.orange,
+                                        ),
+                                        title: Text(
+                                          record["action"],
+                                        ),
+                                        subtitle: Text(record["date"]),
+                                        trailing: IconButton(
+                                            onPressed: () {
+                                              // record[index].delete();
+                                            },
+                                            icon: Icon(Icons.delete))),
                                   ),
                                 );
-                              }).toList(growable: true)),
+                              }).toList(growable: false)),
                             ),
                           );
                         }

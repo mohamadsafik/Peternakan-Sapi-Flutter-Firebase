@@ -35,15 +35,15 @@ class LoginPage extends StatelessWidget {
                   height: 100,
                 ),
                 const Text(
-                  "Hello Again!",
-                  style: TextStyle(fontSize: 30),
+                  "Hallo",
+                  style: TextStyle(fontSize: 22),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 const Text(
-                  "Welcome Back You've been missed",
-                  style: TextStyle(fontSize: 20),
+                  "Silakan Login Menggunakan Akunmu",
+                  style: TextStyle(fontSize: 17),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(
@@ -93,7 +93,6 @@ class LoginPage extends StatelessWidget {
                             controller.emailController.text.trim(),
                             controller.passwordController.text.trim(),
                           );
-                          
                         },
                         child: Container(
                           width: 380,

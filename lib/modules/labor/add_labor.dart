@@ -19,17 +19,17 @@ class AddLaborPage extends GetView<LaborController> {
         margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
         child: Column(
           children: [
-            TextField(
-              controller: controller.username,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  labelText: "Nama Peternakan"),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
+            // TextField(
+            //   controller: controller.username,
+            //   decoration: InputDecoration(
+            //       border: OutlineInputBorder(
+            //         borderRadius: BorderRadius.circular(20),
+            //       ),
+            //       labelText: "Nama Peternakan"),
+            // ),
+            // const SizedBox(
+            //   height: 15,
+            // ),
 
             TextField(
               controller: controller.email,
@@ -61,7 +61,7 @@ class AddLaborPage extends GetView<LaborController> {
                 controller.registerLabor(
                   controller.email.text,
                   controller.password.text,
-                  controller.username.text,
+                  // controller.username.text,
                 );
               },
               child: Container(

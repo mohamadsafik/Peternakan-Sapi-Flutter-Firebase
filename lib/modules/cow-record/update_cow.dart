@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/models/cow.dart';
 import '../../controllers/update_cow_controller.dart';
 
@@ -14,7 +15,9 @@ class UpdateCowsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: background,
       appBar: AppBar(
+        backgroundColor: green,
         title: const Center(child: Text('Edit Sapi')),
         actions: [
           IconButton(

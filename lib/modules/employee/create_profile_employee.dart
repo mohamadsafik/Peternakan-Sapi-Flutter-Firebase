@@ -38,10 +38,10 @@ class _CreateProfileEmployeeState extends State<CreateProfileEmployee> {
                 final DocumentSnapshot documentSnapshot =
                     streamSnapshot.data!.docs[index];
                 return ListTile(
-                  title: Text(
-                    documentSnapshot['username'],
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
+                  // title: Text(
+                  //   documentSnapshot['username'],
+                  //   style: const TextStyle(fontWeight: FontWeight.bold),
+                  // ),
                   trailing: IconDurationButton(
                     Icons.edit,
                     size: 0,

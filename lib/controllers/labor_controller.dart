@@ -13,7 +13,7 @@ class LaborController extends GetxController {
   TextEditingController password = TextEditingController();
   TextEditingController role = TextEditingController();
 
-  void registerLabor(String email, String username, String password) async {
+  void registerLabor(String email, String password) async {
     CollectionReference cows = firestore.collection("users");
     FirebaseApp app = await Firebase.initializeApp(
         name: 'Secondary', options: Firebase.app().options);
@@ -21,7 +21,6 @@ class LaborController extends GetxController {
       await FirebaseAuth.instanceFor(app: app)
           .createUserWithEmailAndPassword(email: email, password: password);
       await cows.add({
-        "username": username,
         "email": email,
         "password": password,
         "uidowner": auth.currentUser?.uid,
@@ -29,6 +28,7 @@ class LaborController extends GetxController {
         "role": "employee",
         "image": "",
       });
+      Get.snackbar("Berhasil", "Menambahkan Pekerja");
     } on FirebaseAuthException catch (e) {
       // this is solely for the Firebase Auth Exception
       // for example : password did not match

@@ -49,7 +49,7 @@ class RecordController extends GetxController {
                 'vaksin': vaksin,
                 'date': date,
                 'doctor': doctor,
-                'note': note,
+                'noted': note,
                 'time': DateTime.now(),
               }
             ],
@@ -101,7 +101,7 @@ class RecordController extends GetxController {
                 'diagnosis': diagnosis,
                 'date': date,
                 'doctor': doctor,
-                'note': note,
+                'noted': note,
                 'time': DateTime.now(),
               }
             ],
@@ -153,7 +153,7 @@ class RecordController extends GetxController {
                 "action": action,
                 'date': date,
                 'noted': straw,
-                'inseminator': inseminator,
+                'doctor': inseminator,
                 'time': DateTime.now(),
               }
             ],
@@ -205,7 +205,7 @@ class RecordController extends GetxController {
                 "action": action,
                 'date': date,
                 'noted': straw,
-                'inseminator': inseminator,
+                'doctor': inseminator,
                 'time': DateTime.now(),
               }
             ],
