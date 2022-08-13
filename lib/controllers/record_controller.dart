@@ -41,7 +41,6 @@ class RecordController extends GetxController {
       await cows.update(
         {
           "vaksin": vaksin,
-          "person": auth.currentUser?.uid,
           "record": FieldValue.arrayUnion(
             [
               {
@@ -51,6 +50,7 @@ class RecordController extends GetxController {
                 'doctor': doctor,
                 'noted': note,
                 'time': DateTime.now(),
+                "person": auth.currentUser?.email,
               }
             ],
           )
@@ -93,7 +93,6 @@ class RecordController extends GetxController {
       await cows.update(
         {
           "statussick": 'Sakit',
-          "person": auth.currentUser?.uid,
           "record": FieldValue.arrayUnion(
             [
               {
@@ -103,6 +102,7 @@ class RecordController extends GetxController {
                 'doctor': doctor,
                 'noted': note,
                 'time': DateTime.now(),
+                "person": auth.currentUser?.email,
               }
             ],
           )
@@ -146,7 +146,6 @@ class RecordController extends GetxController {
       await cows.update(
         {
           "statuspregnant": status,
-          "person": auth.currentUser?.uid,
           "record": FieldValue.arrayUnion(
             [
               {
@@ -155,6 +154,7 @@ class RecordController extends GetxController {
                 'noted': straw,
                 'doctor': inseminator,
                 'time': DateTime.now(),
+                "person": auth.currentUser?.email,
               }
             ],
           )
@@ -198,7 +198,6 @@ class RecordController extends GetxController {
       await cows.update(
         {
           "statuspregnant": '',
-          "person": auth.currentUser?.uid,
           "record": FieldValue.arrayUnion(
             [
               {
@@ -207,6 +206,7 @@ class RecordController extends GetxController {
                 'noted': straw,
                 'doctor': inseminator,
                 'time': DateTime.now(),
+                "person": auth.currentUser?.email,
               }
             ],
           )

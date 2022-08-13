@@ -27,7 +27,7 @@ import '../modules/auth/login.dart';
 import '../modules/auth/register.dart';
 import '../modules/cow-record/detail_cow/detail_cow.dart';
 import '../modules/cow-record/list_cow/list_cows.dart';
-import '../modules/cow-record/list_event_cow/list_event.dart';
+import '../modules/cow-record/list_record/list_event.dart';
 import '../modules/labor/add_labor.dart';
 import '../modules/labor/labor.dart';
 import '../bindings/settingbinding.dart';

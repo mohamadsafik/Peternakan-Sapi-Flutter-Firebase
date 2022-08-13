@@ -13,6 +13,7 @@ class AddCowsPage extends StatelessWidget {
   AddCowsPage({Key? key}) : super(key: key);
 
   final controller = Get.find<AddCowController>();
+  final bool _validate = false;
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +46,9 @@ class AddCowsPage extends StatelessWidget {
               TextField(
                 controller: controller.name,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Nama",
-                ),
+                    border: OutlineInputBorder(),
+                    labelText: "Nama",
+                    errorText: _validate ? "data kosong" : null),
               ),
               const SizedBox(height: 10),
               TextField(

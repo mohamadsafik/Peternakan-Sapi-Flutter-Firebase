@@ -206,7 +206,11 @@ class LaborPage extends GetView<LaborController> {
                                 // subtitle: Text(
                                 //   documentSnapshot['email'].toString(),
                                 // ),
-                                trailing: Icon(Icons.arrow_right)),
+                                trailing: IconButton(
+                                    onPressed: () {
+                                      print(documentSnapshot.data());
+                                    },
+                                    icon: Icon(Icons.abc))),
                           );
                         },
                       );

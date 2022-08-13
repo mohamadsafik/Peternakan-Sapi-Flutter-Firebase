@@ -27,15 +27,8 @@ class WeightPredictionController extends GetxController {
           }
         ]),
       });
-      Get.defaultDialog(
-        title: "berhasil",
-        middleText: "berhasil edit sapi",
-        onConfirm: () {
-          Get.back();
-          Get.back();
-        },
-        textConfirm: "okay",
-      );
+      Get.back();
+      Get.back();
     } catch (e) {
       if (kDebugMode) {
         print(e);

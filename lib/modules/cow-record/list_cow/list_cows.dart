@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -69,8 +72,9 @@ class _ListCowsState extends State<ListCows> {
                             color: Colors.grey,
                           )),
                       IconButton(
-                          onPressed: () =>
-                              controller.deleteSapi(documentSnapshot.id),
+                          onPressed: () {
+                            controller.deleteSapi(documentSnapshot.id);
+                          },
                           icon: const Icon(
                             Icons.delete,
                             color: Colors.red,
@@ -143,7 +147,7 @@ class _ListCowsState extends State<ListCows> {
                     }),
               ],
             )),
-        drawer:  drawer(),
+        drawer: drawer(),
         body: (controller.isExecuted)
             ? searchedData()
             : SingleChildScrollView(
@@ -163,8 +167,8 @@ class _ListCowsState extends State<ListCows> {
                               itemBuilder: (context, index) {
                                 final DocumentSnapshot documentSnapshot =
                                     streamSnapshot.data!.docs[index];
-                                final int documentsum =
-                                    streamSnapshot.data!.docs.length;
+                                final map = streamSnapshot.data!.docs[index];
+
                                 return Container(
                                   margin: const EdgeInsets.only(
                                       left: 8, right: 8, bottom: 4, top: 4),
@@ -203,9 +207,10 @@ class _ListCowsState extends State<ListCows> {
                                                 color: Colors.grey,
                                               )),
                                           IconButton(
-                                              onPressed: () =>
-                                                  controller.deleteSapi(
-                                                      documentSnapshot.id),
+                                              onPressed: () {
+                                                controller.deleteSapi(
+                                                    documentSnapshot.id);
+                                              },
                                               icon: const Icon(
                                                 Icons.delete,
                                                 color: Colors.red,

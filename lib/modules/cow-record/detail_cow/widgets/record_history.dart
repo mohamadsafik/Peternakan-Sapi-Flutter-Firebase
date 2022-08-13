@@ -45,7 +45,8 @@ class record_history extends StatelessWidget {
                       ),
                       child: Center(
                         child: GestureDetector(
-                          onTap: () => Get.toNamed(RouteName.listevent),
+                          onTap: () =>
+                              Get.toNamed(RouteName.listevent, arguments: data),
                           child: const Icon(
                             Icons.list,
                             color: Colors.black,
@@ -365,7 +366,44 @@ class record_history extends StatelessWidget {
                                         subtitle: Text(record["date"]),
                                         trailing: IconButton(
                                             onPressed: () {
-                                              // record[index].delete();
+                                              void recordCow() async {
+                                                DocumentReference cows =
+                                                    firestore
+                                                        .collection("cows")
+                                                        .doc(data.id);
+                                                try {
+                                                  await cows.update(
+                                                    {
+                                                      "record": FieldValue
+                                                          .arrayRemove(
+                                                        [record],
+                                                      )
+                                                    },
+                                                  );
+                                                  Get.defaultDialog(
+                                                    barrierDismissible: true,
+                                                    title: "berhasil",
+                                                    middleText:
+                                                        "berhasil record sapi",
+                                                    onConfirm: () {
+                                                      Get.back();
+                                                    },
+                                                    textConfirm: "okay",
+                                                  );
+                                                } catch (e) {
+                                                  if (kDebugMode) {
+                                                    print(e);
+                                                  }
+                                                  Get.defaultDialog(
+                                                    title: "terjadi kesalahan",
+                                                    middleText:
+                                                        "tidak berhasil edit sapi",
+                                                  );
+                                                }
+                                                print(cows);
+                                              }
+
+                                              recordCow();
                                             },
                                             icon: Icon(Icons.delete))),
                                   ),

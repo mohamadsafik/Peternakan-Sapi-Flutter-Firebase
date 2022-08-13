@@ -28,6 +28,8 @@ class ListCowController extends GetxController {
         .get();
   }
 
+  
+
   void deleteSapi(String docID) async {
     try {
       DocumentReference cows = firestore.collection("cows").doc(docID);

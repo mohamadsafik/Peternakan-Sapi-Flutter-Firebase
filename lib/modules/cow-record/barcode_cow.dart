@@ -53,7 +53,12 @@ class BarcodePage extends StatelessWidget {
                     height: 20,
                   ),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.snackbar('qrcode', 'download Berhasil',
+                            icon: Icon(Icons.done),
+                            backgroundColor: Colors.white,
+                            duration: Duration(seconds: 2));
+                      },
                       icon: Icon(
                         Icons.download,
                         color: green,

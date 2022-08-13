@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:peternakan_sapi/constants/color.dart';
 
 class DetailRecordPage extends StatelessWidget {
   DetailRecordPage({Key? key, this.data}) : super(key: key);
@@ -13,15 +14,47 @@ class DetailRecordPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(data['action'].toString()),
       ),
-      body: Container(
-          child: Column(
-        children: [
-          Text(data['action'].toString()),
-          Text(data['date'].toString()),
-          Text(data['doctor'].toString()),
-          Text(data['noted'].toString()),
-        ],
-      )),
+      body: Center(
+        child: Column(
+          children: [
+            ListTile(
+              leading: const Icon(
+                Icons.info,
+                color: const Color.fromARGB(255, 202, 151, 40),
+              ),
+              title: Text(data['action'].toString()),
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.info,
+                color: const Color.fromARGB(255, 202, 151, 40),
+              ),
+              title: Text(data['date'].toString()),
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.info,
+                color: const Color.fromARGB(255, 202, 151, 40),
+              ),
+              title: Text(data['doctor'].toString()),
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.info,
+                color: const Color.fromARGB(255, 202, 151, 40),
+              ),
+              title: Text(data['noted'].toString()),
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.info,
+                color: const Color.fromARGB(255, 202, 151, 40),
+              ),
+              title: Text(data['person'].toString()),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -61,7 +61,8 @@ class _SettingPageState extends State<SettingPage> {
                         leading: CircleAvatar(
                           backgroundColor:
                               const Color.fromARGB(255, 223, 219, 219),
-                          backgroundImage: (documentSnapshot['image'] == '')
+                          backgroundImage: (documentSnapshot['image'] == null ||
+                                  documentSnapshot['image'] == '')
                               ? null
                               : NetworkImage(
                                   documentSnapshot['image'],

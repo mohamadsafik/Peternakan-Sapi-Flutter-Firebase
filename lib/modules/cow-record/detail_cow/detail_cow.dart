@@ -17,6 +17,7 @@ class DetailCowPage extends StatelessWidget {
   final controller = Get.find<DetailCowController>();
 
   var data = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

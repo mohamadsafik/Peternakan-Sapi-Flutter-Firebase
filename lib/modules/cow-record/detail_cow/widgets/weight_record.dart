@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 
+import '../../../../constants/firebase_constants.dart';
+import '../../list_record/list_weigth.dart';
 import '../../record_weight_prediction.dart';
 
 class WeightRecord extends StatelessWidget {
@@ -36,7 +39,7 @@ class WeightRecord extends StatelessWidget {
                       ),
                       child: Center(
                         child: GestureDetector(
-                          onTap: () => Get.toNamed(RouteName.listevent),
+                          onTap: () => Get.to(ListWeigth()),
                           child: const Icon(
                             Icons.show_chart,
                             color: Colors.black,
@@ -107,10 +110,54 @@ class WeightRecord extends StatelessWidget {
                                     title: Text(
                                       record["weight"],
                                     ),
-                                    trailing: Text(record['date'].toString()),
+                                    trailing: IconButton(
+                                        onPressed: () {
+                                          void recordCow() async {
+                                            DocumentReference cows = firestore
+                                                .collection("cows")
+                                                .doc(data.id);
+                                            try {
+                                              await cows.update(
+                                                {
+                                                  "weights":
+                                                      FieldValue.arrayRemove(
+                                                    [record],
+                                                  )
+                                                },
+                                              );
+                                              Get.defaultDialog(
+                                                barrierDismissible: true,
+                                                title: "berhasil",
+                                                middleText:
+                                                    "berhasil record sapi",
+                                                onConfirm: () {
+                                                  Get.back();
+                                                },
+                                                textConfirm: "okay",
+                                              );
+                                            } catch (e) {
+                                              if (kDebugMode) {
+                                                print(e);
+                                              }
+                                              Get.defaultDialog(
+                                                title: "terjadi kesalahan",
+                                                middleText:
+                                                    "tidak berhasil edit sapi",
+                                              );
+                                            }
+                                            print(cows);
+                                            print(record);
+                                          }
 
-                                    // trailing: Text(record["date"]),
+                                          recordCow();
+                                        },
+                                        icon: const Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        )),
                                   ),
+
+                                  // trailing: Text(record["date"]),
                                 );
                               }).toList(growable: false)),
                             ),

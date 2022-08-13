@@ -78,6 +78,7 @@ class _WeightPredictionPageState extends State<WeightPredictionPage> {
                               onConfirm: () => controller.editCow(
                                   controller.weight.text, widget.data.id),
                               onCancel: () {},
+                              title: 'Prediksi Berat',
                               textConfirm: "simpan",
                               content: TextField(
                                 readOnly: true,
