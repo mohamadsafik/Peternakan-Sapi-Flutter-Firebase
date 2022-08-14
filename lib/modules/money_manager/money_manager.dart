@@ -50,45 +50,45 @@ class _MoneyManagerPageState extends State<MoneyManagerPage> {
               ],
             )),
         drawer: const drawer(),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: 120,
-                color: Colors.white,
-                child: Column(
-                  children: const [
-                    Expanded(
-                      child: ListTile(
-                        title: Text("Masuk:"),
-                        trailing: Text("720"),
-                      ),
-                    ),
-                    Expanded(
-                      child: ListTile(
-                        title: Text("Keluar:"),
-                        trailing: Text("720"),
-                      ),
-                    ),
-                    Expanded(
-                      child: ListTile(
-                        title: Text("Total:"),
-                        trailing: Text(
-                          "230",
-                          style: TextStyle(color: Colors.red),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  height: 120,
+                  color: Colors.white,
+                  child: Column(
+                    children: const [
+                      Expanded(
+                        child: ListTile(
+                          title: Text("Masuk:"),
+                          trailing: Text("720"),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    )
-                  ],
+                      Expanded(
+                        child: ListTile(
+                          title: Text("Keluar:"),
+                          trailing: Text("720"),
+                        ),
+                      ),
+                      Expanded(
+                        child: ListTile(
+                          title: Text("Total:"),
+                          trailing: Text(
+                            "230",
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-            SingleChildScrollView(
-              child: SizedBox(
+              SizedBox(
                 height: 500,
                 child: StreamBuilder(
                   stream: FirebaseFirestore.instance
@@ -146,8 +146,8 @@ class _MoneyManagerPageState extends State<MoneyManagerPage> {
                   },
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ));
   }
 }

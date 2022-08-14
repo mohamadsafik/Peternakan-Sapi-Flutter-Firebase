@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
-import '../../controllers/weigth_prediction_controller.dart';
+import '../../../controllers/weigth_prediction_controller.dart';
 
 // ignore: must_be_immutable
 class WeightPredictionPage extends StatefulWidget {

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/controllers/home_controller.dart';
 import 'package:peternakan_sapi/controllers/list_cow_controller.dart';
-import 'package:peternakan_sapi/modules/cow-record/record_weight_prediction.dart';
+import '../cows/record/record_weight_prediction.dart';
 import 'widgets/cow_container_widget.dart';
 import 'widgets/drawer.dart';
 import 'widgets/monitoring_widget.dart';

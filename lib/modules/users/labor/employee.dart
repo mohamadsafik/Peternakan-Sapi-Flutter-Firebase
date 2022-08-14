@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 
-import '../../controllers/labor_controller.dart';
+import '../../../controllers/labor_controller.dart';
 
-class LaborPage extends GetView<LaborController> {
-  LaborPage({Key? key}) : super(key: key);
+class EmployeeMonitoringPage extends GetView<LaborController> {
+  EmployeeMonitoringPage({Key? key}) : super(key: key);
 
   @override
   // final controller = Get.find<LaborController>();

@@ -2,14 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:peternakan_sapi/modules/cow-record/barcode_cow.dart';
-import 'package:peternakan_sapi/modules/cow-record/detail_cow/widgets/weight_record.dart';
 import '../../../constants/color.dart';
 import '../../../controllers/detail_cow_controller.dart';
-import '../record_weight_prediction.dart';
+import 'widgets/barcode_cow.dart';
 import 'widgets/cow_information.dart';
 import 'widgets/image_show.dart';
 import 'widgets/record_history.dart';
+import 'widgets/weight_record.dart';
 
 // ignore: must_be_immutable
 class DetailCowPage extends StatelessWidget {

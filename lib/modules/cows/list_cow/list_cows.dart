@@ -100,8 +100,9 @@ class _ListCowsState extends State<ListCows> {
               actions: [
                 Center(
                   child: Container(
-                    height: 50,
-                    width: 250,
+                    margin: EdgeInsets.only(top: 10),
+                    // height: 50,
+                    width: Get.width / 1.5,
                     color: background,
                     child: TextField(
                       decoration: InputDecoration(

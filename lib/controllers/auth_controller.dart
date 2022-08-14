@@ -6,7 +6,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/constants/firebase_constants.dart';
 import 'package:peternakan_sapi/controllers/setting_controller.dart';
-import 'package:peternakan_sapi/modules/cow-record/list_cow/list_cows.dart';
 import 'package:peternakan_sapi/modules/employee/create_profile_employee.dart';
 import 'package:peternakan_sapi/modules/employee/home_employee.dart';
 import 'package:peternakan_sapi/modules/landing/landing.dart';

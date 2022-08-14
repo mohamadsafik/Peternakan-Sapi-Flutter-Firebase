@@ -25,10 +25,9 @@ class ListCowController extends GetxController {
     return FirebaseFirestore.instance
         .collection('cows')
         .where('name', isGreaterThanOrEqualTo: querystring)
+        .where('uid', isEqualTo: auth.currentUser?.uid)
         .get();
   }
-
-  
 
   void deleteSapi(String docID) async {
     try {
@@ -86,6 +85,8 @@ class ListCowController extends GetxController {
       .orderBy('name')
       .where('uid', isEqualTo: auth.currentUser?.uid)
       .snapshots();
+
+  querydataEmployee(String text) {}
 
   // make a barcode scan to detailcow page with document.id from firestore database
 

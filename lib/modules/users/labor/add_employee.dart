@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 
-import '../../controllers/labor_controller.dart';
+import '../../../controllers/labor_controller.dart';
 
-class AddLaborPage extends GetView<LaborController> {
-  const AddLaborPage({Key? key}) : super(key: key);
+class AddEmployeePage extends GetView<LaborController> {
+  const AddEmployeePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

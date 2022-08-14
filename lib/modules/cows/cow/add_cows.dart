@@ -6,7 +6,7 @@ import 'package:peternakan_sapi/models/cow.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../../controllers/add_cow_controller.dart';
+import '../../../controllers/add_cow_controller.dart';
 
 //menggunakan getxview
 class AddCowsPage extends StatelessWidget {

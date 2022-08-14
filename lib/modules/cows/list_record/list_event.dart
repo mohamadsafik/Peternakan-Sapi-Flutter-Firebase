@@ -4,11 +4,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
-import 'package:peternakan_sapi/modules/cow-record/list_record/update_record.dart';
 
 import '../../../constants/firebase_constants.dart';
 import '../../../controllers/list_event_controller.dart';
-import '../detail_record.dart';
+import '../record/detail_record.dart';
+import 'update_record.dart';
 
 // ignore: must_be_immutable
 class ListEvent extends StatelessWidget {

@@ -7,7 +7,7 @@ import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../../../constants/firebase_constants.dart';
 import '../../list_record/list_weigth.dart';
-import '../../record_weight_prediction.dart';
+import '../../record/record_weight_prediction.dart';
 
 class WeightRecord extends StatelessWidget {
   const WeightRecord({Key? key, required this.data, required this.currentUser})
@@ -29,6 +29,7 @@ class WeightRecord extends StatelessWidget {
           child: Column(
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                       height: 30,

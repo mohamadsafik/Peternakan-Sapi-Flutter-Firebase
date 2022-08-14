@@ -7,7 +7,6 @@ import 'package:peternakan_sapi/bindings/detail_cow_binding.dart';
 import 'package:peternakan_sapi/bindings/employee/list_cow_employee_binding.dart';
 import 'package:peternakan_sapi/bindings/labor_binding.dart';
 import 'package:peternakan_sapi/bindings/social_media_binding.dart';
-import 'package:peternakan_sapi/modules/cow-record/add_cows.dart';
 import 'package:peternakan_sapi/modules/employee/create_profile_employee.dart';
 import 'package:peternakan_sapi/modules/employee/list_cow_employee.dart';
 import 'package:peternakan_sapi/modules/landing/landing.dart';
@@ -20,17 +19,18 @@ import 'package:peternakan_sapi/bindings/update_cow_binding.dart';
 import 'package:peternakan_sapi/modules/setting/update_profile.dart';
 import 'package:peternakan_sapi/modules/social_media/social_media_beranda.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
-import 'package:peternakan_sapi/modules/cow-record/update_cow.dart';
 import '../bindings/landing_binding.dart';
 import '../modules/auth/auth_main.dart';
 import '../modules/auth/login.dart';
 import '../modules/auth/register.dart';
-import '../modules/cow-record/detail_cow/detail_cow.dart';
-import '../modules/cow-record/list_cow/list_cows.dart';
-import '../modules/cow-record/list_record/list_event.dart';
-import '../modules/labor/add_labor.dart';
-import '../modules/labor/labor.dart';
+import '../modules/cows/cow/add_cows.dart';
+import '../modules/cows/detail_cow/detail_cow.dart';
+import '../modules/cows/list_cow/list_cows.dart';
+import '../modules/cows/list_record/list_event.dart';
+import '../modules/cows/cow/update_cow.dart';
 import '../bindings/settingbinding.dart';
+import '../modules/users/labor/add_employee.dart';
+import '../modules/users/labor/employee.dart';
 
 class AppPages {
   static final pages = [
@@ -79,12 +79,12 @@ class AppPages {
     ),
     GetPage(
       name: (RouteName.addlabor),
-      page: () => const AddLaborPage(),
+      page: () => const AddEmployeePage(),
       binding: LaborBinding(),
     ),
     GetPage(
       name: (RouteName.employee),
-      page: () => LaborPage(),
+      page: () => EmployeeMonitoringPage(),
       binding: LaborBinding(),
     ),
     GetPage(

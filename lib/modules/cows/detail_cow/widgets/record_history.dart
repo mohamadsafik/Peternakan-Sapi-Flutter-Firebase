@@ -3,15 +3,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/firebase_constants.dart';
-import 'package:peternakan_sapi/modules/cow-record/record_pregnant.dart';
-import 'package:peternakan_sapi/modules/cow-record/record_sick.dart';
-import 'package:peternakan_sapi/modules/cow-record/record_vaksin.dart';
-import 'package:peternakan_sapi/modules/cow-record/detail_record.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../../../component/alert_component.dart';
 import '../../../../constants/color.dart';
-import '../../inseminasi_buatan.dart';
+import '../../record/detail_record.dart';
+import '../../record/record_inseminasi_buatan.dart';
+import '../../record/record_pregnant.dart';
+import '../../record/record_vaksin.dart';
+import '../../record/record_sick.dart';
 
 // ignore: camel_case_types
 class record_history extends StatelessWidget {
@@ -35,6 +35,7 @@ class record_history extends StatelessWidget {
           child: Column(
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                       height: 30,

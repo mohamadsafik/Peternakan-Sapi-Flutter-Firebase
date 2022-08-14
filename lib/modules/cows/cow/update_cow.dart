@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/models/cow.dart';
-import '../../controllers/update_cow_controller.dart';
+import '../../../controllers/update_cow_controller.dart';
 
 // ignore: must_be_immutable
 class UpdateCowsPage extends StatelessWidget {

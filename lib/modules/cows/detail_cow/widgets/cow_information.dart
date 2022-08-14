@@ -23,6 +23,7 @@ class CowInformation extends StatelessWidget {
           child: Column(
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                       height: 30,
@@ -34,7 +35,6 @@ class CowInformation extends StatelessWidget {
                       child: null),
                   Container(
                       height: 30,
-                      width: 260,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -46,7 +46,6 @@ class CowInformation extends StatelessWidget {
                       )),
                   Container(
                       height: 30,
-                      width: 30,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: background,

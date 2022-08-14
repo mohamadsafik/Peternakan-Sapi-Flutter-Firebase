@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:peternakan_sapi/controllers/record_controller.dart';
+import 'package:peternakan_sapi/constants/color.dart';
+import '../../../controllers/record_controller.dart';
 
-import '../../constants/color.dart';
-
-class PregnantRecordPage extends StatelessWidget {
-  PregnantRecordPage({Key? key, this.data, this.docID}) : super(key: key);
+//menggunakan getxview
+// ignore: must_be_immutable
+class VaksinRecord extends StatelessWidget {
+  VaksinRecord({Key? key, this.data, this.docID}) : super(key: key);
   final controller = Get.put(RecordController());
   var data = Get.arguments;
   var docID = Get.arguments;
@@ -16,8 +17,8 @@ class PregnantRecordPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: green,
-        title: const Text(
-          'Catat Hamil',
+        title: Text(
+          'Vaksinasi',
         ),
       ),
       body: SingleChildScrollView(
@@ -28,18 +29,9 @@ class PregnantRecordPage extends StatelessWidget {
               const SizedBox(height: 10),
               TextField(
                 readOnly: true,
-                controller: controller.action..text = 'Catat Hamil (PKB)',
+                controller: controller.action..text = 'Vaksin',
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 10),
-              TextField(
-                readOnly: true,
-                controller: controller.status..text = 'Hamil',
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Hasil Pemeriksaan",
                 ),
               ),
               const SizedBox(height: 10),
@@ -64,30 +56,38 @@ class PregnantRecordPage extends StatelessWidget {
                   }),
               const SizedBox(height: 10),
               TextField(
-                controller: controller.inseminator..text = '',
+                controller: controller.vaksin..text = '',
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: "Nama Pemeriksa",
+                  labelText: "jenis vaksin",
                 ),
               ),
               const SizedBox(height: 10),
               TextField(
-                controller: controller.straw..text = '',
+                controller: controller.note..text = '',
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: "Kode Semen (straw)",
+                  labelText: "Catatan",
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: controller.doctor..text = '',
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Nama Dokter/Mantri",
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
               ElevatedButton(
-                onPressed: () => controller.recordPregnant(
-                  controller.status.text,
+                onPressed: () => controller.recordVaksin(
                   controller.action.text,
+                  controller.vaksin.text,
                   controller.date.text,
-                  controller.straw.text,
-                  controller.inseminator.text,
+                  controller.doctor.text,
+                  controller.note.text,
                   docID,
                   data.toString(),
                 ),
