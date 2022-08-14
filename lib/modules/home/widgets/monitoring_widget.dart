@@ -2,9 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../constants/constant.dart';
 import '../../../constants/firebase_constants.dart';
-import '../../../controllers/auth_controller.dart';
 import '../../../controllers/home_controller.dart';
 import '../../../controllers/list_cow_controller.dart';
 
@@ -30,7 +28,7 @@ class monitoring_widget extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.only(left: width / 30),
-                child: Text(
+                child: const Text(
                   'Monitoring',
                 ),
               ),
@@ -70,14 +68,15 @@ class monitoring_widget extends StatelessWidget {
                                 AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                               if (streamSnapshot.hasData &&
                                   streamSnapshot.data != null) {
+                                final int sumJantan =
+                                    streamSnapshot.data!.docs.length;
                                 return ListView.builder(
                                     shrinkWrap: true,
                                     itemCount: 1,
                                     itemBuilder: (context, index) {
                                       // final DocumentSnapshot documentSnapshot =
                                       //     streamSnapshot.data!.docs[index];
-                                      final int sumJantan =
-                                          streamSnapshot.data!.docs.length;
+
                                       return Text((streamSnapshot.hasData)
                                           ? sumJantan.toString()
                                           : '0');
@@ -121,18 +120,11 @@ class monitoring_widget extends StatelessWidget {
                                 AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                               if (streamSnapshot.hasData &&
                                   streamSnapshot.data != null) {
-                                return ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: 1,
-                                    itemBuilder: (context, index) {
-                                      // final DocumentSnapshot documentSnapshot =
-                                      //     streamSnapshot.data!.docs[index];
-                                      final int sumBetina =
-                                          streamSnapshot.data!.docs.length;
-                                      return Text((streamSnapshot.hasData)
-                                          ? sumBetina.toString()
-                                          : '0');
-                                    });
+                                final int sumBetina =
+                                    streamSnapshot.data!.docs.length;
+                                return Text((streamSnapshot.hasData)
+                                    ? sumBetina.toString()
+                                    : '0');
                               }
                               return const CircularProgressIndicator();
                             }),
@@ -153,11 +145,11 @@ class monitoring_widget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(
                       child: ListTile(
-                        leading: SizedBox(
+                        leading: const SizedBox(
                           height: 70.0,
                           width: 60.0, // fixed width and height
-                          child:
-                              Image(image: AssetImage('assets/home/cow4.png')),
+                          child: Image(
+                              image: const AssetImage('assets/home/cow4.png')),
                         ),
                         title: StreamBuilder(
                             stream: FirebaseFirestore.instance
@@ -169,25 +161,18 @@ class monitoring_widget extends StatelessWidget {
                                 AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                               if (streamSnapshot.hasData &&
                                   streamSnapshot.data != null) {
-                                return ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: 1,
-                                    itemBuilder: (context, index) {
-                                      // final DocumentSnapshot documentSnapshot =
-                                      //     streamSnapshot.data!.docs[index];
-                                      final int sumPregnant =
-                                          streamSnapshot.data!.docs.length;
-                                      return Text((streamSnapshot.hasData)
-                                          ? sumPregnant.toString()
-                                          : '0');
-                                    });
+                                final int sumPregnant =
+                                    streamSnapshot.data!.docs.length;
+                                return Text((streamSnapshot.hasData)
+                                    ? sumPregnant.toString()
+                                    : '0');
                               }
-                              return CircularProgressIndicator();
+                              return const CircularProgressIndicator();
                             }),
-                        subtitle: Text(
+                        subtitle: const Text(
                           'Hamil',
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 29, 121, 57),
+                          style: const TextStyle(
+                            color: const Color.fromARGB(255, 29, 121, 57),
                             fontFamily: 'poppins',
                           ),
                         ),
@@ -205,49 +190,41 @@ class monitoring_widget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(
                       child: ListTile(
-                        leading: SizedBox(
-                          height: 70.0,
-                          width: 60.0, // fixed width and height
-                          child: Image(
-                              image: AssetImage('assets/home/thermometer.png')),
-                        ),
-                        title: StreamBuilder(
-                            stream: FirebaseFirestore.instance
-                                .collection('cows')
-                                .where('uid', isEqualTo: auth.currentUser?.uid)
-                                .where('statussick', isEqualTo: "Sakit")
-                                .snapshots(),
-                            builder: (context,
-                                AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-                              if (streamSnapshot.hasData &&
-                                  streamSnapshot.data != null) {
-                                return ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: 1,
-                                    itemBuilder: (context, index) {
-                                      // final DocumentSnapshot documentSnapshot =
-                                      //     streamSnapshot.data!.docs[index];
-                                      final int sumSick =
-                                          streamSnapshot.data!.docs.length;
-                                      return Text((streamSnapshot.hasData)
-                                          ? sumSick.toString()
-                                          : '0');
-                                    });
-                              }
-                              return CircularProgressIndicator();
-                            }),
-                        subtitle: StreamBuilder<Object>(
-                            stream: null,
-                            builder: (context, snapshot) {
-                              return Text(
-                                'Sakit',
-                                style: TextStyle(
-                                  color: Color.fromARGB(255, 218, 105, 0),
-                                  fontFamily: 'poppins',
-                                ),
-                              );
-                            }),
-                      ),
+                          leading: const SizedBox(
+                            height: 70.0,
+                            width: 60.0, // fixed width and height
+                            child: Image(
+                                image: const AssetImage(
+                                    'assets/home/thermometer.png')),
+                          ),
+                          title: StreamBuilder(
+                              stream: FirebaseFirestore.instance
+                                  .collection('cows')
+                                  .where('uid',
+                                      isEqualTo: auth.currentUser?.uid)
+                                  .where('statussick', isEqualTo: "Sakit")
+                                  .snapshots(),
+                              builder: (context,
+                                  AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                                if (streamSnapshot.hasData &&
+                                    streamSnapshot.data != null) {
+                                  // final DocumentSnapshot documentSnapshot =
+                                  //     streamSnapshot.data!.docs[index];
+                                  final int sumSick =
+                                      streamSnapshot.data!.docs.length;
+                                  return Text((streamSnapshot.hasData)
+                                      ? sumSick.toString()
+                                      : '0');
+                                }
+                                return const CircularProgressIndicator();
+                              }),
+                          subtitle: const Text(
+                            'Sakit',
+                            style: TextStyle(
+                              color: const Color.fromARGB(255, 218, 105, 0),
+                              fontFamily: 'poppins',
+                            ),
+                          )),
                     ),
                   ),
                 ],

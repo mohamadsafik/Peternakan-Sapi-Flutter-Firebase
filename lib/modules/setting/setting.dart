@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/controllers/setting_controller.dart';
-import 'package:peternakan_sapi/modules/setting/update_profile.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../constants/firebase_constants.dart';
@@ -11,7 +10,7 @@ import '../../controllers/auth_controller.dart';
 import '../home/widgets/drawer.dart';
 
 class SettingPage extends StatefulWidget {
-  SettingPage({Key? key}) : super(key: key);
+  const SettingPage({Key? key}) : super(key: key);
 
   @override
   State<SettingPage> createState() => _SettingPageState();
@@ -36,7 +35,7 @@ class _SettingPageState extends State<SettingPage> {
           ],
         ),
       ),
-      drawer: drawer(),
+      drawer: const drawer(),
       backgroundColor: background,
       body: SingleChildScrollView(
         child: Column(
@@ -48,53 +47,43 @@ class _SettingPageState extends State<SettingPage> {
                   .snapshots(),
               builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                 if (streamSnapshot.connectionState == ConnectionState.active &&
-                    streamSnapshot.hasData &&
-                    streamSnapshot.data != null) {
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: streamSnapshot.data!.docs.length,
-                    itemBuilder: (context, index) {
-                      final DocumentSnapshot documentSnapshot =
-                          streamSnapshot.data!.docs[index];
-                      return Column(children: [
-                        const Divider(height: 20),
-                        ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor:
-                                const Color.fromARGB(255, 223, 219, 219),
-                            backgroundImage:
-                                (documentSnapshot['image'] == null ||
-                                        documentSnapshot['image'] == '')
-                                    ? null
-                                    : NetworkImage(
-                                        documentSnapshot['image'],
-                                        // child: (documentSnapshot['image'] == '')
-                                        //     ? const Icon(Icons.person)
-                                        //     : Image.network(
-                                        //         documentSnapshot['image'],
-                                        //         fit: BoxFit.cover,
-                                        //       )),
-                                      ),
-                          ),
-                          title: Text(
-                            documentSnapshot['username'],
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Text(documentSnapshot['email']),
-                          trailing: IconButton(
-                              onPressed: () {
-                                Get.toNamed(RouteName.updateprofile,
-                                    arguments: documentSnapshot);
-                              },
-                              icon: const Icon(Icons.edit)),
-                        ),
-                      ]);
-                    },
-                  );
+                    streamSnapshot.hasData) {
+                  final DocumentSnapshot documentSnapshot =
+                      streamSnapshot.data!.docs.first;
+                  return Column(children: [
+                    const Divider(height: 20),
+                    ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor:
+                            const Color.fromARGB(255, 223, 219, 219),
+                        backgroundImage: (documentSnapshot['image'] == null ||
+                                documentSnapshot['image'] == '')
+                            ? null
+                            : NetworkImage(
+                                documentSnapshot['image'],
+                                // child: (documentSnapshot['image'] == '')
+                                //     ? const Icon(Icons.person)
+                                //     : Image.network(
+                                //         documentSnapshot['image'],
+                                //         fit: BoxFit.cover,
+                                //       )),
+                              ),
+                      ),
+                      title: Text(
+                        documentSnapshot['username'],
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text(documentSnapshot['email']),
+                      trailing: IconButton(
+                          onPressed: () {
+                            Get.toNamed(RouteName.updateprofile,
+                                arguments: documentSnapshot);
+                          },
+                          icon: const Icon(Icons.edit)),
+                    ),
+                  ]);
                 }
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return Container();
               },
             ),
             const Divider(height: 20),

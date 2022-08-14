@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
+import 'package:peternakan_sapi/modules/cows/record/record_weight.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../../../constants/firebase_constants.dart';
@@ -70,7 +71,69 @@ class WeightRecord extends StatelessWidget {
                       ),
                       child: Center(
                         child: GestureDetector(
-                          onTap: () => Get.to(WeightPredictionPage(data: data)),
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                      title: const Text("Berat Sapi"),
+                                      content: SizedBox(
+                                        height: 130.0,
+                                        child: Column(
+                                          children: <Widget>[
+                                            //this is the button to add income
+
+                                            Row(
+                                              children: <Widget>[
+                                                const Padding(
+                                                  padding: EdgeInsets.all(4.0),
+                                                  child:
+                                                      Icon(Icons.attach_money),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(2.0),
+                                                  child: MaterialButton(
+                                                    onPressed: () {
+                                                      Get.to(
+                                                          WeightPredictionPage(
+                                                              data: data));
+                                                    },
+                                                    child: const Text(
+                                                        "Prediksi Bobot"),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            Row(
+                                              children: <Widget>[
+                                                const Padding(
+                                                  padding: EdgeInsets.all(4.0),
+                                                  child:
+                                                      Icon(Icons.attach_money),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(2.0),
+                                                  child: MaterialButton(
+                                                    onPressed: () {
+                                                      Get.to(WeightRecordPage(
+                                                          data: data));
+                                                    },
+                                                    child: const Text(
+                                                        "Input Berat"),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            //    the button to add expense
+
+                                            //    this is the button to add category
+                                          ],
+                                        ),
+                                      ),
+                                    ));
+                          },
+                          // => Get.to(WeightPredictionPage(data: data)),
                           child: const Icon(
                             Icons.edit,
                             color: Colors.black,
