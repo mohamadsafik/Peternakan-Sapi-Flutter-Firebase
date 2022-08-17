@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:peternakan_sapi/modules/social_media/comment.dart';
 import 'package:peternakan_sapi/modules/social_media/social_media_controller.dart';
 
 import '../../constants/color.dart';
@@ -237,8 +238,14 @@ class SocialMediaPage extends GetView<SocialMediaController> {
                                 // controller.addlike();
                               },
                             ),
-                            const Icon(
-                              Icons.chat_bubble_outline,
+                            IconButton(
+                              onPressed: () {
+                                Get.to(CommentPage(documentSnapshot),
+                                    arguments: data);
+                              },
+                              icon: Icon(
+                                Icons.chat_bubble_outline,
+                              ),
                             ),
                             const Icon(Icons.share_outlined)
                           ],

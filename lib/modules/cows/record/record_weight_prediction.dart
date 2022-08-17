@@ -24,7 +24,7 @@ class _WeightPredictionPageState extends State<WeightPredictionPage> {
           backgroundColor: green,
           title: widget.data?['name'] != null
               ? Text(widget.data['name'])
-              : Text('data')),
+              : Text('Prediksi Bobot')),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(

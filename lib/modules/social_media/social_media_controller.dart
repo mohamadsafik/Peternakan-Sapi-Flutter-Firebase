@@ -17,6 +17,7 @@ class SocialMediaController extends GetxController {
   late TextEditingController status = TextEditingController();
   late TextEditingController username = TextEditingController();
   late TextEditingController documentId = TextEditingController();
+  late TextEditingController comment = TextEditingController();
   XFile? pickedImage;
   late ImagePicker imagePicker = ImagePicker();
   String? imageUrl;
@@ -96,6 +97,58 @@ class SocialMediaController extends GetxController {
         },
         textConfirm: "okay",
       );
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      Get.defaultDialog(
+        title: "terjadi kesalahan",
+        middleText: "tidak berhasil menambahkan sapi",
+      );
+    }
+  }
+
+  void addcomment(
+    String comment,
+    String username,
+    String docStatus,
+  ) async {
+    DocumentReference comments = firestore.collection("post").doc(docStatus);
+    // var nameImage = pickedImage?.name;
+    // var storageImage =
+    //     FirebaseStorage.instance.ref().child('statusImage/$nameImage');
+    // if (pickedImage == null) {
+    //   imageUrl = null;
+    // } else {
+    //   //jika image tidak kosong maka image = url gambar
+    //   var task = storageImage.putFile(File(pickedImage!.path));
+    //   imageUrl = await (await task).ref.getDownloadURL();
+    // }
+    try {
+      await comments.update({
+        // "grup": "peternakan sapi",
+        // // "username": stream,
+        // "uid": FirebaseAuth.instance.currentUser!.uid,
+        // "username": username,
+        // "status": status,
+        // "image": imageUrl,
+        // "uid": FirebaseAuth.instance.currentUser!.uid,
+        // "date": DateFormat("d MMMM yyyy").format(DateTime.now()),
+        "comments": FieldValue.arrayUnion(
+          [
+            {
+              "comment": comment,
+              "username": username,
+              "time": DateTime.now(),
+            }
+          ],
+        ),
+        // "like": FieldValue.arrayUnion(
+        //   [],
+        // ),
+      });
+      Get.snackbar("Komentar", "berhasil",
+          duration: const Duration(seconds: 1));
     } catch (e) {
       if (kDebugMode) {
         print(e);
