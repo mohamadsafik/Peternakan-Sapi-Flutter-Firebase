@@ -10,8 +10,8 @@ import '../../../controllers/add_cow_controller.dart';
 
 //menggunakan getxview
 class AddCowsPage extends StatelessWidget {
-  AddCowsPage({Key? key}) : super(key: key);
-
+  AddCowsPage({Key? key, data}) : super(key: key);
+  var data = Get.arguments;
   final controller = Get.find<AddCowController>();
   final bool _validate = false;
 
@@ -33,6 +33,7 @@ class AddCowsPage extends StatelessWidget {
                       birthdate: controller.birthdate.text,
                       joinedwhen: controller.joinedwhen.text,
                       note: controller.note.text),
+                  controller.weight.text,
                   child: const Text('simpan sapi')),
               icon: const Icon(Icons.add_box),
             ),
@@ -42,6 +43,47 @@ class AddCowsPage extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: Column(
             children: [
+              Center(
+                child: GestureDetector(
+                  onTap: () {
+                    controller.getImage();
+                  },
+                  child: GetBuilder<AddCowController>(
+                    builder: (c) => controller.pickedImage != null
+                        ? Column(
+                            children: [
+                              Container(
+                                height: 200,
+                                width: 400,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: FileImage(
+                                          File(controller.pickedImage!.path),
+                                        ),
+                                        fit: BoxFit.cover)),
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  controller.cancelImage();
+                                },
+                                child: const Text('Hapus'),
+                              ),
+                            ],
+                          )
+                        : Container(
+                            decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.circular(50)),
+                            width: 100,
+                            height: 100,
+                            child: Icon(
+                              Icons.camera_alt,
+                              color: Colors.grey[800],
+                            ),
+                          ),
+                  ),
+                ),
+              ),
               const SizedBox(height: 10),
               TextField(
                 controller: controller.name,
@@ -73,7 +115,10 @@ class AddCowsPage extends StatelessWidget {
                     itemBuilder: (BuildContext context) {
                       return controller.ras
                           .map<PopupMenuItem<String>>((String value) {
-                        return PopupMenuItem(child: Text(value), value: value);
+                        return PopupMenuItem(
+                            height: kMinInteractiveDimension,
+                            child: Text(value),
+                            value: value);
                       }).toList();
                     },
                   ),
@@ -101,13 +146,35 @@ class AddCowsPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              TextField(
-                controller: controller.breed,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Keturunan Dari",
-                ),
-              ),
+              (data != null)
+                  ? Column(
+                      children: [
+                        TextField(
+                          readOnly: true,
+                          controller: controller.breed..text = data['name'],
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Keturunan Dari",
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        TextField(
+                          keyboardType: TextInputType.number,
+                          controller: controller.weight..text,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Bobot Lahir *KG",
+                          ),
+                        )
+                      ],
+                    )
+                  : TextField(
+                      controller: controller.breed,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Keturunan Dari",
+                      ),
+                    ),
               const SizedBox(height: 10),
               Obx(() => TextField(
                     readOnly: true,
@@ -150,47 +217,6 @@ class AddCowsPage extends StatelessWidget {
               ),
               const SizedBox(
                 height: 20,
-              ),
-              Center(
-                child: GestureDetector(
-                  onTap: () {
-                    controller.getImage();
-                  },
-                  child: GetBuilder<AddCowController>(
-                    builder: (c) => controller.pickedImage != null
-                        ? Column(
-                            children: [
-                              Container(
-                                height: 200,
-                                width: 400,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: FileImage(
-                                          File(controller.pickedImage!.path),
-                                        ),
-                                        fit: BoxFit.cover)),
-                              ),
-                              ElevatedButton(
-                                onPressed: () {
-                                  controller.cancelImage();
-                                },
-                                child: const Text('Hapus'),
-                              ),
-                            ],
-                          )
-                        : Container(
-                            decoration: BoxDecoration(
-                                color: Colors.grey[200],
-                                borderRadius: BorderRadius.circular(50)),
-                            width: 100,
-                            height: 100,
-                            child: Icon(
-                              Icons.camera_alt,
-                              color: Colors.grey[800],
-                            ),
-                          ),
-                  ),
-                ),
               ),
             ],
           ),

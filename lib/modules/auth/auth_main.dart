@@ -68,7 +68,7 @@ class AuthMainPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: const Text(
-                          'kelola peternakan lebih baik dan terstruktur menggunakan aplikasi manajemen peternakan',
+                          'kelola peternakan lebih baik dan terstruktur menggunakan aplikasi manajemen dan monitoring peternakan sapi',
                           textAlign: TextAlign.center,
                           style: TextStyle(fontFamily: 'arial'),
                         ),

@@ -5,6 +5,9 @@ import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/controllers/home_controller.dart';
 import 'package:peternakan_sapi/controllers/list_cow_controller.dart';
+import 'package:peternakan_sapi/modules/cows/list_record/list_activity.dart';
+import 'package:peternakan_sapi/modules/employee/home_employee.dart';
+import 'package:peternakan_sapi/modules/home/article.dart';
 import '../cows/record/record_weight_prediction.dart';
 import 'widgets/cow_container_widget.dart';
 import 'widgets/drawer.dart';
@@ -44,15 +47,20 @@ class Homepage extends StatelessWidget {
                   height: 75,
                   width: 75,
                   child: Column(
-                    children: const [
-                      SizedBox(
-                        height: 50,
-                        child: Image(
-                          image: AssetImage('assets/home/grass.png'),
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(ListActivity());
+                        },
+                        child: SizedBox(
+                          height: 50,
+                          child: Image(
+                            image: AssetImage('assets/home/activity.png'),
+                          ),
                         ),
                       ),
                       Text(
-                        'Pakan',
+                        'Aktifitas',
                         style: TextStyle(fontSize: 15),
                       )
                     ],
@@ -137,59 +145,77 @@ class Homepage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
                   Text('Edukasi'),
-                  Text('Edukasi'),
                 ],
               ),
             ),
             SizedBox(
-              height: 162.0,
-              child: ListView(
-                // This next line does the trick.
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  Container(
-                    margin: const EdgeInsets.all(10),
-                    width: 200.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: background,
-                      border: Border.all(color: Colors.grey),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          width: 200,
-                          height: 90,
-                          child: SvgPicture.asset(
-                            'assets/listcow/default.svg',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Container(
-                            height: 50,
-                            width: 200,
-                            color: Colors.grey,
-                            child: Text('data'))
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(10),
-                    width: 200.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.grey,
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(10),
-                    width: 200.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
+              height: 200.0,
+              child: StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection('article')
+                    .snapshots(),
+                builder:
+                    (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                  if (streamSnapshot.data != null) {
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      // scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: streamSnapshot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        final DocumentSnapshot documentSnapshot =
+                            streamSnapshot.data!.docs[index];
+                        return (streamSnapshot.hasData)
+                            ? GestureDetector(
+                                onTap: () {
+                                  Get.to(
+                                      ArticlePage(
+                                        data: documentSnapshot,
+                                      ),
+                                      arguments: documentSnapshot);
+                                },
+                                child: Container(
+                                  margin: const EdgeInsets.all(10),
+                                  width: 250.0,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: background,
+                                    border: Border.all(color: Colors.grey),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        width: 250,
+                                        height: 113,
+                                        child: Image.asset(
+                                          "assets/home/sapibirahi.jpeg",
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                      Container(
+                                          height: 65,
+                                          width: 250,
+                                          color: Color.fromARGB(
+                                              255, 209, 208, 208),
+                                          child: ListTile(
+                                            title:
+                                                Text(documentSnapshot['title']),
+                                            subtitle:
+                                                Text(documentSnapshot['date']),
+                                          ))
+                                    ],
+                                  ),
+                                ),
+                              )
+                            : const CircularProgressIndicator();
+                      },
+                    );
+                  }
+
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
               ),
             ),
           ],

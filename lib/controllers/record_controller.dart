@@ -15,6 +15,7 @@ class RecordController extends GetxController {
   late TextEditingController note = TextEditingController();
   late TextEditingController straw = TextEditingController();
   late TextEditingController inseminator = TextEditingController();
+  late TextEditingController gestationalage = TextEditingController();
 
   var items = ['Jantan', 'Betina'].obs;
   var pregnant = ['Hamil', 'Tidak'].obs;
@@ -137,6 +138,7 @@ class RecordController extends GetxController {
     String date,
     String straw,
     String inseminator,
+    String gestationalage,
     String docID,
     String text,
   ) async {
@@ -151,6 +153,7 @@ class RecordController extends GetxController {
               {
                 "action": action,
                 'date': date,
+                'kandungan': gestationalage,
                 'noted': straw,
                 'doctor': inseminator,
                 'time': DateTime.now(),
@@ -197,7 +200,7 @@ class RecordController extends GetxController {
     try {
       await cows.update(
         {
-          "statuspregnant": '',
+          "statuspregnant": 'IB',
           "record": FieldValue.arrayUnion(
             [
               {

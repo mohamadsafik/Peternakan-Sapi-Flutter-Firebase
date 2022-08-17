@@ -35,7 +35,7 @@ class _SettingPageState extends State<SettingPage> {
           ],
         ),
       ),
-      drawer: const drawer(),
+      // drawer: const drawer(),
       backgroundColor: background,
       body: SingleChildScrollView(
         child: Column(

@@ -36,6 +36,8 @@ class _ListCowsState extends State<ListCows> {
           itemBuilder: (BuildContext context, int index) {
             final DocumentSnapshot documentSnapshot =
                 controller.snapshotData.docs[index];
+            var nama = documentSnapshot['name'].toString();
+            var nomortag = documentSnapshot['nomortag'].toString();
             return Container(
               margin:
                   const EdgeInsets.only(left: 8, right: 8, bottom: 4, top: 4),
@@ -55,7 +57,7 @@ class _ListCowsState extends State<ListCows> {
                             // fit: BoxFit.cover,
                           )),
                 title: Text(
-                  documentSnapshot['name'].toString(),
+                  "$nama ($nomortag)",
                 ),
                 subtitle: Text(documentSnapshot['gender']),
                 trailing: SizedBox(
@@ -169,7 +171,9 @@ class _ListCowsState extends State<ListCows> {
                                 final DocumentSnapshot documentSnapshot =
                                     streamSnapshot.data!.docs[index];
                                 final map = streamSnapshot.data!.docs[index];
-
+                                var nama = documentSnapshot['name'].toString();
+                                var nomortag =
+                                    documentSnapshot['nomortag'].toString();
                                 return Container(
                                   margin: const EdgeInsets.only(
                                       left: 8, right: 8, bottom: 4, top: 4),
@@ -191,7 +195,7 @@ class _ListCowsState extends State<ListCows> {
                                                 // fit: BoxFit.cover,
                                               )),
                                     title: Text(
-                                      documentSnapshot['name'].toString(),
+                                      "$nama ($nomortag)",
                                     ),
                                     subtitle: Text(documentSnapshot['gender']),
                                     trailing: SizedBox(

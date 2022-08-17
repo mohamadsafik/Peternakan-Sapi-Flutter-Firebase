@@ -180,7 +180,7 @@ class record_history extends StatelessWidget {
                                       builder: (context) => AlertDialog(
                                             title: const Text("add"),
                                             content: SizedBox(
-                                              height: 300.0,
+                                              height: 320.0,
                                               child: Column(
                                                 children: <Widget>[
                                                   //this is the button to add income
@@ -237,7 +237,38 @@ class record_history extends StatelessWidget {
                                                       )
                                                     ],
                                                   ),
-                                                  //    the button to add expense
+                                                  Row(
+                                                    children: <Widget>[
+                                                      const Padding(
+                                                        padding:
+                                                            EdgeInsets.all(4.0),
+                                                        child: Icon(
+                                                            Icons.attach_money),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(2.0),
+                                                        child: MaterialButton(
+                                                          onPressed: () {
+                                                            Get.toNamed(
+                                                                RouteName
+                                                                    .addcow,
+                                                                arguments:
+                                                                    data);
+                                                            // Get.to(
+                                                            // //     PregnantRecordPage(
+                                                            // //   docID: data.id,
+                                                            // //   data: data,
+                                                            // // )
+                                                            // );
+                                                          },
+                                                          child: const Text(
+                                                              "Catat Kelahiran"),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
                                                   Row(
                                                     children: <Widget>[
                                                       const Padding(

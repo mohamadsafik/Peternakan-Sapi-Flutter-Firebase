@@ -217,7 +217,7 @@ class WeightRecord extends StatelessWidget {
                                         },
                                         icon: const Icon(
                                           Icons.delete,
-                                          color: Colors.red,
+                                          color: Colors.grey,
                                         )),
                                   ),
 

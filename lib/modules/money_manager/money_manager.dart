@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/firebase_constants.dart';
 import 'package:peternakan_sapi/controllers/money_manager_controller.dart';
+import 'package:peternakan_sapi/modules/money_manager/add_money.dart';
 
 import '../../component/alert_component.dart';
 import '../../constants/color.dart';
 import '../../constants/constant.dart';
 import '../../controllers/auth_controller.dart';
+import '../../routes/route_name.dart';
 import '../home/widgets/drawer.dart';
 
 class MoneyManagerPage extends StatefulWidget {
@@ -36,16 +38,7 @@ class _MoneyManagerPageState extends State<MoneyManagerPage> {
                 IconButton(
                     icon: const Icon(Icons.add),
                     onPressed: () {
-                      //this will call the alert
-                      showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                                title: const Text("add"),
-                                content: Container(
-                                  height: 160.0,
-                                  child: const AlertComponents(),
-                                ),
-                              ));
+                      Get.toNamed(RouteName.addmoney);
                     })
               ],
             )),
@@ -63,21 +56,21 @@ class _MoneyManagerPageState extends State<MoneyManagerPage> {
                       Expanded(
                         child: ListTile(
                           title: Text("Masuk:"),
-                          trailing: Text("720"),
+                          trailing: Text("15.000.000"),
                         ),
                       ),
                       Expanded(
                         child: ListTile(
                           title: Text("Keluar:"),
-                          trailing: Text("720"),
+                          trailing: Text("5.000.000"),
                         ),
                       ),
                       Expanded(
                         child: ListTile(
                           title: Text("Total:"),
                           trailing: Text(
-                            "230",
-                            style: TextStyle(color: Colors.red),
+                            "10.000.000",
+                            style: TextStyle(color: Colors.green),
                           ),
                         ),
                       ),
@@ -93,7 +86,6 @@ class _MoneyManagerPageState extends State<MoneyManagerPage> {
                 child: StreamBuilder(
                   stream: FirebaseFirestore.instance
                       .collection('money')
-                      // .orderBy('time')
                       .where('uid', isEqualTo: auth.currentUser?.uid)
                       .snapshots(),
                   builder:
@@ -128,13 +120,10 @@ class _MoneyManagerPageState extends State<MoneyManagerPage> {
                                         documentSnapshot['note'],
                                       ),
                                       trailing: Text(
-                                          (documentSnapshot['action'] ==
-                                                  'Pemasukan')
-                                              ? 'masuk'
-                                              : 'keluar'),
+                                        (documentSnapshot['date']),
+                                      ),
                                     ),
-                                  ),
-                                )
+                                  ))
                               : const CircularProgressIndicator();
                         },
                       );

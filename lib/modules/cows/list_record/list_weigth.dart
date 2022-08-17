@@ -22,7 +22,9 @@ class _ListWeigthState extends State<ListWeigth> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: green,
+      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('cows')
@@ -42,6 +44,7 @@ class _ListWeigthState extends State<ListWeigth> {
                   return SingleChildScrollView(
                     child: Column(
                         children: records.map((record) {
+                      var recordweight = record['weight'];
                       return Card(
                         child: ListTile(
                           leading: const Icon(
@@ -49,7 +52,10 @@ class _ListWeigthState extends State<ListWeigth> {
                             color: Colors.orange,
                           ),
                           title: Text(
-                            record["weight"],
+                            '$recordweight Kg',
+                          ),
+                          subtitle: Text(
+                            record["date"],
                           ),
                           trailing: IconButton(
                               onPressed: () {

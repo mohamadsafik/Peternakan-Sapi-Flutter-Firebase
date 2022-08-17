@@ -57,8 +57,7 @@ class ListCowController extends GetxController {
       context, AsyncSnapshot<QuerySnapshot> streamSnapshot) async {
     String data;
     try {
-      data = await FlutterBarcodeScanner.scanBarcode(
-          "", "", true, ScanMode.BARCODE);
+      data = await FlutterBarcodeScanner.scanBarcode("", "", true, ScanMode.QR);
       if (data != null) {
         for (int i = 0; i < streamSnapshot.data!.docs.length; i++) {
           if (data == streamSnapshot.data!.docs[i]["eartag"]) {

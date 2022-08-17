@@ -30,7 +30,17 @@ class AddEmployeePage extends GetView<LaborController> {
             // const SizedBox(
             //   height: 15,
             // ),
-
+            TextField(
+              controller: controller.username,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  labelText: "Nama"),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
             TextField(
               controller: controller.email,
               decoration: InputDecoration(
@@ -61,7 +71,7 @@ class AddEmployeePage extends GetView<LaborController> {
                 controller.registerLabor(
                   controller.email.text,
                   controller.password.text,
-                  // controller.username.text,
+                  controller.username.text,
                 );
               },
               child: Container(

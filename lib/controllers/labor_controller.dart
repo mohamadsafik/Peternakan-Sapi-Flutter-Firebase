@@ -13,7 +13,7 @@ class LaborController extends GetxController {
   TextEditingController password = TextEditingController();
   TextEditingController role = TextEditingController();
 
-  void registerLabor(String email, String password) async {
+  void registerLabor(String email, String password, String username) async {
     CollectionReference cows = firestore.collection("users");
     FirebaseApp app = await Firebase.initializeApp(
         name: 'Secondary', options: Firebase.app().options);
@@ -27,6 +27,8 @@ class LaborController extends GetxController {
         "uid": '',
         "role": "employee",
         "image": "",
+        "username": username,
+        "namefarm": "",
       });
       Get.snackbar("Berhasil", "Menambahkan Pekerja");
     } on FirebaseAuthException catch (e) {

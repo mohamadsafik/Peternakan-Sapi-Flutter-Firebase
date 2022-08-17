@@ -72,6 +72,15 @@ class PregnantRecordPage extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               TextField(
+                keyboardType: TextInputType.number,
+                controller: controller.gestationalage..text = '',
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Usia Kandungan *bulan",
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextField(
                 controller: controller.straw..text = '',
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -88,6 +97,7 @@ class PregnantRecordPage extends StatelessWidget {
                   controller.date.text,
                   controller.straw.text,
                   controller.inseminator.text,
+                  controller.gestationalage.text,
                   docID,
                   data.toString(),
                 ),

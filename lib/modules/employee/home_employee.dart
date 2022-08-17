@@ -26,13 +26,17 @@ class _HomeEmployeePageState extends State<HomeEmployeePage> {
     return Scaffold(
       backgroundColor: background,
       appBar: AppBar(
-          backgroundColor: green,
-          title: Text('employee'),
-          leading: IconButton(
+        actions: [
+          IconButton(
               onPressed: () {
-                AuthController.authInstance.signOut();
+                Get.toNamed(
+                  RouteName.setting,
+                );
               },
-              icon: const Icon(Icons.logout))),
+              icon: Icon(Icons.settings))
+        ],
+        backgroundColor: green,
+      ),
       body: Column(
         children: [
           Card(

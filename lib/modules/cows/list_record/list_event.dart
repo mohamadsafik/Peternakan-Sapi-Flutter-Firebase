@@ -29,7 +29,7 @@ class ListEvent extends StatelessWidget {
             stream: FirebaseFirestore.instance
                 .collection('cows')
                 .where('uid', isEqualTo: currentUser)
-                // .where(Document(), isEqualTo: data[data.id])
+                .where('eartag', isEqualTo: data['eartag'])
                 .snapshots(),
             builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
               if (streamSnapshot.hasData) {
@@ -136,6 +136,21 @@ class ListEvent extends StatelessWidget {
                                         Text(record['doctor']),
                                       ],
                                     ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    (record['kandungan'] != null)
+                                        ? Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              const Text('Usia Kandungan :'),
+                                              Text(record['kandungan']),
+                                            ],
+                                          )
+                                        : const SizedBox(
+                                            height: 0,
+                                          ),
                                     const SizedBox(
                                       height: 10,
                                     ),

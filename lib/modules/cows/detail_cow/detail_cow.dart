@@ -1,9 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import '../../../constants/color.dart';
+import '../../../constants/firebase_constants.dart';
 import '../../../controllers/detail_cow_controller.dart';
+import '../../../models/cow.dart';
 import 'widgets/barcode_cow.dart';
 import 'widgets/cow_information.dart';
 import 'widgets/image_show.dart';
@@ -20,188 +24,206 @@ class DetailCowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: green,
-          actions: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.settings))
-          ],
-        ),
-        backgroundColor: background,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  showCupertinoModalPopup(
-                      context: context,
-                      builder: (BuildContext bc) {
-                        return ImageShow(data: data);
-                      });
-                },
-                child: Stack(
-                  children: [
-                    data['image'] != null
-                        ? SizedBox(
-                            width: 400,
-                            height: 250,
-                            child: Image.network(
-                              data['image'],
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                            ),
-                          )
-                        : SizedBox(
-                            width: 400,
-                            height: 250,
-                            child: SvgPicture.asset(
-                              'assets/listcow/default.svg',
-                              fit: BoxFit.cover,
-                            ),
-                          )
-                  ],
-                ),
+      appBar: AppBar(
+        backgroundColor: green,
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.settings))
+        ],
+      ),
+      backgroundColor: background,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            GestureDetector(
+              onTap: () {
+                showCupertinoModalPopup(
+                    context: context,
+                    builder: (BuildContext bc) {
+                      return ImageShow(data: data);
+                    });
+              },
+              child: Stack(
+                children: [
+                  data['image'] != null
+                      ? SizedBox(
+                          width: 400,
+                          height: 250,
+                          child: Image.network(
+                            data['image'],
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                      : SizedBox(
+                          width: 400,
+                          height: 250,
+                          child: SvgPicture.asset(
+                            'assets/listcow/default.svg',
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  bottom: 16.0,
-                  left: 12.0,
-                  right: 12.0,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 10.0,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Center(
-                          child: Padding(
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                bottom: 16.0,
+                left: 12.0,
+                right: 12.0,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Padding(
                             padding: EdgeInsets.all(8.0),
                             child: Text(
-                              'Detail Sapi',
-                              style: TextStyle(
-                                fontSize: 15,
-                              ),
+                              data['statuspregnant'].toString(),
+                              style: TextStyle(color: Colors.orange),
                             ),
                           ),
-                        ),
-                        Row(
-                          children: [
-                            InkWell(
-                              onTap: () {},
-                              child: const Icon(
-                                Icons.favorite,
-                                color: Colors.pink,
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                showCupertinoModalPopup(
-                                    context: context,
-                                    builder: (BuildContext bc) {
-                                      return BarcodePage(
-                                        data: data,
-                                      );
-                                    });
-                              },
-                              child: const Icon(
-                                Icons.qr_code,
-                                color: Colors.black,
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 30),
-                    CowInformation(data: data),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    record_history(
-                        data: data,
-                        currentUser: controller.currentUser.toString()),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    WeightRecord(
-                        data: data,
-                        currentUser: controller.currentUser.toString()),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            showCupertinoModalPopup(
-                context: context,
-                builder: (BuildContext bc) {
-                  return Container(
-                    color: Colors.transparent,
-                    height: Get.height * 0.4,
-                    width: Get.width,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 50, right: 50),
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                            child: const Card(
-                              child: ListTile(
-                                leading: Icon(Icons.report),
-                                title: const Text('Lapor Hewan Sakit'),
-                              ),
-                            ),
+                          (data['statuspregnant'] != "")
+                              ? IconButton(
+                                  icon: Icon(Icons.edit),
+                                  onPressed: () {
+                                    Get.defaultDialog(
+                                      barrierDismissible: false,
+                                      title: "Sapi Hamil",
+                                      middleText: "Hapus Status Hamil",
+                                      onCancel: () {},
+                                      onConfirm: () async {
+                                        DocumentReference cows = firestore
+                                            .collection("cows")
+                                            .doc(data.id);
+
+                                        try {
+                                          await cows.update({
+                                            // "uid": FirebaseAuth.instance.currentUser!.uid,
+                                            "statuspregnant": '',
+                                          });
+                                          Get.back();
+                                        } catch (e) {
+                                          if (kDebugMode) {
+                                            print(e);
+                                          }
+                                          Get.defaultDialog(
+                                            title: "terjadi kesalahan",
+                                            middleText:
+                                                "tidak berhasil edit status sapi",
+                                          );
+                                        }
+                                      },
+                                    );
+                                  },
+                                )
+                              : SizedBox(
+                                  height: 0,
+                                ),
+                          Text(
+                            data['statussick'].toString(),
+                            style: TextStyle(color: Colors.red),
                           ),
-                          GestureDetector(
-                            child: const Card(
-                              child: ListTile(
-                                leading: Icon(Icons.report),
-                                title: const Text('Lapor Hewan Sembuh'),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            child: const Card(
-                              child: ListTile(
-                                leading: Icon(Icons.report),
-                                title: const Text('Lapor Hewan Hamil'),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            child: const Card(
-                              child: ListTile(
-                                leading: const Icon(Icons.report),
-                                title: const Text('Lapor Hewan Terjual'),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            child: const Card(
-                              child: ListTile(
-                                leading: Icon(Icons.report),
-                                title: const Text('Lapor Hewan Mati'),
-                              ),
-                            ),
-                          )
+                          (data['statussick'] != "")
+                              ? IconButton(
+                                  icon: Icon(Icons.edit),
+                                  onPressed: () {
+                                    Get.defaultDialog(
+                                      barrierDismissible: false,
+                                      title: "Sapi Sakit",
+                                      middleText: "Sapi Sudah Sembuh?",
+                                      onCancel: () {},
+                                      onConfirm: () async {
+                                        DocumentReference cows = firestore
+                                            .collection("cows")
+                                            .doc(data.id);
+
+                                        try {
+                                          await cows.update({
+                                            // "uid": FirebaseAuth.instance.currentUser!.uid,
+
+                                            "statussick": '',
+                                          });
+                                          Get.back();
+                                        } catch (e) {
+                                          if (kDebugMode) {
+                                            print(e);
+                                          }
+                                          Get.defaultDialog(
+                                            title: "terjadi kesalahan",
+                                            middleText:
+                                                "tidak berhasil edit status sapi",
+                                          );
+                                        }
+                                      },
+                                    );
+                                  },
+                                )
+                              : SizedBox(
+                                  height: 0,
+                                ),
                         ],
                       ),
-                    ),
-                  );
-                });
-          },
-          // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-          child: const Icon(Icons.add),
-        ));
+                      Row(
+                        children: [
+                          InkWell(
+                            onTap: () {},
+                            child: const Icon(
+                              Icons.favorite,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              showCupertinoModalPopup(
+                                  context: context,
+                                  builder: (BuildContext bc) {
+                                    return BarcodePage(
+                                      data: data,
+                                    );
+                                  });
+                            },
+                            child: const Icon(
+                              Icons.qr_code,
+                              color: Colors.black,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 30),
+                  CowInformation(data: data),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  record_history(
+                      data: data,
+                      currentUser: controller.currentUser.toString()),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  WeightRecord(
+                      data: data,
+                      currentUser: controller.currentUser.toString()),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -29,6 +29,7 @@ class UpdateCowsPage extends StatelessWidget {
                   breed: controller.breed.text,
                   birthdate: controller.birthdate.text,
                   joinedwhen: controller.joinedwhen.text,
+                  nomortag: controller.nomortag.text,
                   note: controller.note.text),
               data.id,
             ),
@@ -41,6 +42,47 @@ class UpdateCowsPage extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: Column(
             children: [
+              Center(
+                child: GestureDetector(
+                  onTap: () {
+                    controller.getImage();
+                  },
+                  child: GetBuilder<UpdateCowController>(
+                    builder: (c) => controller.pickedImage != null
+                        ? Column(
+                            children: [
+                              Container(
+                                height: 200,
+                                width: 400,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: FileImage(
+                                          File(controller.pickedImage!.path),
+                                        ),
+                                        fit: BoxFit.cover)),
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  controller.cancelImage();
+                                },
+                                child: const Text('Hapus'),
+                              ),
+                            ],
+                          )
+                        : Container(
+                            decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.circular(50)),
+                            width: 100,
+                            height: 100,
+                            child: Icon(
+                              Icons.camera_alt,
+                              color: Colors.grey[800],
+                            ),
+                          ),
+                  ),
+                ),
+              ),
               const SizedBox(height: 10),
               TextField(
                 controller: controller.name..text = data['name'],
@@ -51,7 +93,8 @@ class UpdateCowsPage extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               TextField(
-                controller: controller.nomortag..text = data['nomortag'],
+                controller: controller.nomortag
+                  ..text = data['nomortag'].toString(),
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Nomor Tag",
@@ -121,47 +164,7 @@ class UpdateCowsPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Center(
-                child: GestureDetector(
-                  onTap: () {
-                    controller.getImage();
-                  },
-                  child: GetBuilder<UpdateCowController>(
-                    builder: (c) => controller.pickedImage != null
-                        ? Column(
-                            children: [
-                              Container(
-                                height: 200,
-                                width: 400,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: FileImage(
-                                          File(controller.pickedImage!.path),
-                                        ),
-                                        fit: BoxFit.cover)),
-                              ),
-                              ElevatedButton(
-                                onPressed: () {
-                                  controller.cancelImage();
-                                },
-                                child: const Text('Hapus'),
-                              ),
-                            ],
-                          )
-                        : Container(
-                            decoration: BoxDecoration(
-                                color: Colors.grey[200],
-                                borderRadius: BorderRadius.circular(50)),
-                            width: 100,
-                            height: 100,
-                            child: Icon(
-                              Icons.camera_alt,
-                              color: Colors.grey[800],
-                            ),
-                          ),
-                  ),
-                ),
-              ),
+
               // ElevatedButton(
               //   onPressed: () => controller.editCow(
               //     CowModel(

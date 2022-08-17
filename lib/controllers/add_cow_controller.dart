@@ -19,6 +19,7 @@ class AddCowController extends GetxController {
   late TextEditingController birthdate = TextEditingController();
   late TextEditingController joinedwhen = TextEditingController();
   late TextEditingController note = TextEditingController();
+  late TextEditingController weight = TextEditingController();
   final RxBool validate = false.obs;
   var uuid = const Uuid();
   XFile? pickedImage;
@@ -51,7 +52,8 @@ class AddCowController extends GetxController {
     note.clear();
   }
 
-  void addCowModel(CowModel cowModel, {required Text child}) async {
+  void addCowModel(CowModel cowModel, String weight,
+      {required Text child}) async {
     CollectionReference cows = firestore.collection("cows");
     var nameImage = pickedImage?.name;
     var storageImage =
@@ -77,7 +79,8 @@ class AddCowController extends GetxController {
         "joinedwhen": cowModel.joinedwhen,
         "note": cowModel.note,
         "statuspregnant": '',
-        "weight": '',
+        "statussick": '',
+        "weight": weight,
         "record": FieldValue.arrayUnion(
           [],
         ),

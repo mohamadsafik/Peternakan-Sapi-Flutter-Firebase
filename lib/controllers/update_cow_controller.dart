@@ -61,18 +61,30 @@ class UpdateCowController extends GetxController {
       imageUrl = await (await task).ref.getDownloadURL();
     }
     try {
-      await cows.update({
-        // "uid": FirebaseAuth.instance.currentUser!.uid,
-        "image": imageUrl,
-        "name": cowModel.name,
-        "rasCow": cowModel.rasCow,
-        "nomortag": cowModel.nomortag,
-        "gender": cowModel.gender,
-        "breed": cowModel.breed,
-        "birthdate": cowModel.birthdate,
-        "joinedwhen": cowModel.joinedwhen,
-        "note": cowModel.note,
-      });
+      (imageUrl != null)
+          ? await cows.update({
+              // "uid": FirebaseAuth.instance.currentUser!.uid,
+              "image": imageUrl,
+              "name": cowModel.name,
+              "rasCow": cowModel.rasCow,
+              "nomortag": cowModel.nomortag,
+              "gender": cowModel.gender,
+              "breed": cowModel.breed,
+              "birthdate": cowModel.birthdate,
+              "joinedwhen": cowModel.joinedwhen,
+              "note": cowModel.note,
+            })
+          : await cows.update({
+              // "uid": FirebaseAuth.instance.currentUser!.uid,
+              "name": cowModel.name,
+              "rasCow": cowModel.rasCow,
+              "nomortag": cowModel.nomortag,
+              "gender": cowModel.gender,
+              "breed": cowModel.breed,
+              "birthdate": cowModel.birthdate,
+              "joinedwhen": cowModel.joinedwhen,
+              "note": cowModel.note,
+            });
       Get.defaultDialog(
         title: "berhasil",
         middleText: "berhasil edit sapi",
