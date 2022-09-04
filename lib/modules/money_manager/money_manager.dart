@@ -22,6 +22,8 @@ class MoneyManagerPage extends StatefulWidget {
 final controller = Get.find<MoneyManagerController>();
 
 class _MoneyManagerPageState extends State<MoneyManagerPage> {
+  var sumTotal;
+
   @override
   Widget build(BuildContext context) {
     //this code gives us the width of the screen
@@ -52,26 +54,102 @@ class _MoneyManagerPageState extends State<MoneyManagerPage> {
                   height: 120,
                   color: Colors.white,
                   child: Column(
-                    children: const [
+                    children: [
                       Expanded(
-                        child: ListTile(
-                          title: Text("Masuk:"),
-                          trailing: Text("15.000.000"),
+                        child: StreamBuilder(
+                          stream: FirebaseFirestore.instance
+                              .collection('money')
+                              .where('action', isEqualTo: "Pemasukan")
+                              .where('uid', isEqualTo: auth.currentUser?.uid)
+                              .snapshots(),
+                          builder: (context,
+                              AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                            if (streamSnapshot.data != null) {
+                              int sum = 0;
+
+                              streamSnapshot.data!.docs.forEach((value) {
+                                var prices = int.parse(value['total']);
+
+                                sum = sum + prices;
+                                print(sum);
+                              });
+                              return ListTile(
+                                title: Text("Masuk:"),
+                                trailing:
+                                    Text(CurrencyFormat.convertToIdr(sum, 0)),
+                              );
+                            }
+
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          },
                         ),
                       ),
                       Expanded(
-                        child: ListTile(
-                          title: Text("Keluar:"),
-                          trailing: Text("5.000.000"),
+                        child: StreamBuilder(
+                          stream: FirebaseFirestore.instance
+                              .collection('money')
+                              .where('action', isEqualTo: "Pengeluaran")
+                              .where('uid', isEqualTo: auth.currentUser?.uid)
+                              .snapshots(),
+                          builder: (context,
+                              AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                            if (streamSnapshot.data != null) {
+                              int sum = 0;
+
+                              streamSnapshot.data!.docs.forEach((value) {
+                                var prices = int.parse(value['total']);
+
+                                sum = sum + prices;
+                                print(sum);
+                              });
+                              return ListTile(
+                                title: Text("Keluar:"),
+                                trailing:
+                                    Text(CurrencyFormat.convertToIdr(sum, 0)),
+                              );
+                            }
+
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          },
                         ),
                       ),
                       Expanded(
-                        child: ListTile(
-                          title: Text("Total:"),
-                          trailing: Text(
-                            "10.000.000",
-                            style: TextStyle(color: Colors.green),
-                          ),
+                        child: StreamBuilder(
+                          stream: FirebaseFirestore.instance
+                              .collection('money')
+                              .where('uid', isEqualTo: auth.currentUser?.uid)
+                              .snapshots(),
+                          builder: (context,
+                              AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                            if (streamSnapshot.data != null) {
+                              int sumIn = 0;
+                              int sumOut = 0;
+
+                              streamSnapshot.data!.docs.forEach((value) {
+                                var prices = int.parse(value['total']);
+                                if (value['action'] == "Pemasukan") {
+                                  sumIn = sumIn + prices;
+                                }
+                                if (value['action'] == "Pengeluaran") {
+                                  sumOut = sumOut + prices;
+                                }
+                              });
+                              var total = sumIn - sumOut;
+                              return ListTile(
+                                title: Text("Total:"),
+                                trailing:
+                                    Text(CurrencyFormat.convertToIdr(total, 0)),
+                              );
+                            }
+
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          },
                         ),
                       ),
                       SizedBox(

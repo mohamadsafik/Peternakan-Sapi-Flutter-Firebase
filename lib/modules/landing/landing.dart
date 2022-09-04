@@ -44,7 +44,7 @@ class LandingPage extends StatelessWidget {
                     size: 20.0,
                   ),
                 ),
-                label: 'Home',
+                label: 'Beranda',
                 backgroundColor: background,
               ),
               BottomNavigationBarItem(
@@ -55,7 +55,7 @@ class LandingPage extends StatelessWidget {
                     size: 20.0,
                   ),
                 ),
-                label: 'Explore',
+                label: 'Sapi',
                 backgroundColor: background,
               ),
               BottomNavigationBarItem(
@@ -66,7 +66,7 @@ class LandingPage extends StatelessWidget {
                     size: 20.0,
                   ),
                 ),
-                label: 'Cashflow',
+                label: 'Keuangan',
                 backgroundColor: background,
               ),
               BottomNavigationBarItem(
@@ -77,7 +77,7 @@ class LandingPage extends StatelessWidget {
                     size: 20.0,
                   ),
                 ),
-                label: 'Settings',
+                label: 'Pengaturan',
                 backgroundColor: background,
               ),
             ],

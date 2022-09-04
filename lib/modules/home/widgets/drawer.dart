@@ -43,18 +43,18 @@ class drawer extends StatelessWidget {
                                 leading: CircleAvatar(
                                   backgroundColor:
                                       const Color.fromARGB(255, 223, 219, 219),
-                                  backgroundImage:
-                                      (documentSnapshot['image'] == '')
-                                          ? null
-                                          : NetworkImage(
-                                              documentSnapshot['image'],
-                                              // child: (documentSnapshot['image'] == '')
-                                              //     ? const Icon(Icons.person)
-                                              //     : Image.network(
-                                              //         documentSnapshot['image'],
-                                              //         fit: BoxFit.cover,
-                                              //       )),
-                                            ),
+                                  backgroundImage: (documentSnapshot['image'] ==
+                                          null)
+                                      ? null
+                                      : NetworkImage(
+                                          documentSnapshot['image'].toString()
+                                          // child: (documentSnapshot['image'] == '')
+                                          //     ? const Icon(Icons.person)
+                                          //     : Image.network(
+                                          //         documentSnapshot['image'],
+                                          //         fit: BoxFit.cover,
+                                          //       )),
+                                          ),
                                 ),
                                 title: Text(
                                   documentSnapshot['username'],

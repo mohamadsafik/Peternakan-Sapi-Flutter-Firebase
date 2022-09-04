@@ -50,12 +50,14 @@ class _ListCowsState extends State<ListCows> {
                 leading: SizedBox(
                     height: 60.0,
                     width: 60.0,
-                    child: documentSnapshot['image'] != null
-                        ? Image.network(documentSnapshot['image'].toString())
-                        : Image.asset(
-                            'assets/home/cow1.png',
-                            // fit: BoxFit.cover,
-                          )),
+                    child:
+                        // documentSnapshot['image'] != null
+                        //     ? Image.network(documentSnapshot['image'].toString())
+                        //     :
+                        Image.asset(
+                      'assets/home/cow1.png',
+                      // fit: BoxFit.cover,
+                    )),
                 title: Text(
                   "$nama ($nomortag)",
                 ),
@@ -126,7 +128,7 @@ class _ListCowsState extends State<ListCows> {
                                   icon: Icon(Icons.search));
                             },
                           ),
-                          hintText: '  Search...'),
+                          hintText: '  Cari...'),
                       controller: controller.searchController,
                     ),
                   ),

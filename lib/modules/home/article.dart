@@ -23,8 +23,8 @@ class ArticlePage extends StatelessWidget {
                 SizedBox(
                   width: 400,
                   height: 250,
-                  child: SvgPicture.asset(
-                    'assets/listcow/default.svg',
+                  child: Image.asset(
+                    "assets/home/sapibirahi.jpeg",
                     fit: BoxFit.contain,
                   ),
                 )

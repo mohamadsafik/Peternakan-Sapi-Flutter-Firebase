@@ -86,7 +86,7 @@ class record_history extends StatelessWidget {
                                   ? showDialog(
                                       context: context,
                                       builder: (context) => AlertDialog(
-                                            title: const Text("add"),
+                                            title: const Text("Catat"),
                                             content: SizedBox(
                                               height: 160.0,
                                               child: Column(
@@ -99,7 +99,9 @@ class record_history extends StatelessWidget {
                                                         padding:
                                                             EdgeInsets.all(4.0),
                                                         child: Icon(
-                                                            Icons.money_off),
+                                                          Icons.sick,
+                                                          color: Colors.red,
+                                                        ),
                                                       ),
                                                       Padding(
                                                         padding:
@@ -122,11 +124,14 @@ class record_history extends StatelessWidget {
                                                   Row(
                                                     children: <Widget>[
                                                       const Padding(
-                                                        padding:
-                                                            EdgeInsets.all(4.0),
-                                                        child: Icon(
-                                                            Icons.attach_money),
-                                                      ),
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  4.0),
+                                                          child: Icon(
+                                                            Icons
+                                                                .healing_rounded,
+                                                            color: Colors.green,
+                                                          )),
                                                       Padding(
                                                         padding:
                                                             const EdgeInsets
@@ -149,11 +154,13 @@ class record_history extends StatelessWidget {
                                                   Row(
                                                     children: <Widget>[
                                                       const Padding(
-                                                        padding:
-                                                            EdgeInsets.all(4.0),
-                                                        child: Icon(
-                                                            Icons.dashboard),
-                                                      ),
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  4.0),
+                                                          child: Icon(
+                                                            Icons.vaccines,
+                                                            color: Colors.grey,
+                                                          )),
                                                       Padding(
                                                         padding:
                                                             const EdgeInsets
@@ -188,11 +195,13 @@ class record_history extends StatelessWidget {
                                                   Row(
                                                     children: <Widget>[
                                                       const Padding(
-                                                        padding:
-                                                            EdgeInsets.all(4.0),
-                                                        child: Icon(
-                                                            Icons.attach_money),
-                                                      ),
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  4.0),
+                                                          child: Icon(
+                                                            Icons.info,
+                                                            color: Colors.grey,
+                                                          )),
                                                       Padding(
                                                         padding:
                                                             const EdgeInsets
@@ -217,7 +226,9 @@ class record_history extends StatelessWidget {
                                                         padding:
                                                             EdgeInsets.all(4.0),
                                                         child: Icon(
-                                                            Icons.attach_money),
+                                                          Icons.info,
+                                                          color: Colors.grey,
+                                                        ),
                                                       ),
                                                       Padding(
                                                         padding:
@@ -240,11 +251,13 @@ class record_history extends StatelessWidget {
                                                   Row(
                                                     children: <Widget>[
                                                       const Padding(
-                                                        padding:
-                                                            EdgeInsets.all(4.0),
-                                                        child: Icon(
-                                                            Icons.attach_money),
-                                                      ),
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  4.0),
+                                                          child: Icon(
+                                                            Icons.info,
+                                                            color: Colors.grey,
+                                                          )),
                                                       Padding(
                                                         padding:
                                                             const EdgeInsets
@@ -275,7 +288,9 @@ class record_history extends StatelessWidget {
                                                         padding:
                                                             EdgeInsets.all(4.0),
                                                         child: Icon(
-                                                            Icons.money_off),
+                                                          Icons.sick,
+                                                          color: Colors.red,
+                                                        ),
                                                       ),
                                                       Padding(
                                                         padding:
@@ -301,7 +316,9 @@ class record_history extends StatelessWidget {
                                                         padding:
                                                             EdgeInsets.all(4.0),
                                                         child: Icon(
-                                                            Icons.attach_money),
+                                                          Icons.healing,
+                                                          color: Colors.green,
+                                                        ),
                                                       ),
                                                       Padding(
                                                         padding:
@@ -328,7 +345,9 @@ class record_history extends StatelessWidget {
                                                         padding:
                                                             EdgeInsets.all(4.0),
                                                         child: Icon(
-                                                            Icons.dashboard),
+                                                          Icons.vaccines,
+                                                          color: Colors.amber,
+                                                        ),
                                                       ),
                                                       Padding(
                                                         padding:

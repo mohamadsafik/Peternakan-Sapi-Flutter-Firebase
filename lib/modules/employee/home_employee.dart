@@ -48,7 +48,6 @@ class _HomeEmployeePageState extends State<HomeEmployeePage> {
                       image: AssetImage('assets/home/cow1.png'),
                     ),
                     title: const Text('Sapi'),
-                    subtitle: const Text('2'),
                     trailing: IconButton(
                         onPressed: () {
                           Get.toNamed(RouteName.listcowemployee);
