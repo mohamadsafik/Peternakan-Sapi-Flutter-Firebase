@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/firebase_constants.dart';
 import 'package:peternakan_sapi/controllers/money_manager_controller.dart';
 import 'package:peternakan_sapi/modules/money_manager/add_money.dart';
+import 'package:peternakan_sapi/modules/money_manager/detail_money.dart';
 
 import '../../component/alert_component.dart';
 import '../../constants/color.dart';
@@ -159,29 +160,31 @@ class _MoneyManagerPageState extends State<MoneyManagerPage> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 500,
-                child: StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection('money')
-                      .where('uid', isEqualTo: auth.currentUser?.uid)
-                      .snapshots(),
-                  builder:
-                      (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-                    if (streamSnapshot.data != null) {
-                      return ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: streamSnapshot.data!.docs.length,
-                        itemBuilder: (context, index) {
-                          final DocumentSnapshot documentSnapshot =
-                              streamSnapshot.data!.docs[index];
-                          final int documentsum =
-                              streamSnapshot.data!.docs.length;
-                          var intTotal = int.parse(documentSnapshot['total']);
-                          return (streamSnapshot.hasData)
-                              ? Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 6.0, right: 6),
+              StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection('money')
+                    .where('uid', isEqualTo: auth.currentUser?.uid)
+                    .snapshots(),
+                builder:
+                    (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                  if (streamSnapshot.data != null) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: streamSnapshot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        final DocumentSnapshot documentSnapshot =
+                            streamSnapshot.data!.docs[index];
+                        final int documentsum =
+                            streamSnapshot.data!.docs.length;
+                        var intTotal = int.parse(documentSnapshot['total']);
+                        return (streamSnapshot.hasData)
+                            ? Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 6.0, right: 6),
+                                child: InkWell(
+                                  onTap: () {
+                                    Get.to(DetailMoney(data: documentSnapshot));
+                                  },
                                   child: Card(
                                     child: ListTile(
                                       leading: (documentSnapshot['action'] ==
@@ -201,17 +204,17 @@ class _MoneyManagerPageState extends State<MoneyManagerPage> {
                                         (documentSnapshot['date']),
                                       ),
                                     ),
-                                  ))
-                              : const CircularProgressIndicator();
-                        },
-                      );
-                    }
-
-                    return const Center(
-                      child: CircularProgressIndicator(),
+                                  ),
+                                ))
+                            : const CircularProgressIndicator();
+                      },
                     );
-                  },
-                ),
+                  }
+
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
               ),
             ],
           ),

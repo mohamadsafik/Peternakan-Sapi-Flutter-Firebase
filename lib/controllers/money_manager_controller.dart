@@ -11,6 +11,7 @@ class MoneyManagerController extends GetxController {
   late TextEditingController total = TextEditingController();
   late TextEditingController date = TextEditingController();
   late TextEditingController action = TextEditingController();
+  late TextEditingController docid = TextEditingController();
   var aksi = ['Pemasukan', 'Pengeluaran'].obs;
 
   var selectedDate = DateTime.now().obs;
@@ -50,14 +51,49 @@ class MoneyManagerController extends GetxController {
     }
   }
 
-  // @override
-  // void onClose() {
-  //   action.dispose();
-  //   note.dispose();
-  //   total.dispose();
-  //   date.dispose();
-  //   super.onClose();
-  // }
+  void editMoney(String docid, String note, String date, String action,
+      String total) async {
+    DocumentReference editmoney = firestore.collection("money").doc(docid);
+    try {
+      await editmoney.update({
+        "note": note,
+        "total": total,
+        'date': date,
+        'action': action,
+        'time': DateTime.now(),
+        'uid': auth.currentUser?.uid
+      });
+      Get.defaultDialog(
+        barrierDismissible: true,
+        title: "berhasil",
+        middleText: "",
+        onConfirm: () {
+          Get.back();
+          Get.back();
+          Get.back();
+          // cleartext();
+        },
+        textConfirm: "okay",
+      );
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      Get.defaultDialog(
+        title: "terjadi kesalahan",
+        middleText: "",
+      );
+    }
+  }
+
+  @override
+  void onClose() {
+    action.dispose();
+    note.dispose();
+    total.dispose();
+    date.dispose();
+    super.onClose();
+  }
 
   get chooseDate async {
     DateTime? pickedDate = await showDatePicker(
