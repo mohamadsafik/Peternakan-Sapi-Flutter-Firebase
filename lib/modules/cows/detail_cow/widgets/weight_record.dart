@@ -3,12 +3,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
-import 'package:peternakan_sapi/modules/cows/record/record_weight.dart';
+import 'package:peternakan_sapi/modules/cows/record/view/record_weight.dart';
+import 'package:peternakan_sapi/modules/cows/record/view/record_weight_prediction.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../../../constants/firebase_constants.dart';
-import '../../list_record/list_weigth.dart';
-import '../../record/record_weight_prediction.dart';
+import '../../list_record/view/list_weigth.dart';
 
 class WeightRecord extends StatelessWidget {
   const WeightRecord({Key? key, required this.data, required this.currentUser})

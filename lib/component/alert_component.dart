@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:peternakan_sapi/modules/money_manager/income.dart';
+import 'package:peternakan_sapi/modules/money_manager/view/income.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 
 class AlertComponents extends StatelessWidget {

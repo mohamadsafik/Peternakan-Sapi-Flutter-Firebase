@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/firebase_constants.dart';
-import '../../../controllers/home_controller.dart';
-import '../../../controllers/list_cow_controller.dart';
+import '../controller/home_controller.dart';
+import '../../cows/list_cow/controller/list_cow_controller.dart';
 
 // ignore: camel_case_types
 class monitoring_widget extends StatelessWidget {

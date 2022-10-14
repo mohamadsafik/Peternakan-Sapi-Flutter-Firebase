@@ -1,13 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/constants/firebase_constants.dart';
-import 'package:peternakan_sapi/controllers/setting_controller.dart';
 import 'package:peternakan_sapi/routes/app_page.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'controllers/auth_controller.dart';
+import 'modules/auth/controller/auth_controller.dart';
 import 'routes/route_name.dart';
 
 void main() async {

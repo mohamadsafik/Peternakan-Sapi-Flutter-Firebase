@@ -5,9 +5,9 @@ import 'package:peternakan_sapi/constants/constant.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../../constants/firebase_constants.dart';
-import '../../../controllers/auth_controller.dart';
-import '../../../controllers/home_controller.dart';
-import '../../../controllers/list_cow_controller.dart';
+import '../../auth/controller/auth_controller.dart';
+import '../controller/home_controller.dart';
+import '../../cows/list_cow/controller/list_cow_controller.dart';
 
 class CowContainer extends StatelessWidget {
   CowContainer({Key? key}) : super(key: key);
