@@ -6,7 +6,7 @@ import 'package:peternakan_sapi/modules/home/controller/home_controller.dart';
 import 'package:peternakan_sapi/modules/cows/list_cow/controller/list_cow_controller.dart';
 import 'package:peternakan_sapi/modules/home/article.dart';
 import '../../cows/list_record/view/list_activity.dart';
-import '../../cows/record/view/record_weight_prediction.dart';
+import '../../weight_prediction/view/record_weight_prediction.dart';
 import '../widgets/cow_container_widget.dart';
 import '../widgets/drawer.dart';
 import '../widgets/monitoring_widget.dart';
