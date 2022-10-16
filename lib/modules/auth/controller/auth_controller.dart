@@ -7,7 +7,7 @@ import 'package:peternakan_sapi/constants/firebase_constants.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 import 'package:get/get.dart';
 
-import '../view/auth_main.dart';
+import '../auth-main/view/auth_main.dart';
 
 class AuthController extends GetxController {
   final emailController = TextEditingController();
@@ -42,23 +42,15 @@ class AuthController extends GetxController {
           print('Document data: ${documentSnapshot.data()}');
           print(documentSnapshot['role']);
         } else {
-          // Get.offAllNamed(RouteName.landing);
-          // Get.offAll(CreateProfileUpdate());
           Get.offAllNamed(RouteName.createprofile);
 
           print('Document does not exist on the database');
         }
       });
     } else {
-      // user is null as in user is not available or not logged in
-      // Get.offAllNamed(RouteName.login);
       Get.to(const AuthMainPage());
     }
   }
-
-  // void profile(String username, String )async{
-  //    CollectionReference users = firestore.collection("users");
-  // }
 
   void register(
       String email, String password, String namefarm, String username) async {
@@ -78,20 +70,15 @@ class AuthController extends GetxController {
       });
       authInstance.signOut();
     } on FirebaseAuthException catch (e) {
-      // this is solely for the Firebase Auth Exception
-      // for example : password did not match
       if (kDebugMode) {
         print(e.message);
       }
-      // Get.snackbar("Error", e.message!);
       Get.snackbar(
         "Error",
         e.message!,
         snackPosition: SnackPosition.BOTTOM,
       );
     } catch (e) {
-      // this is temporary. you can handle different kinds of activities
-      //such as dialogue to indicate what's wrong
       if (kDebugMode) {
         print(e.toString());
       }
@@ -102,13 +89,8 @@ class AuthController extends GetxController {
     try {
       await auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
-      // this is solely for the Firebase Auth Exception
-      // for example : password did not match
       return Get.defaultDialog(
           title: 'info', content: const Text('terjadi kesalahan login'));
-      // if (kDebugMode) {
-      //   print(e.message);
-      // }
     } catch (e) {
       if (kDebugMode) {
         print(e.toString());
@@ -127,7 +109,6 @@ class AuthController extends GetxController {
   }
 
   final GoogleSignIn googleSignIn = GoogleSignIn();
-
   void handleSignIn() async {
     try {
       await googleSignIn.signIn();

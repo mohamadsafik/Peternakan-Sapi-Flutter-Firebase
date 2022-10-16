@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/modules/money_manager/controller/money_manager_controller.dart';
-import 'package:peternakan_sapi/modules/employee/home/view/home_employee.dart';
+import 'package:peternakan_sapi/modules/role-employee/home/view/home_employee.dart';
 
 class EditMoneyManager extends GetView<MoneyManagerController> {
   EditMoneyManager({Key? key, this.data}) : super(key: key);

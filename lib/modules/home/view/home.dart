@@ -3,107 +3,49 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/modules/home/controller/home_controller.dart';
-import 'package:peternakan_sapi/modules/cows/list_cow/controller/list_cow_controller.dart';
-import 'package:peternakan_sapi/modules/home/article.dart';
-import '../../cows/list_record/view/list_activity.dart';
+import 'package:peternakan_sapi/modules/article.dart';
+import '../../list_record/view/list_activity.dart';
 import '../../weight_prediction/view/record_weight_prediction.dart';
 import '../widgets/cow_container_widget.dart';
 import '../widgets/drawer.dart';
 import '../widgets/monitoring_widget.dart';
 
-// import 'package:hexcolor/hexcolor.dart';
-
 class Homepage extends StatelessWidget {
   Homepage({Key? key}) : super(key: key);
-  final controller = Get.find<ListCowController>();
-  final homecontroller = Get.find<HomeController>();
+  final controller = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final height = size.height;
-    final width = size.width;
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(80),
           child: AppBar(
             backgroundColor: green,
-            actions: [],
           )),
       backgroundColor: background,
       drawer: const drawer(),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // const Top_Container_Widget(),
             const SizedBox(height: 5),
             CowContainer(),
             const SizedBox(height: 5),
             Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-              Container(
-                  color: Colors.transparent,
-                  height: 75,
-                  width: 75,
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(ListActivity());
-                        },
-                        child: SizedBox(
-                          height: 50,
-                          child: Image(
-                            image: AssetImage('assets/home/activity.png'),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        'Aktifitas',
-                        style: TextStyle(fontSize: 15),
-                      )
-                    ],
-                  )),
-              Container(
-                  color: Colors.transparent,
-                  height: 75,
-                  width: 75,
-                  child: Column(
-                    children: const [
-                      SizedBox(
-                        height: 50,
-                        child: Image(
-                          image: AssetImage('assets/home/cowshed.png'),
-                        ),
-                      ),
-                      Text(
-                        'Kandang',
-                        style: TextStyle(fontSize: 15),
-                      )
-                    ],
-                  )),
-              Container(
-                  color: Colors.transparent,
-                  height: 75,
-                  width: 75,
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(WeightPredictionPage());
-                        },
-                        child: const SizedBox(
-                          height: 50,
-                          child: Image(
-                            image: AssetImage('assets/home/weight.png'),
-                          ),
-                        ),
-                      ),
-                      const Text(
-                        'Bobot',
-                        style: TextStyle(fontSize: 15),
-                      )
-                    ],
-                  )),
+              iconFeatureButton(
+                ListActivity(),
+                const Image(image: AssetImage("assets/home/activity.png")),
+                "Aktifitas",
+              ),
+              iconFeatureButton(
+                null,
+                const Image(image: AssetImage("assets/home/cowshed.png")),
+                "Kandang",
+              ),
+              iconFeatureButton(
+                WeightPredictionPage(),
+                const Image(image: AssetImage("assets/home/weight.png")),
+                "Bobot",
+              ),
               Container(
                   color: Colors.transparent,
                   height: 75,
@@ -114,20 +56,18 @@ class Homepage extends StatelessWidget {
                           stream: controller.stream,
                           builder: (context,
                               AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-                            return SizedBox(
-                              height: 50,
-                              child: GestureDetector(
+                            return GestureDetector(
                                 onTap: () {
-                                  controller.scanBarcode(
-                                      context, streamSnapshot);
+                                  controller.scanner
+                                      .scanBarcode(context, streamSnapshot);
                                 },
-                                child: const Image(
-                                  image: AssetImage('assets/home/qr-scan.png'),
-                                ),
-                              ),
-                            );
+                                child: const SizedBox(
+                                    height: 50,
+                                    child: Image(
+                                        image: AssetImage(
+                                            "assets/home/qr-scan.png"))));
                           }),
-                      Text(
+                      const Text(
                         'Scan',
                         style: TextStyle(fontSize: 15),
                       )
@@ -137,14 +77,11 @@ class Homepage extends StatelessWidget {
             const SizedBox(height: 10),
             monitoring_widget(),
             const SizedBox(height: 10),
-            Padding(
-              padding: EdgeInsets.only(left: width / 40, right: width / 40),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text('Edukasi'),
-                ],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text('Edukasi'),
+              ],
             ),
             SizedBox(
               height: 200.0,
@@ -157,7 +94,6 @@ class Homepage extends StatelessWidget {
                   if (streamSnapshot.data != null) {
                     return ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      // scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       itemCount: streamSnapshot.data!.docs.length,
                       itemBuilder: (context, index) {
@@ -193,7 +129,7 @@ class Homepage extends StatelessWidget {
                                       Container(
                                           height: 65,
                                           width: 250,
-                                          color: Color.fromARGB(
+                                          color: const Color.fromARGB(
                                               255, 209, 208, 208),
                                           child: ListTile(
                                             title:
@@ -209,7 +145,6 @@ class Homepage extends StatelessWidget {
                       },
                     );
                   }
-
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
@@ -220,5 +155,30 @@ class Homepage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Container iconFeatureButton(
+    var gestureDetector,
+    Widget image,
+    String text,
+  ) {
+    return Container(
+        color: Colors.transparent,
+        height: 75,
+        width: 75,
+        child: Column(
+          children: [
+            GestureDetector(
+              onTap: () {
+                Get.to(gestureDetector);
+              },
+              child: SizedBox(height: 50, child: image),
+            ),
+            Text(
+              text,
+              style: const TextStyle(fontSize: 15),
+            )
+          ],
+        ));
   }
 }

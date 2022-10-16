@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/modules/setting/view/setting.dart';
 import '../controller/landing_page_controller.dart';
-import '../../cows/list_cow/view/list_cows.dart';
+import '../../list_cow/view/list_cows.dart';
 import '../../home/view/home.dart';
 import '../../money_manager/view/money_manager.dart';
 import '../../social_media/view/social_media_beranda.dart';

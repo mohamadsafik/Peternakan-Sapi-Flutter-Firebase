@@ -4,7 +4,7 @@ import 'package:peternakan_sapi/modules/setting/controller/setting_controller.da
 
 import '../../home/controller/home_controller.dart';
 import '../controller/landing_page_controller.dart';
-import '../../cows/list_cow/controller/list_cow_controller.dart';
+import '../../list_cow/controller/list_cow_controller.dart';
 
 class LandingBinding extends Bindings {
   @override
