@@ -11,7 +11,7 @@ import '../../../constants/color.dart';
 import '../../../constants/constant.dart';
 import '../../auth/controller/auth_controller.dart';
 import '../../../routes/route_name.dart';
-import '../../home/widgets/drawer.dart';
+import '../../home/components/drawer.dart';
 
 class MoneyManagerPage extends StatefulWidget {
   const MoneyManagerPage({Key? key}) : super(key: key);

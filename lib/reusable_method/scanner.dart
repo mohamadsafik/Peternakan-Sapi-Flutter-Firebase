@@ -13,14 +13,12 @@ class ScanQrcode {
     String data;
     try {
       data = await FlutterBarcodeScanner.scanBarcode("", "", true, ScanMode.QR);
-      if (data != null) {
-        for (int i = 0; i < streamSnapshot.data!.docs.length; i++) {
-          if (data == streamSnapshot.data!.docs[i]["eartag"]) {
-            Get.toNamed(
-              RouteName.detailcow,
-              arguments: streamSnapshot.data!.docs[i].data(),
-            );
-          }
+      for (int i = 0; i < streamSnapshot.data!.docs.length; i++) {
+        if (data == streamSnapshot.data!.docs[i]["eartag"]) {
+          Get.toNamed(
+            RouteName.detailcow,
+            arguments: streamSnapshot.data!.docs[i].data(),
+          );
         }
       }
     } on PlatformException catch (e) {

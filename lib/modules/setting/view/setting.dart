@@ -7,7 +7,6 @@ import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../../constants/firebase_constants.dart';
 import '../../auth/controller/auth_controller.dart';
-import '../../home/widgets/drawer.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -35,7 +34,6 @@ class _SettingPageState extends State<SettingPage> {
           ],
         ),
       ),
-      // drawer: const drawer(),
       backgroundColor: background,
       body: SingleChildScrollView(
         child: Column(
@@ -61,12 +59,6 @@ class _SettingPageState extends State<SettingPage> {
                             ? null
                             : NetworkImage(
                                 documentSnapshot['image'],
-                                // child: (documentSnapshot['image'] == '')
-                                //     ? const Icon(Icons.person)
-                                //     : Image.network(
-                                //         documentSnapshot['image'],
-                                //         fit: BoxFit.cover,
-                                //       )),
                               ),
                       ),
                       title: Text(

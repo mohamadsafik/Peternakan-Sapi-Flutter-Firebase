@@ -5,7 +5,6 @@ import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../../constants/firebase_constants.dart';
-import '../../auth/controller/auth_controller.dart';
 
 // ignore: camel_case_types
 class drawer extends StatelessWidget {
@@ -47,14 +46,7 @@ class drawer extends StatelessWidget {
                                           null)
                                       ? null
                                       : NetworkImage(
-                                          documentSnapshot['image'].toString()
-                                          // child: (documentSnapshot['image'] == '')
-                                          //     ? const Icon(Icons.person)
-                                          //     : Image.network(
-                                          //         documentSnapshot['image'],
-                                          //         fit: BoxFit.cover,
-                                          //       )),
-                                          ),
+                                          documentSnapshot['image'].toString()),
                                 ),
                                 title: Text(
                                   documentSnapshot['username'],

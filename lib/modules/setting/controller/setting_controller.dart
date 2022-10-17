@@ -31,18 +31,12 @@ class SettingController extends GetxController {
   var stream = FirebaseFirestore.instance
       .collection('users')
       .where('email', isEqualTo: auth.currentUser?.email)
-      // .where('role', isEqualTo: 'owner')
       .snapshots();
 
   void updateProfile(
     String username,
     String alamat,
     String gender,
-    // String gender,
-    // String breed,
-    // String birthdate,
-    // String joinedwhen,
-    // String note,
     String data,
   ) async {
     DocumentReference users = firestore.collection("users").doc(data);
@@ -52,7 +46,6 @@ class SettingController extends GetxController {
     if (pickedImage == null) {
       imageUrl = null;
     } else {
-      //jika image tidak kosong maka image = url gambar
       var task = storageImage.putFile(File(pickedImage!.path));
       imageUrl = await (await task).ref.getDownloadURL();
     }

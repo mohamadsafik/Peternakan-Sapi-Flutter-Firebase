@@ -1,8 +1,5 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/modules/setting/controller/setting_controller.dart';
@@ -18,10 +15,9 @@ class UpdateProfilePage extends StatelessWidget {
       backgroundColor: background,
       appBar: AppBar(
         backgroundColor: green,
-        title: Text('Edit Profile'),
+        title: const Text('Edit Profile'),
       ),
       body: Padding(
-        // padding: const EdgeInsets.only(left: 8.0, right: 8.0),
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
@@ -49,7 +45,7 @@ class UpdateProfilePage extends StatelessWidget {
                               onPressed: () {
                                 controller.cancelImage();
                               },
-                              child: Icon(Icons.cancel),
+                              child: const Icon(Icons.cancel),
                             ),
                           ],
                         )
@@ -109,7 +105,7 @@ class UpdateProfilePage extends StatelessWidget {
                   controller.updateProfile(controller.username.text,
                       controller.alamat.text, controller.gender.text, data.id);
                 },
-                child: Text('update'))
+                child: const Text('update'))
           ],
         ),
       ),

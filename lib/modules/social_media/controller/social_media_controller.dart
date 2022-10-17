@@ -2,14 +2,12 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:uuid/uuid.dart';
 
 import '../../../constants/firebase_constants.dart';
 
@@ -44,7 +42,6 @@ class SocialMediaController extends GetxController {
     }
   }
 
-  //like unlike button
   void likeUnlike() {
     click = !click;
     getLike();
@@ -72,12 +69,10 @@ class SocialMediaController extends GetxController {
     try {
       await post.add({
         "grup": "peternakan sapi",
-        // "username": stream,
         "uid": FirebaseAuth.instance.currentUser!.uid,
         "username": username,
         "status": status,
         "image": imageUrl,
-        "uid": FirebaseAuth.instance.currentUser!.uid,
         "date": DateFormat("d MMMM yyyy").format(DateTime.now()),
         "comments": FieldValue.arrayUnion(
           [],
@@ -114,26 +109,8 @@ class SocialMediaController extends GetxController {
     String docStatus,
   ) async {
     DocumentReference comments = firestore.collection("post").doc(docStatus);
-    // var nameImage = pickedImage?.name;
-    // var storageImage =
-    //     FirebaseStorage.instance.ref().child('statusImage/$nameImage');
-    // if (pickedImage == null) {
-    //   imageUrl = null;
-    // } else {
-    //   //jika image tidak kosong maka image = url gambar
-    //   var task = storageImage.putFile(File(pickedImage!.path));
-    //   imageUrl = await (await task).ref.getDownloadURL();
-    // }
     try {
       await comments.update({
-        // "grup": "peternakan sapi",
-        // // "username": stream,
-        // "uid": FirebaseAuth.instance.currentUser!.uid,
-        // "username": username,
-        // "status": status,
-        // "image": imageUrl,
-        // "uid": FirebaseAuth.instance.currentUser!.uid,
-        // "date": DateFormat("d MMMM yyyy").format(DateTime.now()),
         "comments": FieldValue.arrayUnion(
           [
             {
@@ -143,9 +120,6 @@ class SocialMediaController extends GetxController {
             }
           ],
         ),
-        // "like": FieldValue.arrayUnion(
-        //   [],
-        // ),
       });
       Get.snackbar("Komentar", "berhasil",
           duration: const Duration(seconds: 1));

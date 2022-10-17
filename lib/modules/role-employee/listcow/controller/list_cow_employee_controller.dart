@@ -1,16 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
-
+import 'package:peternakan_sapi/reusable_method/scanner.dart';
 import '../../../../constants/firebase_constants.dart';
-import '../../../../routes/route_name.dart';
 
 class ListCowEmployeeController extends GetxController {
   final TextEditingController searchController = TextEditingController();
-
+  ScanQrcode scanner = ScanQrcode();
   late QuerySnapshot snapshotData;
 
   bool isExecuted = false;
@@ -53,36 +50,6 @@ class ListCowEmployeeController extends GetxController {
     }
   }
 
-  Future<void> scanBarcode(
-      context, AsyncSnapshot<QuerySnapshot> streamSnapshot) async {
-    String data;
-    try {
-      data = await FlutterBarcodeScanner.scanBarcode(
-          "", "", true, ScanMode.BARCODE);
-      if (data != null) {
-        for (int i = 0; i < streamSnapshot.data!.docs.length; i++) {
-          if (data == streamSnapshot.data!.docs[i]["eartag"]) {
-            Get.toNamed(
-              RouteName.detailcow,
-              arguments: streamSnapshot.data!.docs[i].data(),
-            );
-          }
-        }
-      }
-    } on PlatformException catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-      Get.defaultDialog(
-        title: "Terjadi kesalahan",
-        middleText: "Gagal mengambil data",
-      );
-    }
-  }
-
-  var stream = FirebaseFirestore.instance
-      .collection('cows')
-      .orderBy('name')
-      // .where('uid', isEqualTo: auth.currentUser?.uid)
-      .snapshots();
+  var stream =
+      FirebaseFirestore.instance.collection('cows').orderBy('name').snapshots();
 }

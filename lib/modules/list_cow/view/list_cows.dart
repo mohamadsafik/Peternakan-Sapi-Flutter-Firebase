@@ -1,19 +1,14 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:peternakan_sapi/modules/list_cow/components/search_data.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
-
 import '../../../constants/color.dart';
 import '../controller/list_cow_controller.dart';
-import '../../home/widgets/drawer.dart';
+import '../../home/components/drawer.dart';
 
 class ListCows extends StatefulWidget {
-  ListCows({
+  const ListCows({
     Key? key,
   }) : super(key: key);
 
@@ -29,71 +24,6 @@ class _ListCowsState extends State<ListCows> {
     final size = MediaQuery.of(context).size;
     final height = size.height;
     final width = size.width;
-    Widget searchedData() {
-      return ListView.builder(
-          shrinkWrap: true,
-          itemCount: controller.snapshotData.docs.length,
-          itemBuilder: (BuildContext context, int index) {
-            final DocumentSnapshot documentSnapshot =
-                controller.snapshotData.docs[index];
-            var nama = documentSnapshot['name'].toString();
-            var nomortag = documentSnapshot['nomortag'].toString();
-            return Container(
-              margin:
-                  const EdgeInsets.only(left: 8, right: 8, bottom: 4, top: 4),
-              width: width,
-              height: 72,
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(8)),
-              child: ListTile(
-                leading: SizedBox(
-                    height: 60.0,
-                    width: 60.0,
-                    child:
-                        // documentSnapshot['image'] != null
-                        //     ? Image.network(documentSnapshot['image'].toString())
-                        //     :
-                        Image.asset(
-                      'assets/home/cow1.png',
-                      // fit: BoxFit.cover,
-                    )),
-                title: Text(
-                  "$nama ($nomortag)",
-                ),
-                subtitle: Text(documentSnapshot['gender']),
-                trailing: SizedBox(
-                  width: 100,
-                  child: Row(
-                    children: [
-                      IconButton(
-                          onPressed: () => Get.toNamed(
-                                RouteName.updatecow,
-                                arguments: documentSnapshot,
-                              ),
-                          icon: const Icon(
-                            Icons.edit,
-                            color: Colors.grey,
-                          )),
-                      IconButton(
-                          onPressed: () {
-                            controller.deleteSapi(documentSnapshot.id);
-                          },
-                          icon: const Icon(
-                            Icons.delete,
-                            color: Colors.red,
-                          )),
-                    ],
-                  ),
-                ),
-                onTap: () => Get.toNamed(
-                  RouteName.detailcow,
-                  arguments: documentSnapshot,
-                ),
-              ),
-            );
-          });
-    }
 
     return Scaffold(
         backgroundColor: background,
@@ -104,8 +34,7 @@ class _ListCowsState extends State<ListCows> {
               actions: [
                 Center(
                   child: Container(
-                    margin: EdgeInsets.only(top: 10),
-                    // height: 50,
+                    margin: const EdgeInsets.only(top: 10),
                     width: Get.width / 1.5,
                     color: background,
                     child: TextField(
@@ -125,7 +54,7 @@ class _ListCowsState extends State<ListCows> {
                                       });
                                     });
                                   },
-                                  icon: Icon(Icons.search));
+                                  icon: const Icon(Icons.search));
                             },
                           ),
                           hintText: '  Cari...'),
@@ -133,7 +62,7 @@ class _ListCowsState extends State<ListCows> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 StreamBuilder(
@@ -142,7 +71,8 @@ class _ListCowsState extends State<ListCows> {
                         (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                       return IconButton(
                           onPressed: () {
-                            controller.scanBarcode(context, streamSnapshot);
+                            controller.scanner
+                                .scanBarcode(context, streamSnapshot);
                           },
                           icon: const Icon(
                             Icons.qr_code_scanner,
@@ -152,9 +82,9 @@ class _ListCowsState extends State<ListCows> {
                     }),
               ],
             )),
-        drawer: drawer(),
+        drawer: const drawer(),
         body: (controller.isExecuted)
-            ? searchedData()
+            ? searchedData(controller)
             : SingleChildScrollView(
                 child: Column(
                   children: [
@@ -194,7 +124,6 @@ class _ListCowsState extends State<ListCows> {
                                                     .toString())
                                             : Image.asset(
                                                 'assets/home/cow1.png',
-                                                // fit: BoxFit.cover,
                                               )),
                                     title: Text(
                                       "$nama ($nomortag)",
@@ -247,7 +176,6 @@ class _ListCowsState extends State<ListCows> {
         floatingActionButton: FloatingActionButton(
           heroTag: null,
           onPressed: () => Get.toNamed(RouteName.addcow),
-          // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
           child: const Icon(Icons.add),
         ));
   }

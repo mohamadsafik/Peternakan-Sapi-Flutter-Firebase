@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/firebase_constants.dart';
 import 'package:peternakan_sapi/modules/role-employee/listcow/controller/list_cow_employee_controller.dart';
@@ -9,9 +7,10 @@ import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../../../../constants/color.dart';
 import '../../../list_cow/controller/list_cow_controller.dart';
+import '../components/search_data.dart';
 
 class ListCowsEmployee extends StatefulWidget {
-  ListCowsEmployee({
+  const ListCowsEmployee({
     Key? key,
   }) : super(key: key);
 
@@ -24,75 +23,6 @@ class _ListCowsEmployeeState extends State<ListCowsEmployee> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final height = size.height;
-    final width = size.width;
-    Widget searchedData() {
-      return StreamBuilder(
-          stream: null,
-          builder: (context, snapshot) {
-            return ListView.builder(
-                shrinkWrap: true,
-                itemCount: controller.snapshotData.docs.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final DocumentSnapshot documentSnapshot =
-                      controller.snapshotData.docs[index];
-                  return Container(
-                    margin: const EdgeInsets.only(
-                        left: 8, right: 8, bottom: 4, top: 4),
-                    width: width,
-                    height: 72,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(8)),
-                    child: ListTile(
-                      leading: SizedBox(
-                          height: 60.0,
-                          width: 60.0,
-                          child: documentSnapshot['image'] != null
-                              ? Image.network(
-                                  documentSnapshot['image'].toString())
-                              : Image.asset(
-                                  'assets/home/cow1.png',
-                                  // fit: BoxFit.cover,
-                                )),
-                      title: Text(
-                        documentSnapshot['name'].toString(),
-                      ),
-                      subtitle: Text(documentSnapshot['gender']),
-                      trailing: SizedBox(
-                        width: 100,
-                        child: Row(
-                          children: [
-                            IconButton(
-                                onPressed: () => Get.toNamed(
-                                      RouteName.updatecow,
-                                      arguments: documentSnapshot,
-                                    ),
-                                icon: const Icon(
-                                  Icons.edit,
-                                  color: Colors.grey,
-                                )),
-                            IconButton(
-                                onPressed: () =>
-                                    controller.deleteSapi(documentSnapshot.id),
-                                icon: const Icon(
-                                  Icons.delete,
-                                  color: Colors.red,
-                                )),
-                          ],
-                        ),
-                      ),
-                      onTap: () => Get.toNamed(
-                        RouteName.detailcow,
-                        arguments: documentSnapshot,
-                      ),
-                    ),
-                  );
-                });
-          });
-    }
-
     return Scaffold(
         backgroundColor: background,
         appBar: PreferredSize(
@@ -102,8 +32,7 @@ class _ListCowsEmployeeState extends State<ListCowsEmployee> {
               title: Card(
                 child: TextField(
                   decoration: const InputDecoration(
-                      prefixIcon: const Icon(Icons.search),
-                      hintText: 'Search...'),
+                      prefixIcon: Icon(Icons.search), hintText: 'Search...'),
                   controller: controller.searchController,
                 ),
               ),
@@ -122,18 +51,17 @@ class _ListCowsEmployeeState extends State<ListCowsEmployee> {
                             });
                           });
                         },
-                        icon: Icon(Icons.search));
+                        icon: const Icon(Icons.search));
                   },
                 ),
-                // searchBar(context);
-
                 StreamBuilder(
                     stream: controller.stream,
                     builder:
                         (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                       return IconButton(
                           onPressed: () {
-                            controller.scanBarcode(context, streamSnapshot);
+                            controller.scanner
+                                .scanBarcode(context, streamSnapshot);
                           },
                           icon: const Icon(
                             Icons.qr_code_scanner,
@@ -144,7 +72,7 @@ class _ListCowsEmployeeState extends State<ListCowsEmployee> {
               ],
             )),
         body: (controller.isExecuted)
-            ? searchedData()
+            ? searchedData(controller)
             : StreamBuilder(
                 stream: FirebaseFirestore.instance
                     .collection('users')
@@ -163,8 +91,8 @@ class _ListCowsEmployeeState extends State<ListCowsEmployee> {
                             child: Column(
                               children: [
                                 SizedBox(
-                                  height: height / 1.3,
-                                  width: width,
+                                  height: Get.height / 1.3,
+                                  width: Get.width,
                                   child: StreamBuilder(
                                     stream: FirebaseFirestore.instance
                                         .collection('cows')
@@ -194,7 +122,7 @@ class _ListCowsEmployeeState extends State<ListCowsEmployee> {
                                                   right: 8,
                                                   bottom: 4,
                                                   top: 4),
-                                              width: width,
+                                              width: Get.width,
                                               height: 72,
                                               decoration: BoxDecoration(
                                                   border: Border.all(
@@ -270,12 +198,6 @@ class _ListCowsEmployeeState extends State<ListCowsEmployee> {
                             ),
                           );
                         });
-                    // floatingActionButton: FloatingActionButton(
-                    //   heroTag: null,
-                    //   onPressed: () => Get.toNamed(RouteName.addcow),
-                    //   // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-                    //   child: const Icon(Icons.add),
-                    // )
                   }
                   return const Center(
                     child: CircularProgressIndicator(),

@@ -1,18 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:duration_button/duration_button.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/modules/role-employee/create-profile/controller/create_profile_employee_controller.dart';
 import 'package:peternakan_sapi/modules/role-employee/home/view/home_employee.dart';
-import 'package:peternakan_sapi/routes/route_name.dart';
-
 import '../../../../constants/color.dart';
-import '../../../auth/controller/auth_controller.dart';
-import '../../../setting/controller/setting_controller.dart';
 
 class CreateProfileEmployee extends StatefulWidget {
-  CreateProfileEmployee({Key? key}) : super(key: key);
+  const CreateProfileEmployee({Key? key}) : super(key: key);
 
   @override
   State<CreateProfileEmployee> createState() => _CreateProfileEmployeeState();
@@ -38,10 +34,6 @@ class _CreateProfileEmployeeState extends State<CreateProfileEmployee> {
                 final DocumentSnapshot documentSnapshot =
                     streamSnapshot.data!.docs[index];
                 return ListTile(
-                  // title: Text(
-                  //   documentSnapshot['username'],
-                  //   style: const TextStyle(fontWeight: FontWeight.bold),
-                  // ),
                   trailing: IconDurationButton(
                     Icons.edit,
                     size: 0,

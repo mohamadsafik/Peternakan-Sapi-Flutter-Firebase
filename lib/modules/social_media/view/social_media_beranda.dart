@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:peternakan_sapi/modules/social_media/controller/social_media_controller.dart';
 
 import '../../../constants/color.dart';
-import '../../home/widgets/drawer.dart';
+import '../../home/components/drawer.dart';
 import 'comment.dart';
 
 class SocialMediaPage extends GetView<SocialMediaController> {

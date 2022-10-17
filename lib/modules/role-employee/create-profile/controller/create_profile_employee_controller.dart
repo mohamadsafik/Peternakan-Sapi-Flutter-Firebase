@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../constants/firebase_constants.dart';
-import '../../home/view/home_employee.dart';
 
 class CreateProfileEmployeeController extends GetxController {
   late TextEditingController username = TextEditingController();
@@ -24,18 +23,9 @@ class CreateProfileEmployeeController extends GetxController {
   var stream = FirebaseFirestore.instance
       .collection('users')
       .where('email', isEqualTo: auth.currentUser?.email)
-      // .where('role', isEqualTo: 'owner')
       .snapshots();
 
   void updateProfile(
-    // String username,
-    // String alamat,
-    // String gender,
-    // String gender,
-    // String breed,
-    // String birthdate,
-    // String joinedwhen,
-    // String note,
     String data,
   ) async {
     DocumentReference users = firestore.collection("users").doc(data);
@@ -43,9 +33,6 @@ class CreateProfileEmployeeController extends GetxController {
     try {
       await users.update({
         "uid": FirebaseAuth.instance.currentUser!.uid,
-        // "username": username,
-        // "alamat": alamat,
-        // "gender": gender,
       });
     } catch (e) {
       if (kDebugMode) {

@@ -3,7 +3,7 @@ import 'package:peternakan_sapi/constants/color.dart';
 
 class ArticlePage extends StatelessWidget {
   const ArticlePage({Key? key, this.data}) : super(key: key);
-  final data;
+  final dynamic data;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

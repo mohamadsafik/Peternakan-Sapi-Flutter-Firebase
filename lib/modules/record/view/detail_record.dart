@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:get/get.dart';
-import 'package:peternakan_sapi/constants/color.dart';
 
 class DetailRecordPage extends StatelessWidget {
   DetailRecordPage({Key? key, this.data}) : super(key: key);
