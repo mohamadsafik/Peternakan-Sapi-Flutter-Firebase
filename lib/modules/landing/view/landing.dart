@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 import 'package:peternakan_sapi/modules/setting/view/setting.dart';
+import '../components/bottom_nav_bar.dart';
 import '../controller/landing_page_controller.dart';
 import '../../list_cow/view/list_cows.dart';
 import '../../home/view/home.dart';
@@ -36,50 +37,10 @@ class LandingPage extends StatelessWidget {
             unselectedLabelStyle: unselectedLabelStyle,
             selectedLabelStyle: selectedLabelStyle,
             items: [
-              BottomNavigationBarItem(
-                icon: Container(
-                  margin: const EdgeInsets.only(bottom: 7),
-                  child: const Icon(
-                    Icons.home,
-                    size: 20.0,
-                  ),
-                ),
-                label: 'Beranda',
-                backgroundColor: background,
-              ),
-              BottomNavigationBarItem(
-                icon: Container(
-                  margin: const EdgeInsets.only(bottom: 7),
-                  child: const Icon(
-                    Icons.search,
-                    size: 20.0,
-                  ),
-                ),
-                label: 'Sapi',
-                backgroundColor: background,
-              ),
-              BottomNavigationBarItem(
-                icon: Container(
-                  margin: const EdgeInsets.only(bottom: 7),
-                  child: const Icon(
-                    Icons.monetization_on,
-                    size: 20.0,
-                  ),
-                ),
-                label: 'Keuangan',
-                backgroundColor: background,
-              ),
-              BottomNavigationBarItem(
-                icon: Container(
-                  margin: const EdgeInsets.only(bottom: 7),
-                  child: const Icon(
-                    Icons.settings,
-                    size: 20.0,
-                  ),
-                ),
-                label: 'Pengaturan',
-                backgroundColor: background,
-              ),
+              bottomNavBar(Icons.home, "Beranda"),
+              bottomNavBar(Icons.search, "Sapi"),
+              bottomNavBar(Icons.monetization_on, "Keuangan"),
+              bottomNavBar(Icons.settings, "Pengaturan"),
             ],
           ),
         )));
@@ -97,21 +58,11 @@ class LandingPage extends StatelessWidget {
               index: landingPageController.tabIndex.value,
               children: [
                 Homepage(),
-                ListCows(),
+                const ListCows(),
                 const MoneyManagerPage(),
-                // const WebScraperApp(),
-                // SocialMediaPage(),
-                //
-                SettingPage(),
-                // const RecipeDetailsScreen(),
+                const SettingPage(),
               ],
             )),
-        // floatingActionButton: FloatingActionButton(
-        //   heroTag: null,
-        //   onPressed: () => Get.to(const AddCowsPage()),
-        //   child: const Icon(Icons.add),
-        // ),
-        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
     );
   }

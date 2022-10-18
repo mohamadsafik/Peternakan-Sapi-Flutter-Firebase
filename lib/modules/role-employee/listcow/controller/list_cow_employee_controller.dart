@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:peternakan_sapi/reusable_method/scanner.dart';
+import 'package:peternakan_sapi/component/scanner.dart';
 import '../../../../constants/firebase_constants.dart';
 
 class ListCowEmployeeController extends GetxController {

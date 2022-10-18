@@ -8,7 +8,6 @@ import 'package:intl/intl.dart';
 
 import '../controller/add_cow_controller.dart';
 
-//menggunakan getxview
 class AddCowsPage extends StatelessWidget {
   AddCowsPage({Key? key, data}) : super(key: key);
   var data = Get.arguments;
@@ -88,7 +87,7 @@ class AddCowsPage extends StatelessWidget {
               TextField(
                 controller: controller.name,
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                    border: const OutlineInputBorder(),
                     labelText: "Nama",
                     errorText: _validate ? "data kosong" : null),
               ),
@@ -222,27 +221,6 @@ class AddCowsPage extends StatelessWidget {
           ),
         ),
       ),
-      // persistentFooterButtons: [
-      //   Center(
-      //       child: SizedBox(
-      //           height: 50,
-      //           width: 240,
-      //           child: ElevatedButton(
-      //             onPressed: () => controller.addCowModel(
-      //                 CowModel(
-      //                     name: controller.name.text,
-      //                     rasCow: controller.rasCow.text,
-      //                     gender: controller.gender.text,
-      //                     breed: controller.breed.text,
-      //                     birthdate: controller.birthdate.text,
-      //                     joinedwhen: controller.joinedwhen.text,
-      //                     note: controller.note.text),
-      //                 child: const Text('simpan sapi')),
-      //             child: null,
-      //           )))
-      // ],
     );
   }
 }
-
-//   

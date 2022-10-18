@@ -34,21 +34,7 @@ class UpdateCowController extends GetxController {
   late ImagePicker imagePicker = ImagePicker();
   String? imageUrl;
 
-  // Future<DocumentSnapshot<Object?>> getData(String docID) async {
-  //   DocumentReference docRef = firestore.collection("cows").doc(docID);
-  //   return docRef.get();
-  // }
-
-  void editCow(
-      CowModel cowModel,
-      // String name,
-      // String rasCow,
-      // String gender,
-      // String breed,
-      // String birthdate,
-      // String joinedwhen,
-      // String note,
-      String data) async {
+  void editCow(CowModel cowModel, String data) async {
     DocumentReference cows = firestore.collection("cows").doc(data);
     var nameImage = pickedImage?.name;
     var storageImage =
@@ -63,7 +49,6 @@ class UpdateCowController extends GetxController {
     try {
       (imageUrl != null)
           ? await cows.update({
-              // "uid": FirebaseAuth.instance.currentUser!.uid,
               "image": imageUrl,
               "name": cowModel.name,
               "rasCow": cowModel.rasCow,
@@ -75,7 +60,6 @@ class UpdateCowController extends GetxController {
               "note": cowModel.note,
             })
           : await cows.update({
-              // "uid": FirebaseAuth.instance.currentUser!.uid,
               "name": cowModel.name,
               "rasCow": cowModel.rasCow,
               "nomortag": cowModel.nomortag,

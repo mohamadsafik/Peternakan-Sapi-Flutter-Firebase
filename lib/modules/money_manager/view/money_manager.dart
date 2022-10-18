@@ -8,7 +8,7 @@ import 'package:peternakan_sapi/modules/money_manager/view/detail_money.dart';
 
 import '../../../component/alert_component.dart';
 import '../../../constants/color.dart';
-import '../../../constants/constant.dart';
+import '../../../constants/currency.dart';
 import '../../auth/controller/auth_controller.dart';
 import '../../../routes/route_name.dart';
 import '../../home/components/drawer.dart';

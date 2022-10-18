@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import '../../../constants/color.dart';
 import '../../../constants/firebase_constants.dart';
 import '../controller/detail_cow_controller.dart';
-import '../../../models/cow.dart';
 import '../widgets/barcode_cow.dart';
 import '../widgets/cow_information.dart';
 import '../widgets/image_show.dart';
@@ -83,15 +82,15 @@ class DetailCowPage extends StatelessWidget {
                       Row(
                         children: [
                           Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: Text(
                               data['statuspregnant'].toString(),
-                              style: TextStyle(color: Colors.orange),
+                              style: const TextStyle(color: Colors.orange),
                             ),
                           ),
                           (data['statuspregnant'] != "")
                               ? IconButton(
-                                  icon: Icon(Icons.edit),
+                                  icon: const Icon(Icons.edit),
                                   onPressed: () {
                                     Get.defaultDialog(
                                       barrierDismissible: false,
@@ -123,16 +122,16 @@ class DetailCowPage extends StatelessWidget {
                                     );
                                   },
                                 )
-                              : SizedBox(
+                              : const SizedBox(
                                   height: 0,
                                 ),
                           Text(
                             data['statussick'].toString(),
-                            style: TextStyle(color: Colors.red),
+                            style: const TextStyle(color: Colors.red),
                           ),
                           (data['statussick'] != "")
                               ? IconButton(
-                                  icon: Icon(Icons.edit),
+                                  icon: const Icon(Icons.edit),
                                   onPressed: () {
                                     Get.defaultDialog(
                                       barrierDismissible: false,
@@ -143,11 +142,8 @@ class DetailCowPage extends StatelessWidget {
                                         DocumentReference cows = firestore
                                             .collection("cows")
                                             .doc(data.id);
-
                                         try {
                                           await cows.update({
-                                            // "uid": FirebaseAuth.instance.currentUser!.uid,
-
                                             "statussick": '',
                                           });
                                           Get.back();
@@ -165,7 +161,7 @@ class DetailCowPage extends StatelessWidget {
                                     );
                                   },
                                 )
-                              : SizedBox(
+                              : const SizedBox(
                                   height: 0,
                                 ),
                         ],

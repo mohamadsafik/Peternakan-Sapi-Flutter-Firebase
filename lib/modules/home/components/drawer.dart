@@ -31,7 +31,6 @@ class drawer extends StatelessWidget {
                       final DocumentSnapshot documentSnapshot =
                           streamSnapshot.data!.docs[index];
                       return Column(
-                        // Important: Remove any padding from the ListView.
                         children: [
                           Container(
                             height: 200,

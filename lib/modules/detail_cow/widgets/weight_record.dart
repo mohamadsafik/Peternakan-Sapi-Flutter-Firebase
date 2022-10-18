@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
-import 'package:peternakan_sapi/modules/record/view/record_weight.dart';
+import 'package:peternakan_sapi/modules/add_record/view/record_weight.dart';
 import 'package:peternakan_sapi/modules/weight_prediction/view/record_weight_prediction.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 

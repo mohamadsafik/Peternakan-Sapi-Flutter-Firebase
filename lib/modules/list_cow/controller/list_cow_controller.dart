@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
-import 'package:peternakan_sapi/reusable_method/scanner.dart';
+import 'package:peternakan_sapi/component/scanner.dart';
 import '../../../constants/firebase_constants.dart';
 import '../../../routes/route_name.dart';
 

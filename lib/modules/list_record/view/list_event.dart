@@ -4,14 +4,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
-import 'package:peternakan_sapi/modules/record/view/update_record.dart';
+import 'package:peternakan_sapi/modules/add_record/view/update_record.dart';
 
 import '../../../constants/firebase_constants.dart';
 
-import '../../record/view/detail_record.dart';
+import 'detail_record.dart';
 import '../controller/list_event_controller.dart';
-
-
 
 // ignore: must_be_immutable
 class ListEvent extends StatelessWidget {
@@ -42,7 +40,7 @@ class ListEvent extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     final map = streamSnapshot.data!.docs[index];
                     final records = map["record"] as List<dynamic>;
-                    //sort data terbaru berdasarkan time
+
                     records.sort((a, b) => b["time"].compareTo(a["time"]));
                     return Column(
                         children: records.map((record) {
@@ -104,7 +102,6 @@ class ListEvent extends StatelessWidget {
                                                       "tidak berhasil edit sapi",
                                                 );
                                               }
-                                              print(data.id);
                                             }
 
                                             recordCow();

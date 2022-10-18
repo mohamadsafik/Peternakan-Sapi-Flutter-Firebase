@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class DetailRecordPage extends StatelessWidget {
-  DetailRecordPage({Key? key, this.data}) : super(key: key);
-  // var data = Get.arguments;
-  final data;
+  const DetailRecordPage({Key? key, this.data}) : super(key: key);
+
+  final dynamic data;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,35 +16,35 @@ class DetailRecordPage extends StatelessWidget {
             ListTile(
               leading: const Icon(
                 Icons.info,
-                color: const Color.fromARGB(255, 202, 151, 40),
+                color: Color.fromARGB(255, 202, 151, 40),
               ),
               title: Text(data['action'].toString()),
             ),
             ListTile(
               leading: const Icon(
                 Icons.info,
-                color: const Color.fromARGB(255, 202, 151, 40),
+                color: Color.fromARGB(255, 202, 151, 40),
               ),
               title: Text(data['date'].toString()),
             ),
             ListTile(
               leading: const Icon(
                 Icons.info,
-                color: const Color.fromARGB(255, 202, 151, 40),
+                color: Color.fromARGB(255, 202, 151, 40),
               ),
               title: Text(data['doctor'].toString()),
             ),
             ListTile(
               leading: const Icon(
                 Icons.info,
-                color: const Color.fromARGB(255, 202, 151, 40),
+                color: Color.fromARGB(255, 202, 151, 40),
               ),
               title: Text(data['noted'].toString()),
             ),
             ListTile(
               leading: const Icon(
                 Icons.info,
-                color: const Color.fromARGB(255, 202, 151, 40),
+                color: Color.fromARGB(255, 202, 151, 40),
               ),
               title: Text(data['person'].toString()),
             ),

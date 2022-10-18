@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 
-class ArticlePage extends StatelessWidget {
-  const ArticlePage({Key? key, this.data}) : super(key: key);
+class EducationPage extends StatelessWidget {
+  const EducationPage({Key? key, this.data}) : super(key: key);
   final dynamic data;
+  // var data = Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Edukasi"),
+        title: const Text("Edukasi"),
         backgroundColor: green,
       ),
       body: SingleChildScrollView(
@@ -29,11 +31,11 @@ class ArticlePage extends StatelessWidget {
             ListTile(
               title: Text(
                 data['title'],
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               subtitle: Text(data['date']),
             ),
-            ListTile(
+            const ListTile(
               title: Text(
                 'Deskripsi',
                 style: TextStyle(
@@ -41,11 +43,11 @@ class ArticlePage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
-                margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: Text(
                   data['description'],
                   textAlign: TextAlign.justify,

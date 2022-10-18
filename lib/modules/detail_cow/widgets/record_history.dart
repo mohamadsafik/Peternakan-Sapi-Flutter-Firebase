@@ -7,11 +7,11 @@ import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../../component/alert_component.dart';
 import '../../../constants/color.dart';
-import '../../record/view/detail_record.dart';
-import '../../record/view/record_inseminasi_buatan.dart';
-import '../../record/view/record_pregnant.dart';
-import '../../record/view/record_sick.dart';
-import '../../record/view/record_vaksin.dart';
+import '../../list_record/view/detail_record.dart';
+import '../../add_record/view/record_inseminasi_buatan.dart';
+import '../../add_record/view/record_pregnant.dart';
+import '../../add_record/view/record_sick.dart';
+import '../../add_record/view/record_vaksin.dart';
 
 
 // ignore: camel_case_types

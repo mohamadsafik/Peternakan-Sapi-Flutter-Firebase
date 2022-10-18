@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:peternakan_sapi/modules/record/controller/record_controller.dart';
+import 'package:peternakan_sapi/modules/add_record/controller/record_controller.dart';
 
 import '../../../constants/color.dart';
 
