@@ -15,29 +15,29 @@ class _IncomeState extends State<Income> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Income"),
+        title: const Text("Income"),
         backgroundColor: Colors.deepOrange,
         centerTitle: false,
         elevation: 0.5,
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.home),
+              icon: const Icon(Icons.home),
               onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => MoneyManagerPage()));
+                        builder: (context) => const MoneyManagerPage()));
               }),
           IconButton(
-              icon: Icon(Icons.add),
+              icon: const Icon(Icons.add),
               onPressed: () {
                 //this will call the alert
                 showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                          title: Text("add"),
+                          title: const Text("add"),
                           content: Container(
-                              height: 160.0, child: AlertComponents()),
+                              height: 160.0, child: const AlertComponents()),
                         ));
               }),
         ],
@@ -48,13 +48,13 @@ class _IncomeState extends State<Income> {
         color: Colors.white,
         child: Row(
           children: <Widget>[
-            Expanded(
+            const Expanded(
               child: ListTile(
                 title: Text("Balance:"),
                 subtitle: Text("\$720"),
               ),
             ),
-            Expanded(
+            const Expanded(
               child: ListTile(
                 title: Text("Expense:"),
                 subtitle: Text(
@@ -66,7 +66,7 @@ class _IncomeState extends State<Income> {
             Expanded(
                 child: IconButton(
                     onPressed: () {},
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.remove_red_eye,
                       color: Colors.deepOrange,
                     ))),

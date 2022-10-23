@@ -3,15 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/firebase_constants.dart';
 import 'package:peternakan_sapi/modules/money_manager/controller/money_manager_controller.dart';
-import 'package:peternakan_sapi/modules/money_manager/view/add_money.dart';
 import 'package:peternakan_sapi/modules/money_manager/view/detail_money.dart';
-
-import '../../../component/alert_component.dart';
 import '../../../constants/color.dart';
 import '../../../constants/currency.dart';
-import '../../auth/controller/auth_controller.dart';
 import '../../../routes/route_name.dart';
-import '../../home/components/drawer.dart';
 
 class MoneyManagerPage extends StatefulWidget {
   const MoneyManagerPage({Key? key}) : super(key: key);
@@ -33,19 +28,16 @@ class _MoneyManagerPageState extends State<MoneyManagerPage> {
 
     return Scaffold(
         backgroundColor: background,
-        appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(80),
-            child: AppBar(
-              backgroundColor: green,
-              actions: <Widget>[
-                IconButton(
-                    icon: const Icon(Icons.add),
-                    onPressed: () {
-                      Get.toNamed(RouteName.addmoney);
-                    })
-              ],
-            )),
-        drawer: const drawer(),
+        appBar: AppBar(
+          backgroundColor: green,
+          actions: <Widget>[
+            IconButton(
+                icon: const Icon(Icons.add),
+                onPressed: () {
+                  Get.toNamed(RouteName.addmoney);
+                })
+          ],
+        ),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -169,6 +161,7 @@ class _MoneyManagerPageState extends State<MoneyManagerPage> {
                     (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                   if (streamSnapshot.data != null) {
                     return ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: streamSnapshot.data!.docs.length,
                       itemBuilder: (context, index) {

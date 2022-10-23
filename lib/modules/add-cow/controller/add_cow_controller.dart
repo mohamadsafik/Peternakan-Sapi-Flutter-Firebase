@@ -63,6 +63,7 @@ class AddCowController extends GetxController {
     } else {
       //jika image tidak kosong maka image = url gambar
       var task = storageImage.putFile(File(pickedImage!.path));
+      // var convert = task
       imageUrl = await (await task).ref.getDownloadURL();
     }
     try {
@@ -117,8 +118,9 @@ class AddCowController extends GetxController {
 
   void getImage() async {
     try {
-      final checkImage =
-          await imagePicker.pickImage(source: ImageSource.gallery);
+      final checkImage = await imagePicker.pickImage(
+          source: ImageSource.gallery, imageQuality: 50);
+
       if (checkImage != null) {
         pickedImage = checkImage;
       }

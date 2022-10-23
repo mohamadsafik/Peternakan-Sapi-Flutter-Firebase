@@ -15,6 +15,7 @@ abstract class RouteName {
   static const updateprofile = '/updateprofile';
   static const moneymanager = '/moneymanager';
   static const addmoney = '/addmoney';
+  static const weightprediction = '/weightprediction';
 
   //employee
   static const createprofile = '/createprofile';

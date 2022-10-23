@@ -30,61 +30,7 @@ class _ListCowsState extends State<ListCows> {
     return Scaffold(
         backgroundColor: background,
         appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(80),
-            child: AppBar(
-              backgroundColor: green,
-              actions: [
-                Center(
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 10),
-                    width: Get.width / 1.5,
-                    color: background,
-                    child: TextField(
-                      decoration: InputDecoration(
-                          suffixIcon: GetBuilder<ListCowController>(
-                            init: ListCowController(),
-                            builder: (val) {
-                              return IconButton(
-                                  onPressed: () {
-                                    val
-                                        .queryData(
-                                            controller.searchController.text)
-                                        .then((value) {
-                                      controller.snapshotData = value;
-                                      setState(() {
-                                        controller.isExecuted = true;
-                                      });
-                                    });
-                                  },
-                                  icon: const Icon(Icons.search));
-                            },
-                          ),
-                          hintText: '  Cari...'),
-                      controller: controller.searchController,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                StreamBuilder(
-                    stream: controller.stream,
-                    builder:
-                        (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-                      return IconButton(
-                          onPressed: () {
-                            controller.scanner
-                                .scanBarcode(context, streamSnapshot);
-                          },
-                          icon: const Icon(
-                            Icons.qr_code_scanner,
-                            size: 30,
-                            color: Colors.white,
-                          ));
-                    }),
-              ],
-            )),
-        drawer: const drawer(),
+            preferredSize: const Size.fromHeight(80), child: appBar()),
         body: (controller.isExecuted)
             ? searchedData(controller)
             : listCow(height, width, controller),
@@ -93,5 +39,59 @@ class _ListCowsState extends State<ListCows> {
           onPressed: () => Get.toNamed(RouteName.addcow),
           child: const Icon(Icons.add),
         ));
+  }
+
+  Widget appBar() {
+    return AppBar(
+      backgroundColor: green,
+      actions: [
+        Center(
+          child: Container(
+            decoration: BoxDecoration(
+                color: background, borderRadius: BorderRadius.circular(18)),
+            margin: const EdgeInsets.only(top: 10),
+            width: Get.width / 1.4,
+            child: TextField(
+              decoration: InputDecoration(
+                  suffixIcon: GetBuilder<ListCowController>(
+                    init: ListCowController(),
+                    builder: (val) {
+                      return IconButton(
+                          onPressed: () {
+                            val
+                                .queryData(controller.searchController.text)
+                                .then((value) {
+                              controller.snapshotData = value;
+                              setState(() {
+                                controller.isExecuted = true;
+                              });
+                            });
+                          },
+                          icon: const Icon(Icons.search));
+                    },
+                  ),
+                  hintText: '     Cari...'),
+              controller: controller.searchController,
+            ),
+          ),
+        ),
+        const SizedBox(
+          width: 20,
+        ),
+        StreamBuilder(
+            stream: controller.stream,
+            builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+              return IconButton(
+                  onPressed: () {
+                    controller.scanner.scanBarcode(context, streamSnapshot);
+                  },
+                  icon: const Icon(
+                    Icons.qr_code_scanner,
+                    size: 30,
+                    color: Colors.white,
+                  ));
+            }),
+      ],
+    );
   }
 }

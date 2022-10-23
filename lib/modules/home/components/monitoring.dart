@@ -12,11 +12,10 @@ class Monitoring extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10),
+      padding: const EdgeInsets.only(left: 10, right: 10),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Align(
+          Align(
             alignment: Alignment.centerLeft,
             child: Text(
               'Monitoring',
@@ -26,6 +25,7 @@ class Monitoring extends StatelessWidget {
             height: 10,
           ),
           Wrap(
+            alignment: WrapAlignment.spaceBetween,
             children: [
               StreamBuilder(
                   stream: FirebaseFirestore.instance
@@ -73,7 +73,7 @@ class Monitoring extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.only(top: 12),
                 height: 90,
-                width: Get.width / 2.162162162,
+                width: Get.width / 2.262162162,
                 decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 59, 209, 116)
                         .withOpacity(0.3),
@@ -117,7 +117,7 @@ class Monitoring extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.only(top: 12),
                 height: 90,
-                width: Get.width / 2.162162162,
+                width: Get.width / 2.262162162,
                 decoration: BoxDecoration(
                     color: Colors.orange.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(10)),
@@ -187,7 +187,7 @@ class MonitoringCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: 90,
-        width: Get.width / 2.162162162,
+        width: Get.width / 2.262162162,
         decoration: BoxDecoration(
             color: colorBg, borderRadius: BorderRadius.circular(10)),
         child: ListTile(

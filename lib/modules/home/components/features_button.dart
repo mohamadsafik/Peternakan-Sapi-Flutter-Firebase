@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:peternakan_sapi/routes/route_name.dart';
 
 import '../../list_record/view/list_activity.dart';
-import '../../weight_prediction/view/record_weight_prediction.dart';
+import '../../weight_prediction/view/weight_prediction.dart';
 import '../controller/home_controller.dart';
 
 class FeatureButton extends StatelessWidget {
@@ -35,7 +36,7 @@ class FeatureButton extends StatelessWidget {
       ),
       GestureDetector(
         onTap: () {
-          WeightPredictionPage();
+          Get.toNamed(RouteName.weightprediction);
         },
         child: IconFeatureButton(
             controller: controller,

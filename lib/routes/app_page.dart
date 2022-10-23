@@ -6,7 +6,7 @@ import 'package:peternakan_sapi/modules/role-employee/create-profile/binding/cre
 import 'package:peternakan_sapi/modules/detail_cow/binding/detail_cow_binding.dart';
 import 'package:peternakan_sapi/modules/role-employee/listcow/binding/list_cow_employee_binding.dart';
 import 'package:peternakan_sapi/modules/employee-monitoring/binding/labor_binding.dart';
-import 'package:peternakan_sapi/modules/social_media/binding/social_media_binding.dart';
+import 'package:peternakan_sapi/modules/belum_selesai/social_media/binding/social_media_binding.dart';
 import 'package:peternakan_sapi/modules/role-employee/create-profile/view/create_profile_employee.dart';
 import 'package:peternakan_sapi/modules/role-employee/listcow/view/list_cow_employee.dart';
 import 'package:peternakan_sapi/modules/landing/view/landing.dart';
@@ -17,7 +17,8 @@ import 'package:peternakan_sapi/modules/money_manager/view/money_manager.dart';
 import 'package:peternakan_sapi/modules/setting/view/setting.dart';
 import 'package:peternakan_sapi/modules/edit-cow/binding/update_cow_binding.dart';
 import 'package:peternakan_sapi/modules/setting/view/update_profile.dart';
-import 'package:peternakan_sapi/modules/social_media/view/social_media_beranda.dart';
+import 'package:peternakan_sapi/modules/belum_selesai/social_media/view/social_media_beranda.dart';
+import 'package:peternakan_sapi/modules/weight_prediction/view/weight_prediction.dart';
 import 'package:peternakan_sapi/routes/route_name.dart';
 import '../modules/list_record/view/list_event.dart';
 import '../modules/landing/binding/landing_binding.dart';
@@ -111,6 +112,10 @@ class AppPages {
       name: (RouteName.addmoney),
       page: () => AddMoneyPage(),
       binding: AddMoneyBinding(),
+    ),
+    GetPage(
+      name: (RouteName.weightprediction),
+      page: () => WeightPredictionPage(),
     ),
 
     //employee

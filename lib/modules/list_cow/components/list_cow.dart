@@ -46,7 +46,7 @@ SingleChildScrollView listCow(
                                     'assets/home/cow1.png',
                                   )),
                         title: Text(
-                          "$nama ($nomortag)",
+                          "$nama",
                         ),
                         subtitle: Text(documentSnapshot['gender']),
                         trailing: SizedBox(

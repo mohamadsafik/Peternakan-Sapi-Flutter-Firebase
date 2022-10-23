@@ -4,9 +4,9 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
-import 'package:peternakan_sapi/modules/social_media/controller/social_media_controller.dart';
+import 'package:peternakan_sapi/modules/belum_selesai/social_media/controller/social_media_controller.dart';
 
-import '../../../constants/firebase_constants.dart';
+import '../../../../constants/firebase_constants.dart';
 
 class CommentPage extends GetView<SocialMediaController> {
   CommentPage(this.docStatus, {Key? key}) : super(key: key);

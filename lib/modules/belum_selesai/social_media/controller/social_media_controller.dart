@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
-import '../../../constants/firebase_constants.dart';
+import '../../../../constants/firebase_constants.dart';
 
 class SocialMediaController extends GetxController {
   late TextEditingController status = TextEditingController();

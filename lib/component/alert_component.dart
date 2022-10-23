@@ -20,7 +20,7 @@ class AlertComponents extends StatelessWidget {
               onPressed: () {
                 Get.toNamed(RouteName.addmoney);
               },
-              child: Text("Income"),
+              child: const Text("Income"),
             ),
           )
         ],

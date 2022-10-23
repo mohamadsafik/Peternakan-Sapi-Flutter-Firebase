@@ -7,7 +7,7 @@ import '../controller/landing_page_controller.dart';
 import '../../list_cow/view/list_cows.dart';
 import '../../home/view/home.dart';
 import '../../money_manager/view/money_manager.dart';
-import '../../social_media/view/social_media_beranda.dart';
+
 
 class LandingPage extends StatelessWidget {
   final TextStyle unselectedLabelStyle = TextStyle(

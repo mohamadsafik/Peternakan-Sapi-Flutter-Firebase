@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
@@ -24,7 +23,7 @@ class _WeightPredictionPageState extends State<WeightPredictionPage> {
           backgroundColor: green,
           title: widget.data?['name'] != null
               ? Text(widget.data['name'])
-              : Text('Prediksi Bobot')),
+              : const Text('Prediksi Bobot')),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
@@ -97,11 +96,8 @@ class _WeightPredictionPageState extends State<WeightPredictionPage> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text('Berat Sapi : '),
+                                            const Text('Berat Sapi : '),
                                             Text(
-                                              // readOnly: true,
-                                              // controller: controller.weight
-                                              //   ..text =
                                               ("${(((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592).round()} Kg"),
                                             ),
                                           ],
@@ -110,7 +106,7 @@ class _WeightPredictionPageState extends State<WeightPredictionPage> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text('Kebutuhan Rumput : '),
+                                            const Text('Kebutuhan Rumput : '),
                                             Text(
                                                 "${(((((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592) / 100) * 10).round()} Kg"),
                                           ],
@@ -119,57 +115,12 @@ class _WeightPredictionPageState extends State<WeightPredictionPage> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text('Kebutuhan Comboran : '),
+                                            const Text('Kebutuhan Comboran : '),
                                             Text(
                                                 "${(((((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592) / 100) * 2).round()} Kg"),
                                           ],
                                         ),
                                       ]))));
-                      // showCupertinoModalPopup(
-                      //     context: context,
-                      //     builder: (BuildContext context) {
-                      //       return Scaffold(
-                      //         appBar: AppBar(
-                      //           backgroundColor: green,
-                      //         ),
-                      //         body: Container(
-                      //           height: 800,
-                      //           width: 800,
-                      //           decoration: BoxDecoration(
-                      //               color: Colors.white,
-                      //               borderRadius: BorderRadius.circular(8)),
-                      //           child: Column(
-                      //             children: [
-                      //               Row(
-                      //                 children: [
-                      //                   Text('Berat Sapi : '),
-                      //                   Text(
-                      //                     // readOnly: true,
-                      //                     // controller: controller.weight
-                      //                     //   ..text =
-                      //                     ("${(((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592).round()}"),
-                      //                   ),
-                      //                 ],
-                      //               ),
-                      //               Row(
-                      //                 children: [
-                      //                   Text('Kebutuhan Rumput : '),
-                      //                   Text(
-                      //                       "${(((((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592) / 100) * 10).round()}"),
-                      //                 ],
-                      //               ),
-                      //               Row(
-                      //                 children: [
-                      //                   Text('Kebutuhan Comboran : '),
-                      //                   Text(
-                      //                       "${(((((controller.firstFieldValue * controller.firstFieldValue) * (controller.secondFieldValue) / 300) * 0.453592) / 100) * 2).round()}"),
-                      //                 ],
-                      //               ),
-                      //             ],
-                      //           ),
-                      //         ),
-                      //       );
-                      //     });
                     },
                     child: const Center(child: Text('submit')),
                   ),

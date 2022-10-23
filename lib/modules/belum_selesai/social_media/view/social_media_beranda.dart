@@ -4,10 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:peternakan_sapi/modules/social_media/controller/social_media_controller.dart';
+import 'package:peternakan_sapi/modules/belum_selesai/social_media/controller/social_media_controller.dart';
 
-import '../../../constants/color.dart';
-import '../../home/components/drawer.dart';
+import '../../../../constants/color.dart';
+import '../../../home/components/drawer.dart';
 import 'comment.dart';
 
 class SocialMediaPage extends GetView<SocialMediaController> {

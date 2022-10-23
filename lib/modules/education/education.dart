@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:peternakan_sapi/constants/color.dart';
 
 class EducationPage extends StatelessWidget {

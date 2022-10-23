@@ -21,18 +21,8 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(80),
-        child: AppBar(
-          backgroundColor: green,
-          actions: [
-            IconButton(
-                onPressed: () {
-                  // AuthController.authInstance.signOut();
-                },
-                icon: const Icon(Icons.settings))
-          ],
-        ),
+      appBar: AppBar(
+        backgroundColor: green,
       ),
       backgroundColor: background,
       body: SingleChildScrollView(
