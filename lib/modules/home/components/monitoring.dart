@@ -14,8 +14,9 @@ class Monitoring extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Align(
+          const Align(
             alignment: Alignment.centerLeft,
             child: Text(
               'Monitoring',
@@ -24,8 +25,8 @@ class Monitoring extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          Wrap(
-            alignment: WrapAlignment.spaceBetween,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               StreamBuilder(
                   stream: FirebaseFirestore.instance
@@ -48,7 +49,7 @@ class Monitoring extends StatelessWidget {
                     }
                     return const CircularProgressIndicator();
                   }),
-              const SizedBox(width: 12),
+              const SizedBox(width: 10),
               StreamBuilder(
                   stream: FirebaseFirestore.instance
                       .collection('cows')
@@ -70,10 +71,15 @@ class Monitoring extends StatelessWidget {
                     }
                     return const CircularProgressIndicator();
                   }),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
               Container(
                 margin: const EdgeInsets.only(top: 12),
                 height: 90,
-                width: Get.width / 2.262162162,
+                width: Get.width / 2.162162162,
                 decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 59, 209, 116)
                         .withOpacity(0.3),
@@ -113,11 +119,11 @@ class Monitoring extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: 10),
               Container(
                 margin: const EdgeInsets.only(top: 12),
                 height: 90,
-                width: Get.width / 2.262162162,
+                width: Get.width / 2.162162162,
                 decoration: BoxDecoration(
                     color: Colors.orange.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(10)),
@@ -187,7 +193,7 @@ class MonitoringCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: 90,
-        width: Get.width / 2.262162162,
+        width: Get.width / 2.162162162,
         decoration: BoxDecoration(
             color: colorBg, borderRadius: BorderRadius.circular(10)),
         child: ListTile(

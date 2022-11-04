@@ -18,7 +18,6 @@ SingleChildScrollView listCow(
             builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
               if (streamSnapshot.data != null) {
                 return ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: streamSnapshot.data!.docs.length,
                   itemBuilder: (context, index) {
